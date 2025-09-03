@@ -529,32 +529,136 @@
 // Scroll indicator
 .scroll-indicator {
   position: fixed;
-  right: $spacing-6;
-  top: 50%;
-  transform: translateY(-50%);
+  right: $spacing-4;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
   z-index: $z-index-fixed;
   display: none;
   
   @include respond-to(lg) {
     display: block;
+    right: $spacing-6;
+    width: 3px;
   }
   
-  .indicator-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: $border-radius-full;
-    background: $color-gray-400;
-    margin-bottom: $spacing-3;
-    cursor: pointer;
-    transition: all $transition-base ease;
+  @include respond-to(xl) {
+    right: $spacing-8;
+    width: 4px;
+  }
+  
+  // Background track
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-gray-400, 0.3);
+    border-radius: 10px;
+  }
+  
+  // Progress indicator
+  .scroll-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, $color-primary, $color-primary-light);
+    border-radius: 10px;
+    transition: height 0.3s ease;
+    box-shadow: 0 0 10px rgba($color-primary, 0.4);
     
-    &.active {
-      background: $color-primary;
-      transform: scale(1.2);
+    @include respond-to(lg) {
+      box-shadow: 0 0 15px rgba($color-primary, 0.5);
+    }
+  }
+  
+  // Section markers
+  .section-markers {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 100%;
+    
+    @include respond-to(lg) {
+      width: 10px;
     }
     
-    &:hover {
-      background: $color-primary;
+    @include respond-to(xl) {
+      width: 12px;
+    }
+    
+    .marker {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: $color-white;
+      border-radius: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 1px;
+        background: $color-primary;
+        transition: width 0.3s ease;
+        margin-right: 8px;
+      }
+      
+      &::after {
+        content: attr(data-section);
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 16px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: $color-primary;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        white-space: nowrap;
+        
+        @include respond-to(lg) {
+          font-size: 0.8rem;
+          margin-right: 20px;
+        }
+      }
+      
+      &:hover {
+        background: $color-primary;
+        transform: scaleX(1.5);
+        
+        &::before {
+          width: 12px;
+        }
+        
+        &::after {
+          opacity: 1;
+        }
+      }
+      
+      &.active {
+        background: $color-primary;
+        transform: scaleY(2);
+        box-shadow: 0 0 8px rgba($color-primary, 0.6);
+      }
+      
+      // Position each marker
+      &:nth-child(1) { top: 0%; }
+      &:nth-child(2) { top: 25%; }
+      &:nth-child(3) { top: 50%; }
+      &:nth-child(4) { top: 75%; }
+      &:nth-child(5) { top: 100%; transform: translateY(-100%); }
     }
   }
 }

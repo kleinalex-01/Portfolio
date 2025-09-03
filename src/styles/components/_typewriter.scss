@@ -1,6 +1,79 @@
 // Typewriter component styles
 @import '../abstracts/variables';
-@import '../abstracts/mixins';
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+  
+  @include respond-to(md) {
+    max-width: 80%;
+  }
+  
+  @include respond-to(lg) {
+    max-width: 70%;
+  }
+}
+
+// Scroll arrow at bottom of hero section
+.scroll-arrow {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $color-primary;
+  opacity: 0;
+  animation: fadeInAndBounce 1s ease-out forwards, continuousBounce 2s ease-in-out 1s infinite;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  
+  svg {
+    width: 32px;
+    height: 32px;
+    
+    @include respond-to(md) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  &:hover {
+    color: $color-primary-dark;
+    animation-play-state: paused;
+  }
+}
+
+@keyframes fadeInAndBounce {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  80% {
+    transform: translateX(-50%) translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes continuousBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+};
 
 .typewriter-container {
   text-align: center;
@@ -15,12 +88,12 @@
     font-family: $font-primary;
     line-height: 1.2;
     
-    @include respond-to('tablet') {
+    @include respond-to(md) {
       font-size: clamp(2.5rem, 6vw, 5rem);
       margin-bottom: 1.5rem;
     }
     
-    @include respond-to('desktop') {
+    @include respond-to(lg) {
       font-size: clamp(3rem, 7vw, 6rem);
       margin-bottom: 2rem;
     }
@@ -38,12 +111,12 @@
     align-items: center;
     justify-content: center;
     
-    @include respond-to('tablet') {
+    @include respond-to(md) {
       font-size: clamp(2rem, 5vw, 3.5rem);
       min-height: 1.6em;
     }
     
-    @include respond-to('desktop') {
+    @include respond-to(lg) {
       font-size: clamp(2.5rem, 6vw, 4rem);
       min-height: 1.7em;
     }
@@ -56,12 +129,12 @@
     width: 3px;
     animation: blink 1s infinite;
     
-    @include respond-to('tablet') {
+    @include respond-to(md) {
       width: 4px;
       margin-left: 3px;
     }
     
-    @include respond-to('desktop') {
+    @include respond-to(lg) {
       width: 5px;
       margin-left: 4px;
     }
