@@ -1,0 +1,199 @@
+// Button component styles
+
+.btn {
+  @include button-base;
+  
+  // Base button styles
+  @include button-size($spacing-3, $spacing-6, $font-size-base);
+  
+  // Primary button variant
+  &.btn-primary {
+    @include button-variant($color-primary, $color-white, $color-primary-dark);
+  }
+  
+  // Secondary button variant
+  &.btn-secondary {
+    @include button-variant($color-secondary, $color-white, $color-gray-600);
+  }
+  
+  // Outline button variants
+  &.btn-outline {
+    background: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    
+    &:hover:not(:disabled) {
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
+  
+  &.btn-outline-secondary {
+    background: transparent;
+    border: 2px solid $color-secondary;
+    color: $color-secondary;
+    
+    &:hover:not(:disabled) {
+      background: $color-secondary;
+      color: $color-white;
+    }
+  }
+  
+  // Ghost button
+  &.btn-ghost {
+    background: transparent;
+    color: $color-primary;
+    
+    &:hover:not(:disabled) {
+      background: rgba($color-primary, 0.1);
+    }
+  }
+  
+  // Link button
+  &.btn-link {
+    background: transparent;
+    color: $color-primary;
+    text-decoration: underline;
+    
+    &:hover:not(:disabled) {
+      color: $color-primary-dark;
+      background: transparent;
+    }
+  }
+  
+  // Button sizes
+  &.btn-sm {
+    @include button-size($spacing-2, $spacing-4, $font-size-sm);
+  }
+  
+  &.btn-lg {
+    @include button-size($spacing-4, $spacing-8, $font-size-lg);
+  }
+  
+  &.btn-xl {
+    @include button-size($spacing-5, $spacing-10, $font-size-xl);
+  }
+  
+  // Full width button
+  &.btn-block {
+    width: 100%;
+  }
+  
+  // Icon buttons
+  &.btn-icon {
+    @include button-size($spacing-3, $spacing-3, $font-size-base);
+    aspect-ratio: 1;
+  }
+  
+  &.btn-icon-sm {
+    @include button-size($spacing-2, $spacing-2, $font-size-sm);
+    aspect-ratio: 1;
+  }
+  
+  &.btn-icon-lg {
+    @include button-size($spacing-4, $spacing-4, $font-size-lg);
+    aspect-ratio: 1;
+  }
+  
+  // Button with icon
+  &.btn-with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    
+    .icon {
+      flex-shrink: 0;
+    }
+  }
+  
+  // Loading state
+  &.btn-loading {
+    position: relative;
+    color: transparent;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    &.btn-primary::after,
+    &.btn-secondary::after {
+      border-top-color: $color-white;
+    }
+    
+    &.btn-outline::after,
+    &.btn-ghost::after,
+    &.btn-link::after {
+      border-top-color: $color-primary;
+    }
+  }
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+  
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: $border-radius-md;
+      border-bottom-left-radius: $border-radius-md;
+    }
+    
+    &:last-child {
+      border-top-right-radius: $border-radius-md;
+      border-bottom-right-radius: $border-radius-md;
+    }
+    
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+    
+    &:hover,
+    &:focus {
+      z-index: 1;
+    }
+  }
+}
+
+// Floating action button
+.fab {
+  @include button-base;
+  @include button-variant($color-primary, $color-white, $color-primary-dark);
+  
+  position: fixed;
+  bottom: $spacing-6;
+  right: $spacing-6;
+  width: 56px;
+  height: 56px;
+  border-radius: $border-radius-full;
+  box-shadow: $shadow-lg;
+  z-index: $z-index-fixed;
+  
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: scale(1.05);
+  }
+  
+  @include respond-to(lg) {
+    bottom: $spacing-8;
+    right: $spacing-8;
+  }
+}
+
+// Keyframes for loading animation
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

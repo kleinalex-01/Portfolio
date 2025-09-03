@@ -1,0 +1,41 @@
+// Main Sass entry point
+
+// Import variables and mixins first
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './abstracts/functions';
+
+// Import base styles
+@import './base/fonts';
+@import './base/reset';
+@import './base/typography';
+@import './base/base';
+
+// Import components
+@import './components/button';
+@import './components/typewriter';
+
+// Import layout
+@import './layout/header';
+@import './layout/footer';
+
+// Import pages
+@import './pages/home';
+
+// Import themes
+@import './themes/theme';
+
+// Import vendors (if needed)
+@import './vendors/bootstrap';
+
+// Global styles
+body {
+	background: $color-white;
+	color: $color-black-soft;
+	font-family: $font-primary;
+}
+
+.app-header {
+	background: $color-primary;
+	color: $color-white;
+}

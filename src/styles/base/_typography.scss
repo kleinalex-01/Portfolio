@@ -1,0 +1,262 @@
+// Typography styles
+
+// Base typography
+html {
+  font-size: 16px; // Base font size for rem calculations
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $color-gray-900;
+  background-color: $color-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 $spacing-4 0;
+  font-family: $font-primary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-gray-900;
+}
+
+h1 {
+  @include heading('3xl');
+  
+  @include respond-to(sm) {
+    font-size: $font-size-5xl;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-6xl;
+  }
+}
+
+h2 {
+  @include heading('2xl');
+  
+  @include respond-to(sm) {
+    font-size: $font-size-4xl;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-5xl;
+  }
+}
+
+h3 {
+  @include heading('xl');
+  
+  @include respond-to(sm) {
+    font-size: $font-size-3xl;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-4xl;
+  }
+}
+
+h4 {
+  @include heading('lg');
+  
+  @include respond-to(sm) {
+    font-size: $font-size-2xl;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-3xl;
+  }
+}
+
+h5 {
+  @include heading('md');
+  
+  @include respond-to(sm) {
+    font-size: $font-size-xl;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-2xl;
+  }
+}
+
+h6 {
+  @include heading('sm');
+  
+  @include respond-to(sm) {
+    font-size: $font-size-lg;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-xl;
+  }
+}
+
+// Paragraphs
+p {
+  margin: 0 0 $spacing-4 0;
+  line-height: $line-height-relaxed;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &.lead {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: $color-gray-600;
+    
+    @include respond-to(lg) {
+      font-size: $font-size-xl;
+    }
+  }
+  
+  &.small {
+    font-size: $font-size-sm;
+    color: $color-gray-600;
+  }
+}
+
+// Links
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-base ease;
+  
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Lists
+ul, ol {
+  margin: 0 0 $spacing-4 0;
+  padding-left: $spacing-6;
+  
+  li {
+    margin-bottom: $spacing-2;
+    line-height: $line-height-relaxed;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &.unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+// Code
+code {
+  font-family: $font-mono;
+  font-size: 0.875em;
+  background-color: $color-gray-100;
+  color: $color-gray-800;
+  padding: 0.125rem 0.25rem;
+  border-radius: $border-radius-sm;
+}
+
+pre {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  background-color: $color-gray-900;
+  color: $color-gray-100;
+  padding: $spacing-4;
+  border-radius: $border-radius-md;
+  overflow-x: auto;
+  margin: 0 0 $spacing-4 0;
+  
+  code {
+    background: none;
+    color: inherit;
+    padding: 0;
+  }
+}
+
+// Blockquotes
+blockquote {
+  margin: 0 0 $spacing-6 0;
+  padding: $spacing-4 $spacing-6;
+  border-left: 4px solid $color-primary;
+  background-color: $color-gray-100;
+  font-style: italic;
+  
+  p {
+    margin-bottom: $spacing-2;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  cite {
+    display: block;
+    margin-top: $spacing-2;
+    font-size: $font-size-sm;
+    color: $color-gray-600;
+    font-style: normal;
+    
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// Utility classes
+.text-xs { font-size: $font-size-xs; }
+.text-sm { font-size: $font-size-sm; }
+.text-base { font-size: $font-size-base; }
+.text-lg { font-size: $font-size-lg; }
+.text-xl { font-size: $font-size-xl; }
+.text-2xl { font-size: $font-size-2xl; }
+.text-3xl { font-size: $font-size-3xl; }
+.text-4xl { font-size: $font-size-4xl; }
+.text-5xl { font-size: $font-size-5xl; }
+
+.font-light { font-weight: $font-weight-light; }
+.font-normal { font-weight: $font-weight-normal; }
+.font-medium { font-weight: $font-weight-medium; }
+.font-semibold { font-weight: $font-weight-semibold; }
+.font-bold { font-weight: $font-weight-bold; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: $color-primary; }
+.text-secondary { color: $color-secondary; }
+.text-white { color: $color-white; }
+.text-black { color: $color-black; }
+.text-gray-100 { color: $color-gray-100; }
+.text-gray-200 { color: $color-gray-200; }
+.text-gray-300 { color: $color-gray-300; }
+.text-gray-400 { color: $color-gray-400; }
+.text-gray-500 { color: $color-gray-500; }
+.text-gray-600 { color: $color-gray-600; }
+.text-gray-700 { color: $color-gray-700; }
+.text-gray-800 { color: $color-gray-800; }
+.text-gray-900 { color: $color-gray-900; }
+
+.font-primary { font-family: $font-primary; }
+.font-secondary { font-family: $font-secondary; }
+.font-accent { font-family: $font-accent; }
+.font-mono { font-family: $font-mono; }
+
+.truncate { @include text-truncate; }
+.clamp-2 { @include text-clamp(2); }
+.clamp-3 { @include text-clamp(3); }

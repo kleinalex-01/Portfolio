@@ -1,0 +1,142 @@
+// Header layout styles
+
+.header {
+  background: $color-white;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  
+  &.header-transparent {
+    background: transparent;
+    box-shadow: none;
+  }
+  
+  &.header-dark {
+    background: $color-gray-900;
+    color: $color-white;
+  }
+}
+
+.header-container {
+  @include container;
+  @include flex-between;
+  padding-top: $spacing-4;
+  padding-bottom: $spacing-4;
+  
+  @include respond-to(lg) {
+    padding-top: $spacing-6;
+    padding-bottom: $spacing-6;
+  }
+}
+
+.header-logo {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  
+  @include respond-to(lg) {
+    font-size: $font-size-2xl;
+  }
+  
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: none;
+  }
+}
+
+.header-nav {
+  display: none;
+  
+  @include respond-to(md) {
+    display: flex;
+    align-items: center;
+    gap: $spacing-8;
+  }
+}
+
+.header-nav-link {
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+  transition: color $transition-base ease;
+  position: relative;
+  
+  &:hover {
+    color: $color-primary;
+    text-decoration: none;
+  }
+  
+  &.active {
+    color: $color-primary;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $color-primary;
+      border-radius: $border-radius-full;
+    }
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+}
+
+.header-mobile-toggle {
+  display: block;
+  
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.header-mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $color-white;
+  box-shadow: $shadow-lg;
+  padding: $spacing-6;
+  
+  &.show {
+    display: block;
+  }
+  
+  @include respond-to(md) {
+    display: none !important;
+  }
+}
+
+.header-mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.header-mobile-nav-link {
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+  padding: $spacing-3 0;
+  border-bottom: 1px solid $color-gray-200;
+  
+  &:hover {
+    color: $color-primary;
+    text-decoration: none;
+  }
+  
+  &.active {
+    color: $color-primary;
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
