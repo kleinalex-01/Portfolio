@@ -1,11 +1,11 @@
-import { Home } from "./Components/Home"
+import LandingPage from "./Components/LandingPage"
 import './styles/main.scss'
 
 function App() {
 
   return (
     <>
-      <Home />
+      <LandingPage />
     </>
   );
 };
