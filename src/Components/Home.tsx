@@ -122,6 +122,9 @@ export const Home = () => {
             deletingSpeed={40}
             pauseDuration={2500}
           />
+          <button className="cv-download-btn">
+            Önéletrajzom
+          </button>
           <div className="scroll-arrow" onClick={() => goToSection(1)}>
             <svg 
               width="24" 
@@ -142,50 +145,13 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Section 2 - 2023 Projects */}
+      {/* Section 2 - Empty */}
       <section 
-        className="section section-dark timeline-section"
+        className="section section-dark"
         ref={(el) => { sectionRefs.current[1] = el; }}
-        id="projects-2023"
+        id="section-2"
       >
-        <div className="years-container">
-          <div className="year-row">
-            <div className="year-label">2023</div>
-            <div className="code-snippet">
-              <TypewriterText 
-                staticText=""
-                sentences={["<div>Hello World</div>"]}
-                typingSpeed={60}
-                deletingSpeed={30}
-                pauseDuration={3000}
-              />
-            </div>
-          </div>
-          <div className="year-row">
-            <div className="year-label">2024</div>
-            <div className="code-snippet">
-              <TypewriterText 
-                staticText=""
-                sentences={["// Coming soon..."]}
-                typingSpeed={60}
-                deletingSpeed={30}
-                pauseDuration={3000}
-              />
-            </div>
-          </div>
-          <div className="year-row">
-            <div className="year-label">2025</div>
-            <div className="code-snippet">
-              <TypewriterText 
-                staticText=""
-                sentences={["// Coming soon..."]}
-                typingSpeed={60}
-                deletingSpeed={30}
-                pauseDuration={3000}
-              />
-            </div>
-          </div>
-        </div>
+        
       </section>
 
       {/* Section 3 - 2024 Projects */}

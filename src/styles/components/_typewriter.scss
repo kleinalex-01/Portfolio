@@ -20,6 +20,36 @@
   }
 }
 
+// CV Download Button
+.cv-download-btn {
+  background: $color-primary;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 2rem 0;
+  transition: all 0.3s ease;
+  font-family: $font-primary;
+  
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 181, 246, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  @include respond-to(md) {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+  }
+}
+
 // Scroll arrow at bottom of hero section
 .scroll-arrow {
   position: absolute;
