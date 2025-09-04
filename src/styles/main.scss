@@ -1,43 +1,43 @@
 // Main Sass entry point
 
-// Import variables and mixins first
-@import './abstracts/variables';
-@import './abstracts/mixins';
-@import './abstracts/functions';
+// Use abstracts
+@use './abstracts/variables' as vars;
+@use './abstracts/mixins' as mixins;
+@use './abstracts/functions' as functions;
 
-// Import base styles
-@import './base/fonts';
-@import './base/reset';
-@import './base/typography';
-@import './base/base';
+// Use base styles
+@use './base/fonts';
+@use './base/reset';
+@use './base/typography';
+@use './base/base';
 
-// Import components
-@import './components/button';
-@import './components/typewriter';
-@import './components/timeline';
-@import './components/years';
+// Use components
+@use './components/button';
+@use './components/typewriter';
+@use './components/timeline';
+@use './components/years';
 
-// Import layout
-@import './layout/header';
-@import './layout/footer';
+// Use layout
+@use './layout/header';
+@use './layout/footer';
 
-// Import pages
-@import './pages/home';
+// Use pages
+@use './pages/home';
 
-// Import themes
-@import './themes/theme';
+// Use themes
+@use './themes/theme';
 
-// Import vendors (if needed)
-@import './vendors/bootstrap';
+// Use vendors (if needed)
+@use './vendors/bootstrap';
 
 // Global styles
 body {
-	background: $color-white;
-	color: $color-black-soft;
-	font-family: $font-primary;
+	background: vars.$color-white;
+	color: vars.$color-black-soft;
+	font-family: vars.$font-primary;
 }
 
 .app-header {
-	background: $color-primary;
-	color: $color-white;
+	background: vars.$color-primary;
+	color: vars.$color-white;
 }

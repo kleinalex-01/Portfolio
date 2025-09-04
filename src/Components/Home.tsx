@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { TypewriterText } from "./TypewriterText";
+import Background from "./Background";
 
 export const Home = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -9,6 +9,21 @@ export const Home = () => {
   const sections = ['hero', '2023', '2024', '2025', 'contact'];
   
   useEffect(() => {
+    // Throttle function for performance optimization
+    const throttle = <T extends (...args: unknown[]) => void>(
+      func: T,
+      limit: number
+    ): ((...args: Parameters<T>) => void) => {
+      let inThrottle: boolean;
+      return (...args: Parameters<T>) => {
+        if (!inThrottle) {
+          func(...args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      };
+    };
+
     // Intersection Observer with better settings for scroll detection
     const observer = new IntersectionObserver(
       (entries) => {
@@ -44,52 +59,53 @@ export const Home = () => {
       }
     });
 
-    // Enhanced scroll event listener as backup
-    const handleScroll = () => {
+    // Optimized scroll event listener with throttling
+    const handleScroll = throttle(() => {
       const homeElement = homeRef.current;
       if (!homeElement) return;
       
-      const viewportHeight = homeElement.clientHeight;
-      
-      // Calculate which section is most visible
-      let maxVisibility = 0;
-      let mostVisibleIndex = 0;
-      
-      sectionRefs.current.forEach((section, index) => {
-        if (!section) return;
+      try {
+        const viewportHeight = homeElement.clientHeight;
         
-        const rect = section.getBoundingClientRect();
-        const homeRect = homeElement.getBoundingClientRect();
+        // Calculate which section is most visible
+        let maxVisibility = 0;
+        let mostVisibleIndex = 0;
         
-        const visibleTop = Math.max(0, rect.top - homeRect.top);
-        const visibleBottom = Math.min(viewportHeight, rect.bottom - homeRect.top);
-        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-        const visibility = visibleHeight / viewportHeight;
+        sectionRefs.current.forEach((section, index) => {
+          if (!section) return;
+          
+          const rect = section.getBoundingClientRect();
+          const homeRect = homeElement.getBoundingClientRect();
+          
+          const visibleTop = Math.max(0, rect.top - homeRect.top);
+          const visibleBottom = Math.min(viewportHeight, rect.bottom - homeRect.top);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const visibility = visibleHeight / viewportHeight;
+          
+          if (visibility > maxVisibility) {
+            maxVisibility = visibility;
+            mostVisibleIndex = index;
+          }
+        });
         
-        if (visibility > maxVisibility) {
-          maxVisibility = visibility;
-          mostVisibleIndex = index;
+        if (mostVisibleIndex !== currentSection && maxVisibility > 0.3) {
+          setCurrentSection(mostVisibleIndex);
         }
-      });
-      
-      if (mostVisibleIndex !== currentSection && maxVisibility > 0.3) {
-        console.log('Section changed to:', mostVisibleIndex, 'from:', currentSection);
-        setCurrentSection(mostVisibleIndex);
+      } catch (error) {
+        console.warn('Error in scroll handler:', error);
       }
-    };
-    
+    }, 100); // Throttle to 100ms
+
     const homeElement = homeRef.current;
     if (homeElement) {
+      // Single scroll listener with passive option for better performance
       homeElement.addEventListener('scroll', handleScroll, { passive: true });
-      // Also listen to the window scroll as fallback
-      window.addEventListener('scroll', handleScroll, { passive: true });
     }
     
     return () => {
       observer.disconnect();
       if (homeElement) {
         homeElement.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('scroll', handleScroll);
       }
     };
   }, [currentSection, sections.length]);
@@ -101,48 +117,20 @@ export const Home = () => {
     });
   };
 
-  const typedSentences = [
-    "Ez itt a portfolióm", 
-    "Weboldalakat készítek",
-    "Segítek a vállalkozásodnak"
-  ];
   return (
     <div className="home" ref={homeRef}>
       {/* Section 1 - Hero */}
       <section 
-        className="section section-light"
+        className="section section-hero-iridescent"
         ref={(el) => { sectionRefs.current[0] = el; }}
         id="hero"
       >
-        <div className="hero-content">
-          <TypewriterText 
-            staticText="Szia, Alex vagyok és"
-            sentences={typedSentences}
-            typingSpeed={80}
-            deletingSpeed={40}
-            pauseDuration={2500}
-          />
-          <button className="cv-download-btn">
-            Önéletrajzom
-          </button>
-          <div className="scroll-arrow" onClick={() => goToSection(1)}>
-            <svg 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                d="M7 10L12 15L17 10" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-        </div>
+        <Background 
+          color={[0.4, 0.7, 1.0]}
+          speed={0.6}
+          amplitude={0.03}
+          mouseReact={true}
+        />
       </section>
 
       {/* Section 2 - Empty */}

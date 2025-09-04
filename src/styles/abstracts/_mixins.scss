@@ -1,29 +1,30 @@
 // Sass mixins
+@use 'variables' as vars;
 
 // Media query mixins for responsive design
 @mixin respond-to($breakpoint) {
   @if $breakpoint == xs {
-    @media (min-width: $breakpoint-xs) {
+    @media (min-width: vars.$breakpoint-xs) {
       @content;
     }
   } @else if $breakpoint == sm {
-    @media (min-width: $breakpoint-sm) {
+    @media (min-width: vars.$breakpoint-sm) {
       @content;
     }
   } @else if $breakpoint == md {
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: vars.$breakpoint-md) {
       @content;
     }
   } @else if $breakpoint == lg {
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: vars.$breakpoint-lg) {
       @content;
     }
   } @else if $breakpoint == xl {
-    @media (min-width: $breakpoint-xl) {
+    @media (min-width: vars.$breakpoint-xl) {
       @content;
     }
   } @else if $breakpoint == 2xl {
-    @media (min-width: $breakpoint-2xl) {
+    @media (min-width: vars.$breakpoint-2xl) {
       @content;
     }
   }
@@ -32,27 +33,27 @@
 // Maximum width media queries
 @mixin respond-to-max($breakpoint) {
   @if $breakpoint == xs {
-    @media (max-width: calc(#{$breakpoint-xs} - 1px)) {
+    @media (max-width: calc(#{vars.$breakpoint-xs} - 1px)) {
       @content;
     }
   } @else if $breakpoint == sm {
-    @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
+    @media (max-width: calc(#{vars.$breakpoint-sm} - 1px)) {
       @content;
     }
   } @else if $breakpoint == md {
-    @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+    @media (max-width: calc(#{vars.$breakpoint-md} - 1px)) {
       @content;
     }
   } @else if $breakpoint == lg {
-    @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
+    @media (max-width: calc(#{vars.$breakpoint-lg} - 1px)) {
       @content;
     }
   } @else if $breakpoint == xl {
-    @media (max-width: calc(#{$breakpoint-xl} - 1px)) {
+    @media (max-width: calc(#{vars.$breakpoint-xl} - 1px)) {
       @content;
     }
   } @else if $breakpoint == 2xl {
-    @media (max-width: calc(#{$breakpoint-2xl} - 1px)) {
+    @media (max-width: calc(#{vars.$breakpoint-2xl} - 1px)) {
       @content;
     }
   }
@@ -62,31 +63,31 @@
 @mixin respond-between($min-breakpoint, $max-breakpoint) {
   $min-width: null;
   $max-width: null;
-  
+
   @if $min-breakpoint == xs {
-    $min-width: $breakpoint-xs;
+    $min-width: vars.$breakpoint-xs;
   } @else if $min-breakpoint == sm {
-    $min-width: $breakpoint-sm;
+    $min-width: vars.$breakpoint-sm;
   } @else if $min-breakpoint == md {
-    $min-width: $breakpoint-md;
+    $min-width: vars.$breakpoint-md;
   } @else if $min-breakpoint == lg {
-    $min-width: $breakpoint-lg;
+    $min-width: vars.$breakpoint-lg;
   } @else if $min-breakpoint == xl {
-    $min-width: $breakpoint-xl;
+    $min-width: vars.$breakpoint-xl;
   }
-  
+
   @if $max-breakpoint == sm {
-    $max-width: calc(#{$breakpoint-sm} - 1px);
+    $max-width: calc(#{vars.$breakpoint-sm} - 1px);
   } @else if $max-breakpoint == md {
-    $max-width: calc(#{$breakpoint-md} - 1px);
+    $max-width: calc(#{vars.$breakpoint-md} - 1px);
   } @else if $max-breakpoint == lg {
-    $max-width: calc(#{$breakpoint-lg} - 1px);
+    $max-width: calc(#{vars.$breakpoint-lg} - 1px);
   } @else if $max-breakpoint == xl {
-    $max-width: calc(#{$breakpoint-xl} - 1px);
+    $max-width: calc(#{vars.$breakpoint-xl} - 1px);
   } @else if $max-breakpoint == 2xl {
-    $max-width: calc(#{$breakpoint-2xl} - 1px);
+    $max-width: calc(#{vars.$breakpoint-2xl} - 1px);
   }
-  
+
   @media (min-width: $min-width) and (max-width: $max-width) {
     @content;
   }
@@ -116,18 +117,18 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: $border-radius-md;
-  font-weight: $font-weight-medium;
+  border-radius: vars.$border-radius-md;
+  font-weight: vars.$font-weight-medium;
   text-decoration: none;
   cursor: pointer;
-  transition: all $transition-base ease;
-  font-family: $font-primary;
-  
+  transition: all vars.$transition-base ease;
+  font-family: vars.$font-primary;
+
   &:focus {
-    outline: 2px solid $color-primary;
+    outline: 2px solid vars.$color-primary;
     outline-offset: 2px;
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -142,7 +143,7 @@
 @mixin button-variant($bg-color, $text-color, $hover-bg: null, $hover-text: null) {
   background-color: $bg-color;
   color: $text-color;
-  
+
   @if $hover-bg {
     &:hover:not(:disabled) {
       background-color: $hover-bg;
@@ -157,27 +158,109 @@
   }
 }
 
-// Typography mixins
+// Bright blue button variants
+@mixin button-primary {
+  @include button-base;
+  @include button-variant(vars.$color-primary, vars.$color-white, vars.$color-primary-light);
+  @include button-size(vars.$spacing-3, vars.$spacing-6, vars.$font-size-base);
+  font-weight: vars.$font-weight-semibold;
+  letter-spacing: 0.025em;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.3);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  color: vars.$color-primary;
+  border: 2px solid vars.$color-primary;
+  @include button-size(vars.$spacing-3, vars.$spacing-6, vars.$font-size-base);
+  font-weight: vars.$font-weight-medium;
+  letter-spacing: 0.025em;
+  border-radius: vars.$border-radius-lg;
+
+  &:hover:not(:disabled) {
+    background: vars.$color-primary;
+    color: vars.$color-white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.2);
+  }
+}
+
+// Typography mixins - Enhanced for better readability
 @mixin heading($size: 'lg') {
-  font-family: $font-primary;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-tight;
-  color: $color-gray-900;
-  
+  font-family: vars.$font-primary;
+  font-weight: vars.$font-weight-bold;
+  line-height: vars.$line-height-tight;
+  color: vars.$color-gray-900;
+  letter-spacing: -0.025em;
+
   @if $size == 'xs' {
-    font-size: $font-size-lg;
+    font-size: vars.$font-size-xl;
   } @else if $size == 'sm' {
-    font-size: $font-size-xl;
+    font-size: vars.$font-size-2xl;
   } @else if $size == 'md' {
-    font-size: $font-size-2xl;
+    font-size: vars.$font-size-3xl;
   } @else if $size == 'lg' {
-    font-size: $font-size-3xl;
+    font-size: vars.$font-size-4xl;
   } @else if $size == 'xl' {
-    font-size: $font-size-4xl;
+    font-size: vars.$font-size-5xl;
   } @else if $size == '2xl' {
-    font-size: $font-size-5xl;
+    font-size: vars.$font-size-6xl;
   } @else if $size == '3xl' {
-    font-size: $font-size-6xl;
+    font-size: vars.$font-size-7xl;
+  } @else if $size == '4xl' {
+    font-size: vars.$font-size-8xl;
+  }
+}
+
+@mixin body-text($size: 'base', $weight: 'normal') {
+  font-family: vars.$font-primary;
+  line-height: vars.$line-height-relaxed;
+  color: vars.$color-gray-700;
+
+  @if $size == 'sm' {
+    font-size: vars.$font-size-sm;
+  } @else if $size == 'base' {
+    font-size: vars.$font-size-base;
+  } @else if $size == 'lg' {
+    font-size: vars.$font-size-lg;
+  } @else if $size == 'xl' {
+    font-size: vars.$font-size-xl;
+  }
+
+  @if $weight == 'light' {
+    font-weight: vars.$font-weight-light;
+  } @else if $weight == 'normal' {
+    font-weight: vars.$font-weight-normal;
+  } @else if $weight == 'medium' {
+    font-weight: vars.$font-weight-medium;
+  } @else if $weight == 'semibold' {
+    font-weight: vars.$font-weight-semibold;
+  }
+}
+
+@mixin link-style {
+  color: vars.$color-primary;
+  text-decoration: none;
+  font-weight: vars.$font-weight-medium;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    color: vars.$color-primary-dark;
+    border-bottom-color: vars.$color-primary;
+  }
+
+  &:focus {
+    outline: 2px solid vars.$color-primary;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
@@ -195,26 +278,26 @@
 }
 
 // Container mixin
-@mixin container($max-width: $breakpoint-xl) {
+@mixin container($max-width: vars.$breakpoint-xl) {
   width: 100%;
   max-width: $max-width;
   margin: 0 auto;
-  padding: 0 $spacing-4;
-  
+  padding: 0 vars.$spacing-4;
+
   @include respond-to(sm) {
-    padding: 0 $spacing-6;
+    padding: 0 vars.$spacing-6;
   }
-  
+
   @include respond-to(lg) {
-    padding: 0 $spacing-8;
+    padding: 0 vars.$spacing-8;
   }
 }
 
 // Card mixin
-@mixin card($padding: $spacing-6) {
-  background: $color-white;
-  border-radius: $border-radius-lg;
-  box-shadow: $shadow-base;
+@mixin card($padding: vars.$spacing-6) {
+  background: vars.$color-white;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: vars.$shadow-base;
   padding: $padding;
 }
 
@@ -228,12 +311,12 @@
 
 // Gradient mixins
 @mixin gradient-blue {
-  background: linear-gradient(135deg, $color-primary-light 0%, $color-primary-dark 100%);
+  background: linear-gradient(135deg, vars.$color-primary-light 0%, vars.$color-primary-dark 100%);
 }
 
 @mixin gradient-overlay($opacity: 0.5) {
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -241,6 +324,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba($color-black, $opacity);
+    background: rgba(vars.$color-black, $opacity);
   }
 }

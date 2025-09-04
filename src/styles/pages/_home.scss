@@ -1,4 +1,6 @@
 // Home page styles - 5 Full Height Sections
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mixins;
 
 .home {
   min-height: 100vh;
@@ -19,18 +21,26 @@
   scroll-snap-align: start;
   
   &.section-light {
-    background: $color-white;
-    color: $color-gray-900;
+    background: vars.$color-white-soft;
+    color: vars.$color-gray-900;
   }
-  
+
   &.section-dark {
-    background: $color-gray-900;
-    color: $color-white;
+    background: vars.$color-black-soft;
+    color: vars.$color-white;
+  }
+
+  &.section-hero-iridescent {
+    // No background - let the iridescent background show through
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%);
+    color: vars.$color-gray-900;
+    position: relative;
+    overflow: hidden;
   }
 }
 
 .section-container {
-  @include container;
+  @include mixins.container;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -42,39 +52,39 @@
 }
 
 .section-title {
-  font-size: $font-size-4xl;
-  font-weight: $font-weight-bold;
-  margin-bottom: $spacing-6;
-  line-height: $line-height-tight;
+  font-size: vars.$font-size-4xl;
+  font-weight: vars.$font-weight-bold;
+  margin-bottom: vars.$spacing-6;
+  line-height: vars.$line-height-tight;
   
-  @include respond-to(sm) {
-    font-size: $font-size-5xl;
+  @include mixins.respond-to(sm) {
+    font-size: vars.$font-size-5xl;
   }
   
-  @include respond-to(lg) {
-    font-size: $font-size-6xl;
+  @include mixins.respond-to(lg) {
+    font-size: vars.$font-size-6xl;
   }
 }
 
 .section-subtitle {
-  font-size: $font-size-lg;
-  margin-bottom: $spacing-8;
-  line-height: $line-height-relaxed;
+  font-size: vars.$font-size-lg;
+  margin-bottom: vars.$spacing-8;
+  line-height: vars.$line-height-relaxed;
   opacity: 0.8;
   
-  @include respond-to(sm) {
-    font-size: $font-size-xl;
+  @include mixins.respond-to(sm) {
+    font-size: vars.$font-size-xl;
   }
   
-  @include respond-to(lg) {
-    font-size: $font-size-2xl;
+  @include mixins.respond-to(lg) {
+    font-size: vars.$font-size-2xl;
   }
 }
 
 // Section 1 - Hero (Dark background with blue gradient)
 .section-hero {
-  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
-  color: $color-white;
+  background: linear-gradient(135deg, vars.$color-primary 0%, vars.$color-primary-dark 100%);
+  color: vars.$color-white;
   
   &::before {
     content: '';
@@ -89,7 +99,7 @@
   }
   
   .section-title {
-    background: linear-gradient(135deg, $color-white 0%, rgba(255, 255, 255, 0.8) 100%);
+    background: linear-gradient(135deg, vars.$color-white 0%, rgba(255, 255, 255, 0.8) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -98,78 +108,78 @@
   .hero-actions {
     display: flex;
     flex-direction: column;
-    gap: $spacing-4;
+    gap: vars.$spacing-4;
     align-items: center;
-    margin-top: $spacing-8;
+    margin-top: vars.$spacing-8;
     
-    @include respond-to(sm) {
+    @include mixins.respond-to(sm) {
       flex-direction: row;
       justify-content: center;
-      gap: $spacing-6;
+      gap: vars.$spacing-6;
     }
   }
   
   .btn-primary {
-    @include button-base;
-    @include button-size($spacing-4, $spacing-8, $font-size-lg);
-    background: $color-white;
-    color: $color-primary;
-    font-weight: $font-weight-semibold;
+    @include mixins.button-base;
+    @include mixins.button-size(vars.$spacing-4, vars.$spacing-8, vars.$font-size-lg);
+    background: vars.$color-white;
+    color: vars.$color-primary;
+    font-weight: vars.$font-weight-semibold;
     
     &:hover {
-      background: $color-gray-100;
+      background: vars.$color-gray-100;
       transform: translateY(-2px);
-      box-shadow: $shadow-lg;
+      box-shadow: vars.$shadow-lg;
     }
   }
   
   .btn-secondary {
-    @include button-base;
-    @include button-size($spacing-4, $spacing-8, $font-size-lg);
+    @include mixins.button-base;
+    @include mixins.button-size(vars.$spacing-4, vars.$spacing-8, vars.$font-size-lg);
     background: transparent;
-    color: $color-white;
-    border: 2px solid $color-white;
-    font-weight: $font-weight-semibold;
+    color: vars.$color-white;
+    border: 2px solid vars.$color-white;
+    font-weight: vars.$font-weight-semibold;
     
     &:hover {
-      background: $color-white;
-      color: $color-primary;
+      background: vars.$color-white;
+      color: vars.$color-primary;
     }
   }
 }
 
 // Section 2 - About (Light background)
 .section-about {
-  background: $color-white;
+  background: vars.$color-white;
   
   .section-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-12;
+    gap: vars.$spacing-12;
     align-items: center;
     text-align: left;
-    margin-top: $spacing-8;
+    margin-top: vars.$spacing-8;
     
-    @include respond-to(lg) {
+    @include mixins.respond-to(lg) {
       grid-template-columns: 1fr 1fr;
-      gap: $spacing-20;
+      gap: vars.$spacing-20;
     }
   }
   
   .about-image {
     width: 300px;
     height: 300px;
-    background: $color-gray-200;
-    border-radius: $border-radius-full;
+    background: vars.$color-gray-200;
+    border-radius: vars.$border-radius-full;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: $font-size-6xl;
-    color: $color-gray-400;
+    font-size: vars.$font-size-6xl;
+    color: vars.$color-gray-400;
     position: relative;
     
-    @include respond-to(lg) {
+    @include mixins.respond-to(lg) {
       width: 400px;
       height: 400px;
     }
@@ -177,12 +187,12 @@
     &::after {
       content: '';
       position: absolute;
-      top: $spacing-4;
-      left: $spacing-4;
-      right: -$spacing-4;
-      bottom: -$spacing-4;
-      background: $color-primary;
-      border-radius: $border-radius-full;
+      top: vars.$spacing-4;
+      left: vars.$spacing-4;
+      right: calc(-1 * vars.$spacing-4);
+      bottom: calc(-1 * vars.$spacing-4);
+      background: vars.$color-primary;
+      border-radius: vars.$border-radius-full;
       z-index: -1;
       opacity: 0.1;
     }
@@ -191,201 +201,201 @@
 
 // Section 3 - Skills (Dark background)
 .section-skills {
-  background: $color-gray-900;
+  background: vars.$color-gray-900;
   
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: $spacing-6;
-    margin-top: $spacing-12;
+    gap: vars.$spacing-6;
+    margin-top: vars.$spacing-12;
     
-    @include respond-to(lg) {
+    @include mixins.respond-to(lg) {
       grid-template-columns: repeat(3, 1fr);
-      gap: $spacing-8;
+      gap: vars.$spacing-8;
     }
   }
   
   .skill-card {
-    background: $color-gray-800;
-    padding: $spacing-6;
-    border-radius: $border-radius-lg;
+    background: vars.$color-gray-800;
+    padding: vars.$spacing-6;
+    border-radius: vars.$border-radius-lg;
     text-align: center;
-    transition: transform $transition-base ease, box-shadow $transition-base ease;
-    border: 1px solid $color-gray-700;
+    transition: transform vars.$transition-base ease, box-shadow vars.$transition-base ease;
+    border: 1px solid vars.$color-gray-700;
     
     &:hover {
       transform: translateY(-4px);
-      box-shadow: $shadow-xl;
-      border-color: $color-primary;
+      box-shadow: vars.$shadow-xl;
+      border-color: vars.$color-primary;
     }
   }
   
   .skill-icon {
     width: 60px;
     height: 60px;
-    margin: 0 auto $spacing-4;
-    background: $color-primary;
-    border-radius: $border-radius-full;
+    margin: 0 auto vars.$spacing-4;
+    background: vars.$color-primary;
+    border-radius: vars.$border-radius-full;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $color-white;
-    font-size: $font-size-2xl;
+    color: vars.$color-white;
+    font-size: vars.$font-size-2xl;
   }
   
   .skill-title {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-2;
-    color: $color-white;
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-semibold;
+    margin-bottom: vars.$spacing-2;
+    color: vars.$color-white;
   }
   
   .skill-description {
-    color: $color-gray-300;
-    font-size: $font-size-sm;
-    line-height: $line-height-relaxed;
+    color: vars.$color-gray-300;
+    font-size: vars.$font-size-sm;
+    line-height: vars.$line-height-relaxed;
   }
 }
 
 // Section 4 - Projects (Light background)
 .section-projects {
-  background: $color-gray-100;
+  background: vars.$color-gray-100;
   
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-6;
-    margin-top: $spacing-12;
+    gap: vars.$spacing-6;
+    margin-top: vars.$spacing-12;
     
-    @include respond-to(md) {
+    @include mixins.respond-to(md) {
       grid-template-columns: repeat(2, 1fr);
     }
     
-    @include respond-to(lg) {
+    @include mixins.respond-to(lg) {
       grid-template-columns: repeat(3, 1fr);
-      gap: $spacing-8;
+      gap: vars.$spacing-8;
     }
   }
   
   .project-card {
-    background: $color-white;
-    border-radius: $border-radius-lg;
+    background: vars.$color-white;
+    border-radius: vars.$border-radius-lg;
     overflow: hidden;
-    box-shadow: $shadow-base;
-    transition: transform $transition-base ease, box-shadow $transition-base ease;
+    box-shadow: vars.$shadow-base;
+    transition: transform vars.$transition-base ease, box-shadow vars.$transition-base ease;
     
     &:hover {
       transform: translateY(-4px);
-      box-shadow: $shadow-xl;
+      box-shadow: vars.$shadow-xl;
     }
   }
   
   .project-image {
     width: 100%;
     height: 150px;
-    background: $color-gray-200;
+    background: vars.$color-gray-200;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: $font-size-3xl;
-    color: $color-gray-400;
+    font-size: vars.$font-size-3xl;
+    color: vars.$color-gray-400;
   }
   
   .project-content {
-    padding: $spacing-4;
+    padding: vars.$spacing-4;
   }
   
   .project-title {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-2;
-    color: $color-gray-900;
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-semibold;
+    margin-bottom: vars.$spacing-2;
+    color: vars.$color-gray-900;
   }
   
   .project-description {
-    color: $color-gray-600;
-    font-size: $font-size-sm;
-    line-height: $line-height-relaxed;
-    margin-bottom: $spacing-3;
+    color: vars.$color-gray-600;
+    font-size: vars.$font-size-sm;
+    line-height: vars.$line-height-relaxed;
+    margin-bottom: vars.$spacing-3;
   }
   
   .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-1;
-    margin-bottom: $spacing-4;
+    gap: vars.$spacing-1;
+    margin-bottom: vars.$spacing-4;
   }
   
   .project-tag {
-    background: $color-primary;
-    color: $color-white;
-    padding: $spacing-1 $spacing-2;
-    border-radius: $border-radius-sm;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-medium;
+    background: vars.$color-primary;
+    color: vars.$color-white;
+    padding: vars.$spacing-1 vars.$spacing-2;
+    border-radius: vars.$border-radius-sm;
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-medium;
   }
   
   .project-link {
-    @include button-base;
-    @include button-size($spacing-2, $spacing-4, $font-size-sm);
-    @include button-variant($color-primary, $color-white, $color-primary-dark);
+    @include mixins.button-base;
+    @include mixins.button-size(vars.$spacing-2, vars.$spacing-4, vars.$font-size-sm);
+    @include mixins.button-variant(vars.$color-primary, vars.$color-white, vars.$color-primary-dark);
   }
 }
 
 // Section 5 - Contact (Dark background)
 .section-contact {
-  background: $color-gray-900;
+  background: vars.$color-gray-900;
   
   .contact-actions {
     display: flex;
     flex-direction: column;
-    gap: $spacing-4;
+    gap: vars.$spacing-4;
     align-items: center;
-    margin-top: $spacing-8;
+    margin-top: vars.$spacing-8;
     
-    @include respond-to(sm) {
+    @include mixins.respond-to(sm) {
       flex-direction: row;
       justify-content: center;
-      gap: $spacing-6;
+      gap: vars.$spacing-6;
     }
   }
   
   .contact-cta {
-    @include button-base;
-    @include button-size($spacing-4, $spacing-8, $font-size-lg);
-    @include button-variant($color-primary, $color-white, $color-primary-dark);
-    font-weight: $font-weight-semibold;
+    @include mixins.button-base;
+    @include mixins.button-size(vars.$spacing-4, vars.$spacing-8, vars.$font-size-lg);
+    @include mixins.button-variant(vars.$color-primary, vars.$color-white, vars.$color-primary-dark);
+    font-weight: vars.$font-weight-semibold;
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: $shadow-lg;
+      box-shadow: vars.$shadow-lg;
     }
   }
   
   .contact-secondary {
-    @include button-base;
-    @include button-size($spacing-4, $spacing-8, $font-size-lg);
+    @include mixins.button-base;
+    @include mixins.button-size(vars.$spacing-4, vars.$spacing-8, vars.$font-size-lg);
     background: transparent;
-    color: $color-white;
-    border: 2px solid $color-gray-600;
-    font-weight: $font-weight-semibold;
+    color: vars.$color-white;
+    border: 2px solid vars.$color-gray-600;
+    font-weight: vars.$font-weight-semibold;
     
     &:hover {
-      background: $color-gray-800;
-      border-color: $color-gray-500;
+      background: vars.$color-gray-800;
+      border-color: vars.$color-gray-500;
     }
   }
   
   .contact-info {
     display: flex;
     flex-direction: column;
-    gap: $spacing-4;
-    margin-top: $spacing-12;
+    gap: vars.$spacing-4;
+    margin-top: vars.$spacing-12;
     
-    @include respond-to(sm) {
+    @include mixins.respond-to(sm) {
       flex-direction: row;
       justify-content: center;
-      gap: $spacing-8;
+      gap: vars.$spacing-8;
     }
   }
   
@@ -393,11 +403,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $spacing-2;
-    color: $color-gray-300;
+    gap: vars.$spacing-2;
+    color: vars.$color-gray-300;
     
     .icon {
-      color: $color-primary;
+      color: vars.$color-primary;
     }
   }
 }
@@ -405,21 +415,21 @@
 // Scroll indicator
 .scroll-indicator {
   position: fixed;
-  right: $spacing-4;
+  right: vars.$spacing-4;
   top: 20%;
   bottom: 20%;
   width: 2px;
-  z-index: $z-index-fixed;
+  z-index: vars.$z-index-fixed;
   display: none;
   
-  @include respond-to(lg) {
+  @include mixins.respond-to(lg) {
     display: block;
-    right: $spacing-6;
+    right: vars.$spacing-6;
     width: 3px;
   }
   
-  @include respond-to(xl) {
-    right: $spacing-8;
+  @include mixins.respond-to(xl) {
+    right: vars.$spacing-8;
     width: 4px;
   }
   
@@ -431,7 +441,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba($color-gray-400, 0.3);
+    background: rgba(vars.$color-gray-400, 0.3);
     border-radius: 10px;
   }
   
@@ -441,13 +451,13 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to bottom, $color-primary, $color-primary-light);
+    background: linear-gradient(to bottom, vars.$color-primary, vars.$color-primary-light);
     border-radius: 10px;
     transition: height 0.3s ease;
-    box-shadow: 0 0 10px rgba($color-primary, 0.4);
+    box-shadow: 0 0 10px rgba(vars.$color-primary, 0.4);
     
-    @include respond-to(lg) {
-      box-shadow: 0 0 15px rgba($color-primary, 0.5);
+    @include mixins.respond-to(lg) {
+      box-shadow: 0 0 15px rgba(vars.$color-primary, 0.5);
     }
   }
   
@@ -460,11 +470,11 @@
     width: 8px;
     height: 100%;
     
-    @include respond-to(lg) {
+    @include mixins.respond-to(lg) {
       width: 10px;
     }
     
-    @include respond-to(xl) {
+    @include mixins.respond-to(xl) {
       width: 12px;
     }
     
@@ -472,25 +482,23 @@
       position: absolute;
       width: 100%;
       height: 2px;
-      background: $color-white;
+      background: vars.$color-white;
       border-radius: 1px;
       cursor: pointer;
       transition: all 0.3s ease;
       
-      &::before {
-        content: '';
-        position: absolute;
-        right: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 1px;
-        background: $color-primary;
-        transition: width 0.3s ease;
-        margin-right: 8px;
-      }
-      
-      &::after {
+        &::before {
+          content: '';
+          position: absolute;
+          right: 100%;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 0;
+          height: 1px;
+          background: vars.$color-primary;
+          transition: width 0.3s ease;
+          margin-right: 8px;
+        }      &::after {
         content: attr(data-section);
         position: absolute;
         right: 100%;
@@ -499,19 +507,19 @@
         margin-right: 16px;
         font-size: 0.75rem;
         font-weight: 500;
-        color: $color-primary;
+        color: vars.$color-primary;
         opacity: 0;
         transition: opacity 0.3s ease;
         white-space: nowrap;
         
-        @include respond-to(lg) {
+        @include mixins.respond-to(lg) {
           font-size: 0.8rem;
           margin-right: 20px;
         }
       }
       
       &:hover {
-        background: $color-primary;
+        background: vars.$color-primary;
         transform: scaleX(1.5);
         
         &::before {
@@ -524,9 +532,9 @@
       }
       
       &.active {
-        background: $color-primary;
+        background: vars.$color-primary;
         transform: scaleY(2);
-        box-shadow: 0 0 8px rgba($color-primary, 0.6);
+        box-shadow: 0 0 8px rgba(vars.$color-primary, 0.6);
       }
       
       // Position each marker
