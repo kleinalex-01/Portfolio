@@ -289,7 +289,7 @@
   }
 
   @include respond-to(lg) {
-    padding: 0 vars.$spacing-8;
+    padding: 0 vars.$spacing-12;
   }
 }
 

@@ -5,3 +5,7 @@
 # Commit 1. 2025.09.03.
 
   Project is set up, UI is divided into sections with altering background and styling.
+
+# Commit 2. 2025.09.05.
+
+  Landing page is done, downloadable CV is not important for now. Home page layout is still in the works.

@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Background from './Background';
 import Typewriter from './Typewriter';
 
 const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const greetings = [
     'Üdvözöllek!',
     'Hello!',
@@ -17,8 +20,12 @@ const LandingPage: React.FC = () => {
     'Привет!'
   ];
 
+  const handleContinue = () => {
+    navigate('/main');
+  };
+
   return (
-    <div className="home">
+    <div className="loading-screen">
       <section className="section section-hero-iridescent">
         <Background
           color={[0.4, 0.7, 1.0]}
@@ -39,7 +46,10 @@ const LandingPage: React.FC = () => {
             <button className="glass-button cv-button">
               CV
             </button>
-            <button className="glass-button arrow-button">
+            <button
+              className="glass-button arrow-button"
+              onClick={handleContinue}
+            >
               Tovább
             </button>
           </div>
