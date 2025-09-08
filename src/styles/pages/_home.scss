@@ -425,7 +425,7 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 1100;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -436,7 +436,7 @@
     top: 0;
     right: 0;
     margin: 20px 20px 0 0;
-    z-index: auto;
+    z-index: 1100;
     background: transparent;
     padding: 0;
   }
@@ -541,7 +541,7 @@
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 999;
+  z-index: 1100;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 

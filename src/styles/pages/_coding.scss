@@ -11,12 +11,42 @@
 
   // Section styles
   .coding-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     scroll-snap-align: start;
-    padding: 2rem;
+    padding: 1rem;
+
+    // Extra small phones (320px+)
+    @include mixins.respond-to(xs) {
+      padding: 1.25rem;
+    }
+
+    // Small phones/tablets (640px+)
+    @include mixins.respond-to(sm) {
+      padding: 1.5rem;
+    }
+
+    // Tablets (768px+)
+    @include mixins.respond-to(md) {
+      padding: 2rem;
+    }
+
+    // Small laptops (1024px+)
+    @include mixins.respond-to(lg) {
+      padding: 2.5rem;
+    }
+
+    // Laptops/desktops (1280px+)
+    @include mixins.respond-to(xl) {
+      padding: 3rem;
+    }
+
+    // Large desktops (1536px+)
+    @include mixins.respond-to(2xl) {
+      padding: 4rem;
+    }
 
     &:nth-child(odd) {
       background: linear-gradient(135deg, #0d0d0d 0%, #141414 50%, #0d0d0d 100%);
@@ -27,37 +57,336 @@
     }
 
     .section-content {
-      max-width: 800px;
+      max-width: 100%;
       text-align: center;
       color: vars.$color-white;
 
+      // Mobile first approach
+      @include mixins.respond-to(xs) {
+        max-width: 320px;
+      }
+
+      @include mixins.respond-to(sm) {
+        max-width: 600px;
+      }
+
+      @include mixins.respond-to(md) {
+        max-width: 700px;
+      }
+
+      @include mixins.respond-to(lg) {
+        max-width: 900px;
+      }
+
+      @include mixins.respond-to(xl) {
+        max-width: 1100px;
+      }
+
+      @include mixins.respond-to(2xl) {
+        max-width: 1300px;
+      }
+
       h2 {
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: vars.$font-weight-bold;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         color: vars.$color-white;
 
+        @include mixins.respond-to(xs) {
+          font-size: 2.25rem;
+          margin-bottom: 1.25rem;
+        }
+
         @include mixins.respond-to(sm) {
-          font-size: 4rem;
+          font-size: 2.75rem;
+          margin-bottom: 1.5rem;
+        }
+
+        @include mixins.respond-to(md) {
+          font-size: 3.5rem;
+          margin-bottom: 1.75rem;
         }
 
         @include mixins.respond-to(lg) {
+          font-size: 4rem;
+          margin-bottom: 2rem;
+        }
+
+        @include mixins.respond-to(xl) {
+          font-size: 4.5rem;
+          margin-bottom: 2.25rem;
+        }
+
+        @include mixins.respond-to(2xl) {
           font-size: 5rem;
+          margin-bottom: 2.5rem;
         }
       }
 
       p {
-        font-size: 1.2rem;
-        line-height: 1.6;
+        font-size: 1rem;
+        line-height: 1.5;
         opacity: 0.9;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
+
+        @include mixins.respond-to(xs) {
+          font-size: 1.1rem;
+          margin-bottom: 1.1rem;
+        }
 
         @include mixins.respond-to(sm) {
-          font-size: 1.4rem;
+          font-size: 1.2rem;
+          margin-bottom: 1.2rem;
+        }
+
+        @include mixins.respond-to(md) {
+          font-size: 1.3rem;
+          margin-bottom: 1.4rem;
         }
 
         @include mixins.respond-to(lg) {
+          font-size: 1.4rem;
+          margin-bottom: 1.5rem;
+        }
+
+        @include mixins.respond-to(xl) {
+          font-size: 1.5rem;
+          margin-bottom: 1.6rem;
+        }
+
+        @include mixins.respond-to(2xl) {
           font-size: 1.6rem;
+          margin-bottom: 1.8rem;
+        }
+      }
+    }
+  }
+
+  // Section 2 - Technologies with floating icons background
+  .section-2 {
+    position: relative;
+    overflow: hidden;
+
+    .floating-icons-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+
+      .floating-icon {
+        position: absolute;
+        color: vars.$color-white;
+        opacity: 0.15;
+        animation: floatAround linear infinite;
+
+        svg {
+          filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        }
+
+        // Different starting positions for each icon
+        &:nth-child(1) { top: 10%; left: 10%; animation-direction: normal; }
+        &:nth-child(2) { top: 20%; right: 15%; animation-direction: reverse; }
+        &:nth-child(3) { bottom: 25%; left: 20%; animation-direction: normal; }
+        &:nth-child(4) { top: 30%; right: 25%; animation-direction: reverse; }
+        &:nth-child(5) { bottom: 15%; right: 10%; animation-direction: normal; }
+        &:nth-child(6) { top: 40%; left: 30%; animation-direction: reverse; }
+        &:nth-child(7) { bottom: 35%; right: 20%; animation-direction: normal; }
+        &:nth-child(8) { top: 15%; right: 35%; animation-direction: reverse; }
+        &:nth-child(9) { bottom: 20%; left: 35%; animation-direction: normal; }
+        &:nth-child(10) { top: 25%; left: 45%; animation-direction: reverse; }
+        &:nth-child(11) { bottom: 30%; right: 30%; animation-direction: normal; }
+        &:nth-child(12) { top: 35%; right: 40%; animation-direction: reverse; }
+        &:nth-child(13) { bottom: 10%; left: 50%; animation-direction: normal; }
+        &:nth-child(14) { top: 45%; left: 15%; animation-direction: reverse; }
+        &:nth-child(15) { bottom: 40%; right: 45%; animation-direction: normal; }
+      }
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+
+      // Technology showcase styling
+      .tech-showcase {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin-top: 1.2rem;
+        padding: 0 0.25rem;
+        max-width: 100%;
+
+        // Extra small phones (320px+) - 2x4 grid (4 columns)
+        @include mixins.respond-to(xs) {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.6rem;
+          padding: 0 0.5rem;
+          margin-top: 1.5rem;
+        }
+
+        // Small phones/tablets (640px+) - 2x4 grid (4 columns)
+        @include mixins.respond-to(sm) {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.8rem;
+          padding: 0 0.75rem;
+          margin-top: 1.8rem;
+        }
+
+        // Tablets (768px+) - 4 columns
+        @include mixins.respond-to(md) {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+          padding: 0 1rem;
+          margin-top: 2rem;
+        }
+
+        // Small laptops (1024px+) - 4 columns with more spacing
+        @include mixins.respond-to(lg) {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.25rem;
+          padding: 0 1.5rem;
+          margin-top: 2.25rem;
+        }
+
+        // Laptops/desktops (1280px+) - 4 columns with generous spacing
+        @include mixins.respond-to(xl) {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          padding: 0 2rem;
+          margin-top: 2.5rem;
+        }
+
+        // Large desktops (1536px+) - 4 columns with maximum spacing
+        @include mixins.respond-to(2xl) {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2rem;
+          padding: 0 2.5rem;
+          margin-top: 3rem;
+        }
+
+        .tech-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.15rem;
+          padding: 0.5rem;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 50%;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+          aspect-ratio: 1;
+          justify-content: center;
+          min-width: 0;
+
+          @include mixins.respond-to(xs) {
+            padding: 0.6rem;
+            gap: 0.2rem;
+          }
+
+          @include mixins.respond-to(sm) {
+            padding: 0.7rem;
+            gap: 0.25rem;
+          }
+
+          @include mixins.respond-to(md) {
+            padding: 1rem;
+            gap: 0.35rem;
+          }
+
+          @include mixins.respond-to(lg) {
+            padding: 1.2rem;
+            gap: 0.4rem;
+          }
+
+          @include mixins.respond-to(xl) {
+            padding: 1.5rem;
+            gap: 0.5rem;
+          }
+
+          @include mixins.respond-to(2xl) {
+            padding: 1.8rem;
+            gap: 0.6rem;
+          }
+
+          &:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          }
+
+          .tech-icon {
+            font-size: 1rem;
+            color: vars.$color-white;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+
+            @include mixins.respond-to(xs) {
+              font-size: 1.1rem;
+            }
+
+            @include mixins.respond-to(sm) {
+              font-size: 1.3rem;
+            }
+
+            @include mixins.respond-to(md) {
+              font-size: 1.5rem;
+            }
+
+            @include mixins.respond-to(lg) {
+              font-size: 1.8rem;
+            }
+
+            @include mixins.respond-to(xl) {
+              font-size: 2.2rem;
+            }
+
+            @include mixins.respond-to(2xl) {
+              font-size: 2.5rem;
+            }
+
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+
+          span {
+            font-size: 0.5rem;
+            font-weight: vars.$font-weight-medium;
+            color: vars.$color-white;
+            opacity: 0.9;
+            text-align: center;
+            line-height: 1.1;
+            flex-shrink: 0;
+
+            @include mixins.respond-to(xs) {
+              font-size: 0.55rem;
+            }
+
+            @include mixins.respond-to(sm) {
+              font-size: 0.6rem;
+            }
+
+            @include mixins.respond-to(md) {
+              font-size: 0.7rem;
+            }
+
+            @include mixins.respond-to(lg) {
+              font-size: 0.8rem;
+            }
+
+            @include mixins.respond-to(xl) {
+              font-size: 0.9rem;
+            }
+
+            @include mixins.respond-to(2xl) {
+              font-size: 1rem;
+            }
+          }
         }
       }
     }
@@ -74,4 +403,23 @@
 .coding-page {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+// Floating animation for tech icons
+@keyframes floatAround {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(100px, -50px) rotate(90deg);
+  }
+  50% {
+    transform: translate(200px, 0) rotate(180deg);
+  }
+  75% {
+    transform: translate(100px, 50px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
 }
