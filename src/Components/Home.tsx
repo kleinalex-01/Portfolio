@@ -7,7 +7,7 @@ const Home: React.FC = () => {
       <div className="container">
         <div className="welcome-section">
           <img
-            src="/src/assets/Photos/alex-photo.png"
+            src="/alex-photo.png"
             alt="Alex Profile"
             className="welcome-profile-pic"
           />
