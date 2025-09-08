@@ -9,3 +9,7 @@
 # Commit 2. 2025.09.05.
 
   Landing page is done, downloadable CV is not important for now. Home page layout is still in the works.
+
+# Commit 3. 2025.09.08.
+
+  Completed the UI of the main page and started wireframing the Coding section.

@@ -1,0 +1,77 @@
+// Coding page styles
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mixins;
+
+// Coding page container with scroll snap
+.coding-page {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  // Section styles
+  .coding-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    padding: 2rem;
+
+    &:nth-child(odd) {
+      background: linear-gradient(135deg, #0d0d0d 0%, #141414 50%, #0d0d0d 100%);
+    }
+
+    &:nth-child(even) {
+      background: linear-gradient(135deg, #141414 0%, #1a1a1a 50%, #141414 100%);
+    }
+
+    .section-content {
+      max-width: 800px;
+      text-align: center;
+      color: vars.$color-white;
+
+      h2 {
+        font-size: 3rem;
+        font-weight: vars.$font-weight-bold;
+        margin-bottom: 2rem;
+        color: vars.$color-white;
+
+        @include mixins.respond-to(sm) {
+          font-size: 4rem;
+        }
+
+        @include mixins.respond-to(lg) {
+          font-size: 5rem;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+
+        @include mixins.respond-to(sm) {
+          font-size: 1.4rem;
+        }
+
+        @include mixins.respond-to(lg) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+
+  // All sections now use consistent white heading styling
+}
+
+// Hide scrollbar but keep functionality
+.coding-page::-webkit-scrollbar {
+  display: none;
+}
+
+.coding-page {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
