@@ -164,6 +164,174 @@
 
   // Section 1 - Personal Story
   .section-1 {
+    position: relative;
+    overflow: hidden;
+
+    // Minimal Background Animation
+    .section-bg-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      z-index: 1;
+
+      .bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(45deg, rgba(0, 170, 255, 0.03), rgba(0, 102, 255, 0.02));
+        animation: gentleFloat linear infinite;
+
+        &.circle-1 {
+          width: 150px;
+          height: 150px;
+          top: 15%;
+          left: -3%;
+          animation-duration: 20s;
+          animation-delay: 0s;
+        }
+
+        &.circle-2 {
+          width: 100px;
+          height: 100px;
+          top: 70%;
+          right: -2%;
+          animation-duration: 25s;
+          animation-delay: 5s;
+        }
+
+        &.circle-3 {
+          width: 80px;
+          height: 80px;
+          bottom: 25%;
+          left: 50%;
+          animation-duration: 18s;
+          animation-delay: 10s;
+        }
+      }
+
+      .bg-dots {
+        .dot {
+          position: absolute;
+          width: 3px;
+          height: 3px;
+          background: rgba(0, 170, 255, 0.4);
+          border-radius: 50%;
+          animation: dotPulse ease-in-out infinite;
+
+          &.dot-1 {
+            top: 25%;
+            left: 20%;
+            animation-duration: 3s;
+            animation-delay: 0s;
+          }
+
+          &.dot-2 {
+            top: 45%;
+            right: 30%;
+            animation-duration: 4s;
+            animation-delay: 1s;
+          }
+
+          &.dot-3 {
+            top: 75%;
+            left: 35%;
+            animation-duration: 3.5s;
+            animation-delay: 2s;
+          }
+
+          &.dot-4 {
+            top: 35%;
+            right: 15%;
+            animation-duration: 4.5s;
+            animation-delay: 0.5s;
+          }
+
+          &.dot-5 {
+            top: 60%;
+            left: 70%;
+            animation-duration: 3.8s;
+            animation-delay: 1.5s;
+          }
+
+          &.dot-6 {
+            top: 15%;
+            right: 45%;
+            animation-duration: 4.2s;
+            animation-delay: 2.5s;
+          }
+
+          &.dot-7 {
+            top: 85%;
+            left: 15%;
+            animation-duration: 3.3s;
+            animation-delay: 0.8s;
+          }
+
+          &.dot-8 {
+            top: 50%;
+            right: 60%;
+            animation-duration: 4.8s;
+            animation-delay: 1.2s;
+          }
+
+          &.dot-9 {
+            top: 30%;
+            left: 50%;
+            animation-duration: 3.6s;
+            animation-delay: 2.8s;
+          }
+
+          &.dot-10 {
+            top: 70%;
+            right: 25%;
+            animation-duration: 4.1s;
+            animation-delay: 0.3s;
+          }
+
+          &.dot-11 {
+            top: 20%;
+            left: 75%;
+            animation-duration: 3.9s;
+            animation-delay: 1.8s;
+          }
+
+          &.dot-12 {
+            top: 80%;
+            right: 50%;
+            animation-duration: 4.4s;
+            animation-delay: 2.2s;
+          }
+
+          &.dot-13 {
+            top: 40%;
+            left: 10%;
+            animation-duration: 3.2s;
+            animation-delay: 0.6s;
+          }
+
+          &.dot-14 {
+            top: 65%;
+            right: 70%;
+            animation-duration: 4.6s;
+            animation-delay: 1.9s;
+          }
+
+          &.dot-15 {
+            top: 10%;
+            left: 40%;
+            animation-duration: 3.7s;
+            animation-delay: 2.6s;
+          }
+        }
+      }
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+    }
     .vscode-editor {
       background: #1e1e1e;
       border-radius: 8px;
@@ -767,5 +935,36 @@
   75% {
     transform: translateY(-45px) translateX(10px);
     opacity: 0.6;
+  }
+}
+
+// Minimal background animations for section 1
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.03;
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px) scale(1.05);
+    opacity: 0.05;
+  }
+  50% {
+    transform: translateY(-5px) translateX(10px) scale(0.95);
+    opacity: 0.04;
+  }
+  75% {
+    transform: translateY(-15px) translateX(3px) scale(1.02);
+    opacity: 0.03;
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
   }
 }

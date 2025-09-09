@@ -30,6 +30,30 @@ const Coding: React.FC = () => {
     <div className="page coding-page">
       {/* Section 1 - Introduction */}
       <section className="coding-section section-1">
+        {/* Minimal Background Animation */}
+        <div className="section-bg-animation">
+          <div className="bg-circle circle-1"></div>
+          <div className="bg-circle circle-2"></div>
+          <div className="bg-circle circle-3"></div>
+          <div className="bg-dots">
+            <div className="dot dot-1"></div>
+            <div className="dot dot-2"></div>
+            <div className="dot dot-3"></div>
+            <div className="dot dot-4"></div>
+            <div className="dot dot-5"></div>
+            <div className="dot dot-6"></div>
+            <div className="dot dot-7"></div>
+            <div className="dot dot-8"></div>
+            <div className="dot dot-9"></div>
+            <div className="dot dot-10"></div>
+            <div className="dot dot-11"></div>
+            <div className="dot dot-12"></div>
+            <div className="dot dot-13"></div>
+            <div className="dot dot-14"></div>
+            <div className="dot dot-15"></div>
+          </div>
+        </div>
+
         <div className="section-content">
           <h2>A történetem</h2>
           <p>Már pici gyerekként érdekelt az informatika világa, akkoriban játéktervező szerettem volna lenni.</p>
@@ -45,7 +69,7 @@ const Coding: React.FC = () => {
               </div>
               <div className="tabs">
                 <div className="tab active">
-                  <span className="tab-icon">📄</span>
+                  <span className="tab-icon">📄index.html</span>
                   <span className="tab-title">hello-world.html</span>
                   <span className="tab-close">×</span>
                 </div>
@@ -94,7 +118,7 @@ const Coding: React.FC = () => {
                     <span className="tag">&lt;</span>
                     <span className="tag-name">title</span>
                     <span className="tag">&gt;</span>
-                    <span className="text-content">Hello World</span>
+                    <span className="text-content">My first app</span>
                     <span className="tag">&lt;/</span>
                     <span className="tag-name">title</span>
                     <span className="tag">&gt;</span>
