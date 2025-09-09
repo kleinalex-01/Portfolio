@@ -32,28 +32,125 @@ const Coding: React.FC = () => {
       <section className="coding-section section-1">
         <div className="section-content">
           <h2>A történetem</h2>
+          <p>Már pici gyerekként érdekelt az informatika világa, akkoriban játéktervező szerettem volna lenni.</p>
+          <p>Az évek haladtával teljesen eltértem ezektől az elképzelésektől, majd 3 évvel ezelőtt úgy döntöttem, hogy felélesztem az álmom és fejlesztő leszek, ekkor kezdtem el Front-endet tanulni.</p>
 
-          <div className="story-content">
-            <p className="story-intro">
-              Üdvözöllek a portfóliómban! Már gyerekkorom óta érdekel a technológia és a programozás világa.
-              <strong> 3 éve tanulom a front-end fejlesztést</strong>, ahol a <strong>React és TypeScript</strong> lett a fő profilom.
-            </p>
-
-            {/* Code Snippet Showcase */}
-            <div className="code-showcase">
-              <div className="code-header">
-                <span className="code-language">HTML</span>
-                <span className="code-filename">hello-world.html</span>
+          {/* VS Code-like Code Editor */}
+          <div className="vscode-editor">
+            <div className="editor-header">
+              <div className="window-controls">
+                <div className="control red"></div>
+                <div className="control yellow"></div>
+                <div className="control green"></div>
               </div>
-              <div className="code-content">
-                <pre><code>&lt;<span className="code-tag">div</span>&gt;Hello, World&lt;/<span className="code-tag">div</span>&gt;</code></pre>
+              <div className="tabs">
+                <div className="tab active">
+                  <span className="tab-icon">📄</span>
+                  <span className="tab-title">hello-world.html</span>
+                  <span className="tab-close">×</span>
+                </div>
+              </div>
+              <div className="editor-actions">
+                <span className="minimize">_</span>
+                <span className="maximize">⬜</span>
+                <span className="close">×</span>
               </div>
             </div>
 
-            <p className="story-closing">
-              Ez volt az első lépés egy izgalmas úton, ami a modern webfejlesztés világába vezetett.
-              Fedezz fel többet a projekteimről és a fejlődésemről.
-            </p>
+            <div className="editor-content">
+              <div className="line-numbers">
+                <div className="line-number">1</div>
+                <div className="line-number">2</div>
+                <div className="line-number">3</div>
+                <div className="line-number">4</div>
+                <div className="line-number">5</div>
+              </div>
+
+              <div className="code-area">
+                <div className="code-line">
+                  <span className="line-content">
+                    <span className="tag">&lt;</span>
+                    <span className="tag-name">!DOCTYPE</span>
+                    <span className="attribute-name"> html</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content">
+                    <span className="tag">&lt;</span>
+                    <span className="tag-name">html</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content indent">
+                    <span className="tag">&lt;</span>
+                    <span className="tag-name">head</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content indent-double">
+                    <span className="tag">&lt;</span>
+                    <span className="tag-name">title</span>
+                    <span className="tag">&gt;</span>
+                    <span className="text-content">Hello World</span>
+                    <span className="tag">&lt;/</span>
+                    <span className="tag-name">title</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content indent">
+                    <span className="tag">&lt;/</span>
+                    <span className="tag-name">head</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content indent">
+                    <span className="tag">&lt;</span>
+                    <span className="tag-name">body</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content indent-double">
+                    <span className="tag">&lt;</span>
+                    <span className="tag-name">div</span>
+                    <span className="tag">&gt;</span>
+                    <span className="text-content">Hello, World!</span>
+                    <span className="tag">&lt;/</span>
+                    <span className="tag-name">div</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content indent">
+                    <span className="tag">&lt;/</span>
+                    <span className="tag-name">body</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+                <div className="code-line">
+                  <span className="line-content">
+                    <span className="tag">&lt;/</span>
+                    <span className="tag-name">html</span>
+                    <span className="tag">&gt;</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="editor-footer">
+              <div className="status-bar">
+                <span className="status-item">HTML</span>
+                <span className="status-item">UTF-8</span>
+                <span className="status-item">LF</span>
+                <span className="status-item">Prettier</span>
+                <span className="status-item">Go Live</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
