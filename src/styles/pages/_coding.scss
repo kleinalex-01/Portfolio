@@ -162,6 +162,123 @@
     }
   }
 
+  // Section 1 - Personal Story
+  .section-1 {
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+
+      .story-intro {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        opacity: 0.95;
+
+        strong {
+          color: vars.$color-accent;
+          font-weight: vars.$font-weight-bold;
+        }
+      }
+
+      .story-details {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .story-closing {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-top: 2rem;
+        opacity: 0.85;
+        font-style: italic;
+      }
+    }
+
+    .code-showcase {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 2rem auto;
+      max-width: 500px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+      .code-header {
+        background: #2d2d2d;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .code-language {
+          background: vars.$color-accent;
+          color: vars.$color-black;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          font-weight: vars.$font-weight-bold;
+          text-transform: uppercase;
+        }
+
+        .code-filename {
+          color: vars.$color-white;
+          opacity: 0.8;
+          font-size: 0.9rem;
+          font-family: 'Courier New', monospace;
+        }
+      }
+
+      .code-content {
+        padding: 1.5rem;
+        background: #1e1e1e;
+
+        pre {
+          margin: 0;
+          font-family: 'Courier New', monospace;
+          font-size: 1.1rem;
+          line-height: 1.4;
+
+          code {
+            .code-tag {
+              color: #569cd6;
+              font-weight: vars.$font-weight-bold;
+            }
+          }
+        }
+      }
+    }
+
+    // Responsive adjustments for story section
+    @include mixins.respond-to(xs) {
+      .story-content {
+        .story-intro {
+          font-size: 1.1rem;
+        }
+
+        .story-details, .story-closing {
+          font-size: 1rem;
+        }
+      }
+
+      .code-showcase {
+        margin: 1.5rem auto;
+
+        .code-content pre {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    @include mixins.respond-to(sm) {
+      .code-showcase {
+        max-width: 550px;
+      }
+    }
+  }
+
   // Section 2 - Technologies with floating icons background
   .section-2 {
     position: relative;

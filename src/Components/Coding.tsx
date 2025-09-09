@@ -31,9 +31,30 @@ const Coding: React.FC = () => {
       {/* Section 1 - Introduction */}
       <section className="coding-section section-1">
         <div className="section-content">
-          <h2>Kódolás Világa</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h2>A történetem</h2>
+
+          <div className="story-content">
+            <p className="story-intro">
+              Üdvözöllek a portfóliómban! Már gyerekkorom óta érdekel a technológia és a programozás világa.
+              <strong> 3 éve tanulom a front-end fejlesztést</strong>, ahol a <strong>React és TypeScript</strong> lett a fő profilom.
+            </p>
+
+            {/* Code Snippet Showcase */}
+            <div className="code-showcase">
+              <div className="code-header">
+                <span className="code-language">HTML</span>
+                <span className="code-filename">hello-world.html</span>
+              </div>
+              <div className="code-content">
+                <pre><code>&lt;<span className="code-tag">div</span>&gt;Hello, World&lt;/<span className="code-tag">div</span>&gt;</code></pre>
+              </div>
+            </div>
+
+            <p className="story-closing">
+              Ez volt az első lépés egy izgalmas úton, ami a modern webfejlesztés világába vezetett.
+              Fedezz fel többet a projekteimről és a fejlődésemről.
+            </p>
+          </div>
         </div>
       </section>
 
