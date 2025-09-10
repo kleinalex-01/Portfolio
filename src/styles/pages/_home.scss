@@ -41,36 +41,108 @@
 // Welcome section container
 .welcome-section {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding: 3rem;
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  position: relative;
 
   @include mixins.respond-to(lg) {
-    padding: 4rem;
+    padding: 4rem 3rem;
+    gap: 2rem;
+  }
+}
+
+// Profile glow effect
+.profile-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 170, 255, 0.3) 0%, rgba(0, 170, 255, 0.1) 50%, transparent 70%);
+  animation: pulse 3s ease-in-out infinite;
+  z-index: -1;
+
+  @include mixins.respond-to(sm) {
+    width: 140px;
+    height: 140px;
+  }
+
+  @include mixins.respond-to(lg) {
+    width: 160px;
+    height: 160px;
   }
 }
 
 // Welcome profile picture
 .welcome-profile-pic {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 3px solid rgba(255, 255, 255, 0.9);
   object-fit: cover;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 170, 255, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(0, 170, 255, 0.6),
+      inset 0 0 30px rgba(255, 255, 255, 0.2);
+  }
 
   @include mixins.respond-to(sm) {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
 
   @include mixins.respond-to(lg) {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
   }
+}
+
+// Welcome subtitle with typing effect
+.welcome-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: vars.$font-weight-medium;
+
+  @include mixins.respond-to(sm) {
+    font-size: 1.3rem;
+  }
+
+  @include mixins.respond-to(lg) {
+    font-size: 1.5rem;
+  }
+}
+
+.typing-text {
+  background: linear-gradient(45deg, #00aaff, #00ff88, #ff6b6b);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  color: #00aaff;
+  font-weight: bold;
 }
 
 // Typewriter text styles
@@ -748,7 +820,22 @@
   }
 }
 
-// Override body background for home page to eliminate white space
-body:has(.home-page) {
-  background-color: transparent !important;
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }

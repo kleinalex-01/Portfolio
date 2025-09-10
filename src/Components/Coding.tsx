@@ -1,13 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaAngular,
   FaSass, FaGitAlt, FaGithub, FaNpm,
-  FaCode, FaPalette, FaMobileAlt
+  FaCode, FaPalette, FaMobileAlt, FaExternalLinkAlt
 } from 'react-icons/fa';
 import { SiTypescript, SiMongodb, SiFirebase } from 'react-icons/si';
+import { projects } from '../config/projects';
 
 const Coding: React.FC = () => {
-  // Floating tech icons for background animation
+  const [activeFile, setActiveFile] = useState<'html' | 'css' | 'js'>('html');
+
+  // File contents as editable strings (limited to 7 lines)
+  const [fileContents, setFileContents] = useState({
+    html: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Az első weboldalam</title>
+</head>
+<body>
+  <div>Hello, World!</div>
+</body>
+</html>
+
+<!-- Módosítsd a kódot, ha szeretnéd! -->`,
+    css: `body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+div {
+  color: #333;
+  font-size: 24px;
+}`,
+    js: `
+const numbers = [1, 2, 3, 4, 5];
+
+const multiplyNums = numbers.map(num => num * 2);
+
+console.log(multiplyNums);
+`
+  });
+
+  // File metadata
+  const files = {
+    html: {
+      name: 'hello-world.html',
+      icon: '📄',
+      language: 'html'
+    },
+    css: {
+      name: 'style.css',
+      icon: '🎨',
+      language: 'css'
+    },
+    js: {
+      name: 'app.js',
+      icon: '⚡',
+      language: 'javascript'
+    }
+  };
+
   const floatingIcons = [
     { icon: <FaHtml5 />, delay: 0, duration: 20, size: '2rem' },
     { icon: <FaCss3Alt />, delay: 2, duration: 25, size: '2.5rem' },
@@ -51,6 +105,13 @@ const Coding: React.FC = () => {
             <div className="dot dot-13"></div>
             <div className="dot dot-14"></div>
             <div className="dot dot-15"></div>
+            {/* Colored dots for enhanced visual appeal */}
+            <div className="dot dot-16 colored cyan"></div>
+            <div className="dot dot-17 colored cyan"></div>
+            <div className="dot dot-18 colored magenta"></div>
+            <div className="dot dot-19 colored magenta"></div>
+            <div className="dot dot-20 colored yellow"></div>
+            <div className="dot dot-21 colored yellow"></div>
           </div>
         </div>
 
@@ -68,9 +129,19 @@ const Coding: React.FC = () => {
                 <div className="control green"></div>
               </div>
               <div className="tabs">
-                <div className="tab active">
-                  <span className="tab-icon">📄index.html</span>
-                  <span className="tab-title">hello-world.html</span>
+                <div className={`tab ${activeFile === 'html' ? 'active' : ''}`} onClick={() => setActiveFile('html')}>
+                  <span className="tab-icon">{files.html.icon}</span>
+                  <span className="tab-title">{files.html.name}</span>
+                  <span className="tab-close">×</span>
+                </div>
+                <div className={`tab ${activeFile === 'css' ? 'active' : ''}`} onClick={() => setActiveFile('css')}>
+                  <span className="tab-icon">{files.css.icon}</span>
+                  <span className="tab-title">{files.css.name}</span>
+                  <span className="tab-close">×</span>
+                </div>
+                <div className={`tab ${activeFile === 'js' ? 'active' : ''}`} onClick={() => setActiveFile('js')}>
+                  <span className="tab-icon">{files.js.icon}</span>
+                  <span className="tab-title">{files.js.name}</span>
                   <span className="tab-close">×</span>
                 </div>
               </div>
@@ -83,92 +154,33 @@ const Coding: React.FC = () => {
 
             <div className="editor-content">
               <div className="line-numbers">
-                <div className="line-number">1</div>
-                <div className="line-number">2</div>
-                <div className="line-number">3</div>
-                <div className="line-number">4</div>
-                <div className="line-number">5</div>
+                {Array.from({ length: 7 }, (_, index) => (
+                  <div key={index} className="line-number">{index + 1}</div>
+                ))}
               </div>
 
               <div className="code-area">
-                <div className="code-line">
-                  <span className="line-content">
-                    <span className="tag">&lt;</span>
-                    <span className="tag-name">!DOCTYPE</span>
-                    <span className="attribute-name"> html</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content">
-                    <span className="tag">&lt;</span>
-                    <span className="tag-name">html</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content indent">
-                    <span className="tag">&lt;</span>
-                    <span className="tag-name">head</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content indent-double">
-                    <span className="tag">&lt;</span>
-                    <span className="tag-name">title</span>
-                    <span className="tag">&gt;</span>
-                    <span className="text-content">My first app</span>
-                    <span className="tag">&lt;/</span>
-                    <span className="tag-name">title</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content indent">
-                    <span className="tag">&lt;/</span>
-                    <span className="tag-name">head</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content indent">
-                    <span className="tag">&lt;</span>
-                    <span className="tag-name">body</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content indent-double">
-                    <span className="tag">&lt;</span>
-                    <span className="tag-name">div</span>
-                    <span className="tag">&gt;</span>
-                    <span className="text-content">Hello, World!</span>
-                    <span className="tag">&lt;/</span>
-                    <span className="tag-name">div</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content indent">
-                    <span className="tag">&lt;/</span>
-                    <span className="tag-name">body</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
-                <div className="code-line">
-                  <span className="line-content">
-                    <span className="tag">&lt;/</span>
-                    <span className="tag-name">html</span>
-                    <span className="tag">&gt;</span>
-                  </span>
-                </div>
+                <textarea
+                  className="code-editor"
+                  value={fileContents[activeFile]}
+                  onChange={(e) => {
+                    const newContent = e.target.value;
+                    setFileContents(prev => ({
+                      ...prev,
+                      [activeFile]: newContent
+                    }));
+                  }}
+                  spellCheck={false}
+                  data-language={files[activeFile].language}
+                />
               </div>
             </div>
 
             <div className="editor-footer">
               <div className="status-bar">
-                <span className="status-item">HTML</span>
+                <span className="status-item">
+                  {activeFile === 'html' ? 'HTML' : activeFile === 'css' ? 'CSS' : 'JavaScript'}
+                </span>
                 <span className="status-item">UTF-8</span>
                 <span className="status-item">LF</span>
                 <span className="status-item">Prettier</span>
@@ -243,10 +255,104 @@ const Coding: React.FC = () => {
 
       {/* Section 3 - Projects */}
       <section className="coding-section section-3">
+        {/* Background Animation - Floating Dots */}
+        <div className="section-3-bg-animation">
+          <div className="bg-dots">
+            <div className="dot dot-1"></div>
+            <div className="dot dot-2"></div>
+            <div className="dot dot-3"></div>
+            <div className="dot dot-4"></div>
+            <div className="dot dot-5"></div>
+            <div className="dot dot-6"></div>
+            <div className="dot dot-7"></div>
+            <div className="dot dot-8"></div>
+            <div className="dot dot-9"></div>
+            <div className="dot dot-10"></div>
+            <div className="dot dot-11"></div>
+            <div className="dot dot-12"></div>
+            <div className="dot dot-13"></div>
+            <div className="dot dot-14"></div>
+            <div className="dot dot-15"></div>
+            <div className="dot dot-16"></div>
+            <div className="dot dot-17"></div>
+            <div className="dot dot-18"></div>
+            <div className="dot dot-19"></div>
+            <div className="dot dot-20"></div>
+            <div className="dot dot-21"></div>
+            <div className="dot colored cyan dot-22"></div>
+            <div className="dot colored magenta dot-23"></div>
+            <div className="dot colored yellow dot-24"></div>
+            <div className="dot colored cyan dot-25"></div>
+            <div className="dot colored magenta dot-26"></div>
+            <div className="dot colored yellow dot-27"></div>
+            <div className="dot colored cyan dot-28"></div>
+            <div className="dot colored magenta dot-29"></div>
+            <div className="dot colored yellow dot-30"></div>
+          </div>
+        </div>
         <div className="section-content">
-          <h2>Projektek</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.</p>
-          <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis.</p>
+          <h2>Munkáim</h2>
+          <p className="section-subtitle">Itt találod az aktuális kész és folyamatban lévő munkáim.</p>
+
+          <div className="works-grid">
+            {projects.map((project) => {
+              const IconComponent = project.icon === 'FaCode' ? FaCode :
+                                   project.icon === 'FaMobileAlt' ? FaMobileAlt :
+                                   project.icon === 'FaPalette' ? FaPalette : FaCode;
+
+              return (
+                <div
+                  key={project.id}
+                  className={`work-card status-${project.status}`}
+                  onClick={() => project.link && window.open(project.link, '_blank')}
+                  style={{ cursor: project.link ? 'pointer' : 'default' }}
+                >
+                  <div className="work-image">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      className="work-preview-image"
+                      loading="lazy"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const placeholder = target.parentElement?.querySelector('.work-placeholder') as HTMLElement;
+                        if (placeholder) {
+                          placeholder.style.display = 'flex';
+                          placeholder.style.position = 'absolute';
+                          placeholder.style.top = '0';
+                          placeholder.style.left = '0';
+                          placeholder.style.width = '100%';
+                          placeholder.style.height = '100%';
+                        }
+                      }}
+                    />
+                    <div className="work-placeholder">
+                      <IconComponent className="work-icon" />
+                    </div>
+                    {project.link && (
+                      <div className="work-overlay">
+                        <FaExternalLinkAlt className="overlay-icon" />
+                        <span className="overlay-text">Megtekintés</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="work-content">
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <div className="work-tags">
+                      {project.tags.map((tag, index) => (
+                        <span key={index} className="tag">{tag}</span>
+                      ))}
+                    </div>
+                    <div className="work-status">
+                      <span className={`status ${project.status}`}>{project.statusText}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
