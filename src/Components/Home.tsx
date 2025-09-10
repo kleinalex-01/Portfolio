@@ -20,17 +20,9 @@ const Home: React.FC = () => {
             className="welcome-profile-pic"
           />
           <h1 className="welcome-title">Szia, üdv az oldalamon</h1>
-          <div className="welcome-subtitle">
-            <span className="typing-text">Front-end fejlesztő</span>
-            <span className="cursor">|</span>
-          </div>
         </div>
         <div className="home-content">
           <div className="social-links-section">
-            <div className="section-header">
-              <h2>Kövess engem</h2>
-              <div className="header-decoration"></div>
-            </div>
             <div className={`social-links ${isVisible ? 'animate-in' : ''}`}>
               <a href="https://instagram.com/kleinalex01" target="_blank" rel="noopener noreferrer" className="social-link instagram">
                 <div className="social-icon-wrapper">
@@ -64,20 +56,6 @@ const Home: React.FC = () => {
                 <span className="social-text">LinkedIn</span>
                 <div className="social-particles"></div>
               </a>
-            </div>
-            <div className="social-stats">
-              <div className="stat-item">
-                <span className="stat-number">500+</span>
-                <span className="stat-label">Követő</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Projekt</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">3+</span>
-                <span className="stat-label">Év tapasztalat</span>
-              </div>
             </div>
           </div>
         </div>

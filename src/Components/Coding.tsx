@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaAngular,
   FaSass, FaGitAlt, FaGithub, FaNpm,
@@ -9,6 +9,61 @@ import { projects } from '../config/projects';
 
 const Coding: React.FC = () => {
   const [activeFile, setActiveFile] = useState<'html' | 'css' | 'js'>('html');
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+
+  // Refs for sections
+  const section1Ref = useRef<HTMLDivElement>(null);
+  const section2Ref = useRef<HTMLDivElement>(null);
+  const section3Ref = useRef<HTMLDivElement>(null);
+  const section4Ref = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '-50px 0px -50px 0px'
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('data-section');
+          if (sectionId) {
+            setVisibleSections(prev => new Set([...prev, sectionId]));
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    const sections = [section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current];
+    sections.forEach(section => {
+      if (section) observer.observe(section);
+    });
+
+    // Immediately show sections that are already visible on load
+    const checkInitialVisibility = () => {
+      sections.forEach((section) => {
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          if (isVisible) {
+            const sectionId = section.getAttribute('data-section');
+            if (sectionId) {
+              setVisibleSections(prev => new Set([...prev, sectionId]));
+            }
+          }
+        }
+      });
+    };
+
+    // Check initial visibility after a short delay to ensure DOM is ready
+    setTimeout(checkInitialVisibility, 100);
+
+    return () => observer.disconnect();
+  }, []);
 
   // File contents as editable strings (limited to 7 lines)
   const [fileContents, setFileContents] = useState({
@@ -83,7 +138,11 @@ console.log(multiplyNums);
   return (
     <div className="page coding-page">
       {/* Section 1 - Introduction */}
-      <section className="coding-section section-1">
+      <section
+        ref={section1Ref}
+        data-section="section-1"
+        className={`coding-section section-1 ${visibleSections.has('section-1') ? 'animate-in' : ''}`}
+      >
         {/* Minimal Background Animation */}
         <div className="section-bg-animation">
           <div className="bg-circle circle-1"></div>
@@ -192,7 +251,11 @@ console.log(multiplyNums);
       </section>
 
       {/* Section 2 - Technologies */}
-      <section className="coding-section section-2">
+      <section
+        ref={section2Ref}
+        data-section="section-2"
+        className={`coding-section section-2 ${visibleSections.has('section-2') ? 'animate-in' : ''}`}
+      >
         {/* Floating Tech Icons Background */}
         <div className="floating-icons-bg">
           {floatingIcons.map((item, index) => (
@@ -254,7 +317,11 @@ console.log(multiplyNums);
       </section>
 
       {/* Section 3 - Projects */}
-      <section className="coding-section section-3">
+      <section
+        ref={section3Ref}
+        data-section="section-3"
+        className={`coding-section section-3 ${visibleSections.has('section-3') ? 'animate-in' : ''}`}
+      >
         {/* Background Animation - Floating Dots */}
         <div className="section-3-bg-animation">
           <div className="bg-dots">
@@ -357,11 +424,24 @@ console.log(multiplyNums);
       </section>
 
       {/* Section 4 - Future */}
-      <section className="coding-section section-4">
+      <section
+        ref={section4Ref}
+        data-section="section-4"
+        className={`coding-section section-4 ${visibleSections.has('section-4') ? 'animate-in' : ''}`}
+      >
         <div className="section-content">
-          <h2>Jövőbeli Célok</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi.</p>
-          <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
+          <h2>Keress Bátran</h2>
+          <p>Nyitott vagyok bármilyen megkeresésre, legyen az új projekt, együttműködés vagy konzultáció.</p>
+
+          <div className="contact-cta">
+            <p>Készen állsz egy beszélgetésre?</p>
+            <button
+              className="contact-button"
+              onClick={() => window.location.href = '#contact'}
+            >
+              Kapcsolatfelvétel
+            </button>
+          </div>
         </div>
       </section>
     </div>
