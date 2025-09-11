@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaCamera, FaImage, FaTools } from 'react-icons/fa';
+import { FaImage, FaTools } from 'react-icons/fa';
 
 // Sample photo data - replace with your actual photos
 const photos = [
-  { id: 1, src: '/images/photo1.svg', title: 'Portré Fotózás', category: 'portrait' },
   { id: 2, src: '/images/landscape.jpg', title: 'Pula csónak - 2025', category: 'landscape' },
-  { id: 3, src: '/images/photo3.svg', title: 'Utcai Portré', category: 'portrait' },
   { id: 4, src: '/images/landscape2.JPG', title: 'Brijuni Római Templom - 2025', category: 'landscape' },
-  { id: 5, src: '/images/photo5.svg', title: 'Családi Portré', category: 'portrait' },
   { id: 6, src: '/images/landscape3.jpg', title: 'Pula Kolosszeum - 2025', category: 'portrait' },
-  { id: 7, src: '/images/photo7.svg', title: 'Esküvői Portré', category: 'portrait' },
   { id: 8, src: '/images/landscape4.jpg', title: 'Sin Igor - 2025', category: 'landscape' },
   { id: 9, src: '/images/landscape5.JPG', title: 'Koralj - 2025', category: 'landscape' },
   { id: 10, src: '/images/landscape6.JPG', title: 'Brijuni Zátony - 2025', category: 'landscape' },
@@ -17,15 +13,16 @@ const photos = [
   { id: 12, src: '/images/landscape8.jpg', title: 'Bécs Vásár - 2024', category: 'landscape' },
   { id: 13, src: '/images/landscape9.JPG', title: 'Bécs Ringlispíl - 2024', category: 'landscape' },
   { id: 14, src: '/images/landscape10.jpg', title: 'Bécs Kastély - 2024', category: 'landscape' },
-  { id: 15, src: '/images/landscape11.JPG', title: 'Bécs Vásár - 2024', category: 'portrait' }
+  { id: 15, src: '/images/landscape11.JPG', title: 'Bécs Vásár - 2024', category: 'portrait' },
+  { id: 16, src: '/images/portrait1.jpg', title: 'Viharban - 2025', category: 'portrait' },
+  { id: 17, src: '/images/portrait2.jpg', title: 'Elázva - 2025', category: 'portrait' }
 ];
 
 // Equipment data
 const equipment = [
-  { name: 'Canon EOS 800d', type: 'Camera Body', specs: '24.2MP Full-Frame, 4K Video, CMOS AF' },
-  { name: 'Canon EF-S 55-250mm f/4-5.6 IS STM', type: 'Lens', specs: 'Professional zoom lens' },
-  { name: 'Canon EF-S 18-55mm f/3.5-5.6 IS II', type: 'Lens', specs: 'Portrait lens, stunning bokeh' },
-  { name: 'Manfrotto Tripod', type: 'Support', specs: 'Carbon fiber, stable shots' },
+  { name: 'Canon EOS 800d', type: 'Camera Body', specs: '24.2MP Full-Frame, 4K Video, CMOS AF', image: '/images/canon-eos-800d.png' },
+  { name: 'Canon EF-S 55-250mm f/4-5.6 IS STM', type: 'Lens', specs: 'Professional zoom lens', image: '/images/canon-ef-s-55-250.png' },
+  { name: 'Canon EF-S 18-55mm f/3.5-5.6 IS II', type: 'Lens', specs: 'Portrait lens, stunning bokeh', image: '/images/canon-ef-s-18-55.png' },
 ];
 
 const Photography: React.FC = () => {
@@ -99,6 +96,19 @@ const Photography: React.FC = () => {
 
   return (
     <div className="page photography-page">
+      {/* Background Animation Elements */}
+      <div className="camera-flash"></div>
+      <div className="bright-flash"></div>
+      <div className="film-grain"></div>
+      <div className="light-particle"></div>
+      <div className="light-particle"></div>
+      <div className="light-particle"></div>
+      <div className="light-particle"></div>
+      <div className="light-particle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
+      <div className="sparkle"></div>
       {/* Section 1 - Photo Gallery */}
       <section
         ref={section1Ref}
@@ -106,8 +116,6 @@ const Photography: React.FC = () => {
         className={`photography-section section-1 ${visibleSections.has('section-1') ? 'animate-in' : ''}`}
       >
         <div className="section-content">
-          <h2>Fotográfiai Portfólió</h2>
-          <p>Momentumok megörökítése és történetek elmesélése a lencsén keresztül</p>
 
           {/* Filter Buttons */}
           <div className="filter-buttons">
@@ -171,16 +179,12 @@ const Photography: React.FC = () => {
       >
         <div className="section-content">
           <div className="description-section">
-            <h2>A Fotográfiámról</h2>
+            <h2>Fényképészet</h2>
             <p>
-              A fotográfia több mint képek készítése—ez történetek elmeséléséről,
-              időbeli momentumok megfagyasztásáról és vizuális narratívák létrehozásáról szól,
-              amelyek rezonálnak a nézőkkel. Számos műfajban szerzett tapasztalattal
-              kreativitást és technikai szakértelmet hozok minden fotózáshoz.
+              18 évesen kaptam meg az első fényképezőgépem, amit azóta is örömmel használok.
             </p>
             <p>
-              Legyen szó portré ülésekről, eseményről vagy tájfotózásról,
-              mindig arra törekszem, hogy a várakozásokat meghaladó minőségű képeket szállítsak.
+              Életem során egy állandó hobbivá nőtte ki magát, így minden fontos pillanatot meg tudok örökíteni az életemben.
             </p>
           </div>
 
@@ -193,8 +197,15 @@ const Photography: React.FC = () => {
                   className="equipment-card"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="equipment-icon">
-                    <FaCamera />
+                  <div className="equipment-image">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/images/placeholder.svg';
+                      }}
+                    />
                   </div>
                   <div className="equipment-info">
                     <h4>{item.name}</h4>
