@@ -189,8 +189,7 @@ const Bodybuilding: React.FC = () => {
           {/* 2015 - The Beginning */}
           <div className="timeline-item timeline-item-2015">
             <div className="timeline-marker">
-              <div className="marker-circle"></div>
-              <div className="marker-year">2015</div>
+              {/* Marker circle removed - using marker-year inside content */}
             </div>
             <div className="timeline-content">
               <h3>A Kezdet</h3>
@@ -206,8 +205,7 @@ const Bodybuilding: React.FC = () => {
           {/* 2021 - Growth Period */}
           <div className="timeline-item timeline-item-2021">
             <div className="timeline-marker">
-              <div className="marker-circle"></div>
-              <div className="marker-year">2021</div>
+              {/* Marker circle removed - using marker-year inside content */}
             </div>
             <div className="timeline-content">
               <h3>Életmód</h3>
@@ -224,8 +222,7 @@ const Bodybuilding: React.FC = () => {
           {/* 2024 - Competition */}
           <div className="timeline-item timeline-item-2024">
             <div className="timeline-marker">
-              <div className="marker-circle"></div>
-              <div className="marker-year">2024</div>
+              {/* Marker circle removed - using marker-year inside content */}
             </div>
             <div className="timeline-content">
               <h3>A Verseny</h3>

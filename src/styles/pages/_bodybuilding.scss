@@ -7,7 +7,11 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
   color: vars.$color-white;
-  padding: 2rem 1rem;
+  padding: 1rem 0.5rem; // Reduced padding for mobile
+
+  @include mixins.respond-to(sm) {
+    padding: 1.5rem 1rem; // Slightly more padding on small screens
+  }
 
   @include mixins.respond-to(md) {
     padding: 4rem 2rem;
@@ -21,14 +25,21 @@
 
     .timeline-title {
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 4rem;
-      padding-top: 3rem; // Push title lower
+      font-size: 1.8rem; // Smaller for mobile
+      margin-bottom: 2rem; // Less margin on mobile
+      padding-top: 1rem; // Less top padding on mobile
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.75rem; // Smaller gap
       color: vars.$color-white;
+
+      @include mixins.respond-to(sm) {
+        font-size: 2.2rem; // Medium size for small screens
+        margin-bottom: 3rem;
+        padding-top: 1.5rem;
+        gap: 1rem;
+      }
 
       @include mixins.respond-to(xs) {
         font-size: 2rem;
@@ -43,7 +54,11 @@
 
     .timeline {
       position: relative;
-      padding-left: 3rem;
+      padding-left: 1.5rem; // Reduced padding for mobile
+
+      @include mixins.respond-to(sm) {
+        padding-left: 2rem; // Slightly more on small screens
+      }
 
       @include mixins.respond-to(md) {
         padding-left: 4rem;
@@ -52,17 +67,22 @@
       // Main timeline line
       .timeline-line {
         position: absolute;
-        left: 1.5rem;
+        left: 0.75rem; // Centered in the padding
         top: 0;
         bottom: 0;
-        width: 3px;
+        width: 2px; // Thinner line for mobile
         background: linear-gradient(to bottom,
           rgba(255, 255, 255, 0.2),
           rgba(255, 255, 255, 0.1),
           rgba(255, 255, 255, 0.2)
         );
-        border-radius: 2px;
+        border-radius: 1px;
         transition: all 0.3s ease;
+
+        @include mixins.respond-to(sm) {
+          left: 1rem;
+          width: 3px; // Slightly thicker on small screens
+        }
 
         @include mixins.respond-to(md) {
           left: 2rem;
@@ -102,10 +122,14 @@
       // Timeline items
       .timeline-item {
         position: relative;
-        margin-bottom: 4rem;
-        padding-left: 4rem;
+        margin-bottom: 2.5rem; // Reduced margin for mobile
+
+        @include mixins.respond-to(sm) {
+          margin-bottom: 3rem; // Slightly more on small screens
+        }
 
         @include mixins.respond-to(md) {
+          margin-bottom: 4rem;
           padding-left: 5rem;
         }
 
@@ -115,63 +139,45 @@
 
         .timeline-marker {
           position: absolute;
-          left: 0.5rem;
+          left: 0.25rem; // Better positioning for mobile
           top: 0.5rem;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 0.5rem;
 
+          @include mixins.respond-to(sm) {
+            left: 0.5rem;
+          }
+
           @include mixins.respond-to(md) {
             left: 1rem;
           }
 
-          .marker-circle {
-            width: 1.5rem;
-            height: 1.5rem;
-            background: vars.$color-primary;
-            border: 4px solid vars.$color-white;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-
-            @include mixins.respond-to(md) {
-              width: 2rem;
-              height: 2rem;
-              border-width: 5px;
-            }
-          }
-
-          .marker-year {
-            font-size: 1rem;
-            font-weight: bold;
-            color: vars.$color-primary;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            border: 2px solid vars.$color-primary;
-            backdrop-filter: blur(10px);
-
-            @include mixins.respond-to(md) {
-              font-size: 1.2rem;
-              padding: 0.5rem 1rem;
-            }
-          }
+          // Marker circle removed - using marker-year inside content instead
         }
 
         .timeline-content {
           background: rgba(255, 255, 255, 0.02);
-          border-radius: 16px;
-          padding: 2rem;
-          margin-left: 3.5rem; // Push content away from marker
+          border-radius: 12px; // Smaller radius for mobile
+          padding: 1.25rem; // Reduced padding for mobile
+          margin-left: 0.5rem; // Minimal margin for mobile
           border: 1px solid rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(10px);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
 
+          @include mixins.respond-to(sm) {
+            padding: 1.5rem; // Slightly more padding on small screens
+            margin-left: 0.75rem;
+            border-radius: 14px;
+          }
+
           @include mixins.respond-to(md) {
-            margin-left: 4.5rem; // More space on desktop
+            margin-left: 2rem; // Reduced margin for desktop too
+            padding: 2rem;
+            border-radius: 16px;
           }
 
           // Enhanced hover effects
@@ -205,11 +211,16 @@
 
           // Interactive elements within content
           h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem; // Smaller for mobile
             color: vars.$color-primary;
-            margin-bottom: 1rem;
+            margin-bottom: 0.875rem; // Less margin on mobile
             font-weight: 600;
             transition: all 0.3s ease;
+
+            @include mixins.respond-to(sm) {
+              font-size: 1.4rem; // Medium size for small screens
+              margin-bottom: 1rem;
+            }
 
             @include mixins.respond-to(md) {
               font-size: 1.8rem;
@@ -222,11 +233,15 @@
           }
 
           p {
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 0.9rem; // Smaller for mobile
+            line-height: 1.6; // Better line height for mobile
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
+            margin-bottom: 0.875rem; // Less margin on mobile
+
+            @include mixins.respond-to(sm) {
+              font-size: 0.95rem; // Slightly larger on small screens
+              margin-bottom: 1rem;
+            }
 
             @include mixins.respond-to(md) {
               font-size: 1.1rem;
@@ -241,7 +256,11 @@
           .content-with-images {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1.5rem; // Reduced gap for mobile
+
+            @include mixins.respond-to(sm) {
+              gap: 1.75rem; // Slightly more gap on small screens
+            }
 
             @include mixins.respond-to(md) {
               grid-template-columns: 2fr 1fr;
@@ -250,7 +269,17 @@
 
             .text-content {
               p {
-                margin-bottom: 1.5rem;
+                margin-bottom: 1.25rem; // Less margin on mobile
+
+                @include mixins.respond-to(sm) {
+                  margin-bottom: 1.5rem;
+                }
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
 
                 &:last-child {
                   margin-bottom: 0;
@@ -533,47 +562,34 @@
               }
             }
           }
-        }
 
-        // Alternate positioning for visual interest on all items
-        &:nth-child(even) {
-          flex-direction: row-reverse;
+          // Alternate positioning for visual interest on all items
+          &:nth-child(even) {
+            flex-direction: row-reverse;
 
-          .timeline-content {
-            margin-left: 2rem;
+            .timeline-content {
+              margin-left: 2rem;
 
-            @include mixins.respond-to(md) {
-              margin-left: 3rem;
+              @include mixins.respond-to(md) {
+                margin-left: 3rem;
+              }
             }
           }
-        }
 
-        &:nth-child(odd) {
-          .timeline-content {
-            margin-right: 2rem;
+          &:nth-child(odd) {
+            .timeline-content {
+              margin-right: 2rem;
 
-            @include mixins.respond-to(md) {
-              margin-right: 3rem;
+              @include mixins.respond-to(md) {
+                margin-right: 3rem;
+              }
             }
           }
         }
       }
     }
-  }
-}
+  
 
-// Enhanced hover effects for timeline markers
-.timeline-item:hover .marker-circle {
-  transform: scale(1.2);
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.timeline-item:hover .marker-year {
-  transform: scale(1.05);
-  background: rgba(255, 107, 53, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 // Interactive timeline content
 .timeline-item:hover .timeline-content {
@@ -782,33 +798,12 @@
     animation: none; // Disable default animation
   }
 
-  // Marker starts hidden
-  .marker-circle {
-    opacity: 0;
-    transform: scale(0.8);
-    animation: none; // Disable default animation
-  }
-
-  .marker-year {
-    opacity: 0;
-    transform: scale(0.9);
-    animation: none; // Disable default animation
-  }
-
   // Individual float-in animations when triggered by scroll
   &.float-in {
     animation: floatIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 
     .timeline-content {
       animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-    }
-
-    .marker-circle {
-      animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-    }
-
-    .marker-year {
-      animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
     }
   }
 
@@ -824,20 +819,6 @@
 
 // Active state for scroll progress
 .timeline-item.active {
-  .marker-circle {
-    background: linear-gradient(135deg, vars.$color-primary, #ff6b35);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
-    animation: none; // Stop pulse when active
-    transform: scale(1.3);
-  }
-
-  .marker-year {
-    background: rgba(255, 107, 53, 0.15);
-    border-color: vars.$color-primary;
-    color: #fff;
-    transform: scale(1.1);
-  }
-
   .timeline-content {
     border-color: rgba(255, 107, 53, 0.3);
     background: rgba(255, 255, 255, 0.04);
@@ -852,17 +833,6 @@
 
 .timeline-container:hover .timeline-title {
   transform: translateY(-5px);
-}
-
-// Enhanced marker interactions
-.marker-circle {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.marker-year {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
 }
 
 // Smooth scroll behavior
