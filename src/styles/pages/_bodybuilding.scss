@@ -1,403 +1,559 @@
-// Bodybuilding page styles
+// Bodybuilding page styles - Clean Timeline Design
 @use '../abstracts/variables' as vars;
 @use '../abstracts/mixins' as mixins;
 
 // Bodybuilding page container
 .bodybuilding-page {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: vars.$color-white;
+  padding: 2rem 1rem;
 
-  // Bodybuilding-themed background animations
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: -1;
-    background:
-      radial-gradient(circle at 25% 25%, rgba(0, 170, 255, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(255, 100, 150, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 50% 10%, rgba(100, 200, 100, 0.08) 0%, transparent 50%);
+  @include mixins.respond-to(md) {
+    padding: 4rem 2rem;
   }
 
-  // Floating muscle particles
-  .muscle-particle {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: floatMuscle 10s infinite linear;
-    z-index: -1;
+  .timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10; // Above background elements
 
-    &:nth-child(2) { animation-delay: -3s; left: 15%; animation-duration: 12s; }
-    &:nth-child(3) { animation-delay: -6s; left: 35%; animation-duration: 14s; }
-    &:nth-child(4) { animation-delay: -9s; left: 65%; animation-duration: 11s; }
-    &:nth-child(5) { animation-delay: -12s; left: 85%; animation-duration: 13s; }
-  }
-
-  // Section styles
-  .bodybuilding-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    scroll-snap-align: start;
-    padding: 1rem;
-
-    // Extra small phones (320px+)
-    @include mixins.respond-to(xs) {
-      padding: 1.25rem;
-    }
-
-    // Small phones/tablets (640px+)
-    @include mixins.respond-to(sm) {
-      padding: 1.5rem;
-    }
-
-    // Tablets (768px+)
-    @include mixins.respond-to(md) {
-      padding: 2rem;
-    }
-
-    // Small laptops (1024px+)
-    @include mixins.respond-to(lg) {
-      padding: 2.5rem;
-    }
-
-    // Laptops/desktops (1280px+)
-    @include mixins.respond-to(xl) {
-      padding: 3rem;
-    }
-
-    // Large desktops (1536px+)
-    @include mixins.respond-to(2xl) {
-      padding: 4rem;
-    }
-
-    // Dark theme backgrounds
-    &:nth-child(odd) {
-      background: linear-gradient(135deg, #0d0d0d 0%, #141414 50%, #0d0d0d 100%);
-    }
-
-    &:nth-child(even) {
-      background: linear-gradient(135deg, #141414 0%, #1a1a1a 50%, #141414 100%);
-    }
-
-    .section-content {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      color: vars.$color-white;
-    }
-  }
-
-  // Section 1 - Introduction & Discipline
-  .section-1 {
-    background: linear-gradient(135deg, #0d0d0d 0%, #141414 50%, #0d0d0d 100%) !important;
-    color: vars.$color-white;
-
-    .discipline-section {
+    .timeline-title {
       text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 4rem;
+      padding-top: 3rem; // Push title lower
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: vars.$color-white;
 
-      h1 {
+      @include mixins.respond-to(xs) {
+        font-size: 2rem;
+        padding-top: 2rem;
+      }
+
+      @include mixins.respond-to(md) {
         font-size: 3rem;
-        margin-bottom: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
+        padding-top: 4rem;
+      }
+    }
 
-        @include mixins.respond-to(xs) {
-          font-size: 2.5rem;
-        }
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
 
-        @include mixins.respond-to(sm) {
-          font-size: 2.8rem;
-        }
+      @include mixins.respond-to(md) {
+        padding-left: 4rem;
+      }
+
+      // Main timeline line
+      .timeline-line {
+        position: absolute;
+        left: 1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.2),
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.2)
+        );
+        border-radius: 2px;
+        transition: all 0.3s ease;
 
         @include mixins.respond-to(md) {
-          font-size: 3.2rem;
+          left: 2rem;
+          width: 4px;
+        }
+
+        // Progress indicator that fills up
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: var(--progress, 0%);
+          background: linear-gradient(to bottom,
+            vars.$color-primary,
+            #ff6b35,
+            vars.$color-primary
+          );
+          border-radius: 2px;
+          transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+
+        // Glow effect when active
+        &.active {
+          background: linear-gradient(to bottom,
+            rgba(255, 107, 53, 0.6),
+            rgba(255, 255, 255, 0.4),
+            rgba(255, 107, 53, 0.6)
+          );
+          box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+          animation: linePulse 2s infinite;
         }
       }
 
-      .discipline-quote {
+      // Timeline items
+      .timeline-item {
         position: relative;
-        margin: 3rem 0;
-        padding: 2rem;
+        margin-bottom: 4rem;
+        padding-left: 4rem;
 
-        .quote-icon {
-          position: absolute;
-          top: -10px;
-          left: -10px;
-          font-size: 3rem;
-          color: rgba(255, 255, 255, 0.3);
+        @include mixins.respond-to(md) {
+          padding-left: 5rem;
         }
 
-        blockquote {
-          font-size: 1.4rem;
-          font-style: italic;
-          line-height: 1.6;
-          margin: 0;
-          padding-left: 2rem;
-          position: relative;
-          z-index: 1;
+        &:last-child {
+          margin-bottom: 0;
+        }
 
-          @include mixins.respond-to(xs) {
-            font-size: 1.2rem;
-            padding-left: 1.5rem;
-          }
-
-          @include mixins.respond-to(sm) {
-            font-size: 1.3rem;
-          }
+        .timeline-marker {
+          position: absolute;
+          left: 0.5rem;
+          top: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
 
           @include mixins.respond-to(md) {
-            font-size: 1.5rem;
+            left: 1rem;
           }
-        }
-      }
 
-      p {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        max-width: 800px;
-        margin: 0 auto;
-        opacity: 0.9;
+          .marker-circle {
+            width: 1.5rem;
+            height: 1.5rem;
+            background: vars.$color-primary;
+            border: 4px solid vars.$color-white;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
 
-        @include mixins.respond-to(xs) {
-          font-size: 1rem;
-        }
-
-        @include mixins.respond-to(sm) {
-          font-size: 1.05rem;
-        }
-      }
-    }
-  }
-
-  // Section 2 - First Competition
-  .section-2 {
-    background: linear-gradient(135deg, #141414 0%, #1a1a1a 50%, #141414 100%) !important;
-    color: vars.$color-white;
-
-    .competition-section {
-      h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-        color: vars.$color-primary;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-
-        @include mixins.respond-to(xs) {
-          font-size: 2rem;
-        }
-
-        @include mixins.respond-to(sm) {
-          font-size: 2.3rem;
-        }
-      }
-
-      .competition-card {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        padding: 3rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-
-        @include mixins.respond-to(md) {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-          text-align: center;
-        }
-
-        .competition-image {
-          img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-
-            &:hover {
-              transform: scale(1.05);
-            }
-          }
-        }
-
-        .competition-details {
-          .competition-header {
-            margin-bottom: 2rem;
-
-            h3 {
-              font-size: 2rem;
-              margin-bottom: 1rem;
-              color: vars.$color-white;
-
-              @include mixins.respond-to(xs) {
-                font-size: 1.8rem;
-              }
-
-              @include mixins.respond-to(sm) {
-                font-size: 1.9rem;
-              }
-            }
-
-            .competition-date {
-              display: flex;
-              align-items: center;
-              gap: 0.5rem;
-              color: vars.$color-primary;
-              font-weight: vars.$font-weight-medium;
-
-              svg {
-                font-size: 1.2rem;
-              }
+            @include mixins.respond-to(md) {
+              width: 2rem;
+              height: 2rem;
+              border-width: 5px;
             }
           }
 
-          p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-
-            @include mixins.respond-to(xs) {
-              font-size: 1rem;
-            }
-          }
-
-          .competition-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-
-            @include mixins.respond-to(xs) {
-              grid-template-columns: 1fr;
-              gap: 1rem;
-            }
-
-            .stat {
-              text-align: center;
-              padding: 1.5rem;
-              background: linear-gradient(135deg, vars.$color-primary 0%, vars.$color-secondary 100%);
-              color: vars.$color-white;
-              border-radius: 12px;
-              transition: transform 0.3s ease;
-
-              &:hover {
-                transform: translateY(-5px);
-              }
-
-              .stat-number {
-                display: block;
-                font-size: 2rem;
-                font-weight: vars.$font-weight-bold;
-                margin-bottom: 0.5rem;
-
-                @include mixins.respond-to(xs) {
-                  font-size: 1.8rem;
-                }
-              }
-
-              .stat-label {
-                font-size: 0.9rem;
-                opacity: 0.9;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-
-                @include mixins.respond-to(xs) {
-                  font-size: 0.8rem;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // Section 3 - Journey & Future Goals
-  .section-3 {
-    background: linear-gradient(135deg, #0d0d0d 0%, #141414 50%, #0d0d0d 100%) !important;
-    color: vars.$color-white;
-
-    .journey-section {
-      h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-
-        @include mixins.respond-to(xs) {
-          font-size: 2rem;
-        }
-
-        @include mixins.respond-to(sm) {
-          font-size: 2.3rem;
-        }
-      }
-
-      .journey-content {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 3rem;
-        align-items: start;
-
-        @include mixins.respond-to(md) {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .journey-text {
-          h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+          .marker-year {
+            font-size: 1rem;
+            font-weight: bold;
             color: vars.$color-primary;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            border: 2px solid vars.$color-primary;
+            backdrop-filter: blur(10px);
 
-            @include mixins.respond-to(xs) {
-              font-size: 1.6rem;
-            }
-          }
-
-          p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-
-            @include mixins.respond-to(xs) {
-              font-size: 1rem;
+            @include mixins.respond-to(md) {
+              font-size: 1.2rem;
+              padding: 0.5rem 1rem;
             }
           }
         }
 
-        .motivation-image {
-          img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+        .timeline-content {
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 16px;
+          padding: 2rem;
+          margin-left: 3.5rem; // Push content away from marker
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(10px);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+
+          @include mixins.respond-to(md) {
+            margin-left: 4.5rem; // More space on desktop
+          }
+
+          // Enhanced hover effects
+          &:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow:
+              0 20px 60px rgba(0, 0, 0, 0.2),
+              0 0 30px rgba(255, 107, 53, 0.1);
+          }
+
+          // Subtle glow effect on hover
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(255, 107, 53, 0.02));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 16px;
+            pointer-events: none;
+          }
+
+          &:hover::before {
+            opacity: 1;
+          }
+
+          // Interactive elements within content
+          h3 {
+            font-size: 1.5rem;
+            color: vars.$color-primary;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+
+            @include mixins.respond-to(md) {
+              font-size: 1.8rem;
+            }
 
             &:hover {
-              transform: scale(1.05);
+              color: #ff8c42;
+              transform: translateX(4px);
+            }
+          }
+
+          p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+
+            @include mixins.respond-to(md) {
+              font-size: 1.1rem;
+            }
+
+            &:hover {
+              color: rgba(255, 255, 255, 0.95);
+              transform: translateX(2px);
+            }
+          }
+
+          .content-with-images {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+
+            @include mixins.respond-to(md) {
+              grid-template-columns: 2fr 1fr;
+              gap: 3rem;
+            }
+
+            .text-content {
+              p {
+                margin-bottom: 1.5rem;
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
+
+            .image-gallery {
+              position: relative;
+              margin-top: 1.5rem;
+              overflow: hidden;
+              border-radius: 16px;
+              background: rgba(255, 255, 255, 0.02);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+
+              .carousel-container {
+                position: relative;
+                width: 100%;
+                height: 300px; // Reduced height for landscape images
+                overflow: hidden;
+
+                @include mixins.respond-to(md) {
+                  height: 350px; // More compact for landscape
+                }
+
+                @include mixins.respond-to(lg) {
+                  height: 400px; // Still reasonable for large screens
+                }
+
+                @include mixins.respond-to(xl) {
+                  height: 450px; // Max height for very large screens
+                  max-width: 800px; // Limit width to maintain good proportions
+                  margin: 0 auto; // Center the carousel
+                }
+              }
+
+              .carousel-track {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+                .carousel-slide {
+                  flex: 0 0 100%;
+                  width: 100%;
+                  height: 100%;
+                  position: relative;
+
+                  .carousel-image-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    cursor: pointer;
+                    border-radius: 12px;
+                    overflow: hidden;
+
+                    img {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      object-position: center;
+                      border-radius: 12px;
+                      filter: brightness(0.95) contrast(1.05);
+                      transition: all 0.3s ease;
+
+                      &:hover {
+                        filter: brightness(1.1) contrast(1.1) saturate(1.1);
+                        transform: scale(1.02);
+                      }
+                    }
+
+                    .image-overlay {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      right: 0;
+                      bottom: 0;
+                      background: rgba(0, 0, 0, 0.3);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      opacity: 0;
+                      transition: opacity 0.3s ease;
+
+                      .expand-icon {
+                        color: white;
+                        font-size: 2rem;
+                        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+                      }
+                    }
+
+                    &:hover .image-overlay {
+                      opacity: 1;
+                    }
+                  }
+                }
+              }
+
+              .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 48px;
+                height: 48px;
+                background: rgba(0, 0, 0, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10;
+
+                &:hover {
+                  background: rgba(255, 107, 53, 0.8);
+                  border-color: vars.$color-primary;
+                  transform: translateY(-50%) scale(1.1);
+                  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+                }
+
+                &:active {
+                  transform: translateY(-50%) scale(0.95);
+                }
+
+                &.prev {
+                  left: 16px;
+                }
+
+                &.next {
+                  right: 16px;
+                }
+
+                svg {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+
+              .carousel-indicators {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 8px;
+                z-index: 10;
+
+                .indicator {
+                  width: 12px;
+                  height: 12px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.4);
+                  border: 1px solid rgba(255, 255, 255, 0.6);
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+
+                  &.active {
+                    background: vars.$color-primary;
+                    border-color: vars.$color-primary;
+                    transform: scale(1.2);
+                    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.6);
+                  }
+
+                  &:hover:not(.active) {
+                    background: rgba(255, 255, 255, 0.6);
+                    transform: scale(1.1);
+                  }
+                }
+              }
+
+              .carousel-counter {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 20px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(8px);
+                z-index: 10;
+
+                @include mixins.respond-to(sm) {
+                  font-size: 0.75rem;
+                  padding: 6px 10px;
+                }
+              }
+
+              // Touch/swipe feedback
+              &.swiping {
+                .carousel-track {
+                  transition: none;
+                }
+              }
+
+              // Loading state
+              &.loading {
+                .carousel-track {
+                  opacity: 0.5;
+                }
+
+                &::after {
+                  content: '';
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 40px;
+                  height: 40px;
+                  border: 3px solid rgba(255, 255, 255, 0.3);
+                  border-top: 3px solid vars.$color-primary;
+                  border-radius: 50%;
+                  animation: spin 1s linear infinite;
+                  z-index: 15;
+                }
+              }
+
+              // Single image layout
+              &.single-image {
+                .carousel-container {
+                  height: 250px; // More compact for landscape single image
+
+                  @include mixins.respond-to(md) {
+                    height: 300px; // Still reasonable for medium screens
+                  }
+
+                  @include mixins.respond-to(lg) {
+                    height: 350px; // Good proportion for large screens
+                    max-width: 700px; // Limit width for better landscape display
+                    margin: 0 auto; // Center the single image
+                  }
+                }
+
+                .carousel-nav,
+                .carousel-indicators {
+                  display: none;
+                }
+              }
+
+              // Landscape image optimizations
+              &.landscape-optimized {
+                .carousel-container {
+                  aspect-ratio: 16/9; // Standard landscape aspect ratio
+                  height: auto; // Let aspect-ratio control height
+                  max-height: 400px; // Cap maximum height
+
+                  @include mixins.respond-to(md) {
+                    max-height: 450px;
+                  }
+
+                  @include mixins.respond-to(lg) {
+                    max-height: 500px;
+                    max-width: 900px; // Wider container for landscape
+                  }
+                }
+
+                .carousel-slide {
+                  .carousel-image-wrapper {
+                    img {
+                      object-fit: contain; // Show full image without cropping
+                      background: rgba(0, 0, 0, 0.1); // Subtle background for letterboxing
+                    }
+                  }
+                }
+              }
+            }
+
+            // Image animation states (retained for compatibility)
+            .image-item {
+              opacity: 0;
+              transform: translateY(20px) scale(0.95);
+              animation: none; // Start hidden
+
+              &.image-visible {
+                animation: imageFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+              }
+            }
+          }
+        }
+
+        // Alternate positioning for visual interest on all items
+        &:nth-child(even) {
+          flex-direction: row-reverse;
+
+          .timeline-content {
+            margin-left: 2rem;
+
+            @include mixins.respond-to(md) {
+              margin-left: 3rem;
+            }
+          }
+        }
+
+        &:nth-child(odd) {
+          .timeline-content {
+            margin-right: 2rem;
+
+            @include mixins.respond-to(md) {
+              margin-right: 3rem;
             }
           }
         }
@@ -406,41 +562,465 @@
   }
 }
 
-// Scroll animations
-.animate-in {
-  .competition-card,
-  .discipline-quote,
-  .journey-content {
-    transform: translateY(0);
+// Enhanced hover effects for timeline markers
+.timeline-item:hover .marker-circle {
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item:hover .marker-year {
+  transform: scale(1.05);
+  background: rgba(255, 107, 53, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Interactive timeline content
+.timeline-item:hover .timeline-content {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.25),
+    0 0 40px rgba(255, 107, 53, 0.15);
+  border-color: rgba(255, 107, 53, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+// Enhanced individual element hover effects
+.timeline-item:hover .timeline-content h3 {
+  color: #ff8c42;
+  transform: translateX(6px);
+}
+
+.timeline-item:hover .timeline-content p {
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateX(3px);
+}
+
+// Additional interactive elements
+.timeline-content {
+  a, button, .interactive-element {
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: vars.$color-primary;
+      transform: translateY(-2px);
+      text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+    }
+  }
+
+  // Subtle micro-interactions for better UX
+  .highlight-text {
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.05));
+      border-radius: 4px;
+      padding: 2px 4px;
+      transform: scale(1.02);
+    }
+  }
+}
+
+// Smooth animations with enhanced easing
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+  }
+  to {
     opacity: 1;
-    transition: all 0.8s ease-out;
+    transform: translateX(0) scale(1);
   }
 }
 
-// Hide scrollbar but keep functionality
-.bodybuilding-page::-webkit-scrollbar {
-  display: none;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.bodybuilding-page {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@keyframes drawLine {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
 }
 
-// Bodybuilding-themed animations
-@keyframes floatMuscle {
-  0% {
-    transform: translateY(100vh) translateX(0px);
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+// Enhanced scroll-triggered float-in animation
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.8) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes floatInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px) translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes floatInRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px) translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes linePulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 107, 53, 0.8);
+  }
+}
+
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Enhanced slide animations with bounce effect
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px) scale(0.9);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateX(10px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-5px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Scroll-triggered animations
+.timeline-item {
+  opacity: 0; // Start completely hidden
+  transform: translateY(30px) scale(0.95);
+  animation: none; // Disable default animation
+
+  // Content starts hidden
+  .timeline-content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: none; // Disable default animation
+  }
+
+  // Marker starts hidden
+  .marker-circle {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: none; // Disable default animation
+  }
+
+  .marker-year {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: none; // Disable default animation
+  }
+
+  // Individual float-in animations when triggered by scroll
+  &.float-in {
+    animation: floatIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    .timeline-content {
+      animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+    }
+
+    .marker-circle {
+      animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+    }
+
+    .marker-year {
+      animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+    }
+  }
+
+  // Alternate float directions for visual interest
+  &:nth-child(odd).float-in {
+    animation: floatInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  &:nth-child(even).float-in {
+    animation: floatInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+
+// Active state for scroll progress
+.timeline-item.active {
+  .marker-circle {
+    background: linear-gradient(135deg, vars.$color-primary, #ff6b35);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+    animation: none; // Stop pulse when active
+    transform: scale(1.3);
+  }
+
+  .marker-year {
+    background: rgba(255, 107, 53, 0.15);
+    border-color: vars.$color-primary;
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  .timeline-content {
+    border-color: rgba(255, 107, 53, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
+  }
+}
+
+// Subtle parallax effect for timeline title
+.timeline-title {
+  transition: transform 0.3s ease-out;
+}
+
+.timeline-container:hover .timeline-title {
+  transform: translateY(-5px);
+}
+
+// Enhanced marker interactions
+.marker-circle {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.marker-year {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+// Smooth scroll behavior
+* {
+  scroll-behavior: smooth;
+}
+
+// Loading state animations
+.timeline-item {
+  transition: opacity 0.6s ease-out;
+}
+
+// Gallery Modal Styles
+.gallery-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+
+  .gallery-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .close-button {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+    }
+
+    .gallery-main-image {
+      position: relative;
+      max-width: 100%;
+      max-height: 70vh;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .image-caption {
+        text-align: center;
+        color: white;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      &.prev-button {
+        left: -70px;
+      }
+
+      &.next-button {
+        right: -70px;
+      }
+    }
+
+    .gallery-thumbnails {
+      display: flex;
+      gap: 10px;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+
+      .thumbnail {
+        width: 80px;
+        height: 60px;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+
+        &:hover {
+          opacity: 0.8;
+          transform: scale(1.05);
+        }
+
+        &.active {
+          opacity: 1;
+          border-color: vars.$color-primary;
+          transform: scale(1.1);
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .gallery-counter {
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
   }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-100px) translateX(30px);
-    opacity: 0;
+  to {
+    opacity: 1;
   }
 }
