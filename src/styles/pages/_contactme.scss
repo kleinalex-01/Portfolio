@@ -1,0 +1,292 @@
+// Contact Me page styles
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mixins;
+
+// Contact Me page container
+.contactme-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: vars.$color-white;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 0;
+
+  // Floating white dots background
+  .particles-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
+
+    // Generate multiple floating dots
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: floatDots 8s ease-in-out infinite;
+    }
+
+    // Additional dots using box-shadow for multiple particles
+    .particles-bg::before {
+      width: 4px;
+      height: 4px;
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+      box-shadow:
+        100px 50px 0 rgba(255, 255, 255, 0.4),
+        200px 150px 0 rgba(255, 255, 255, 0.3),
+        300px 100px 0 rgba(255, 255, 255, 0.5),
+        400px 200px 0 rgba(255, 255, 255, 0.2),
+        50px 300px 0 rgba(255, 255, 255, 0.4),
+        150px 400px 0 rgba(255, 255, 255, 0.3),
+        250px 50px 0 rgba(255, 255, 255, 0.5),
+        350px 350px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .particles-bg::after {
+      width: 6px;
+      height: 6px;
+      top: 60%;
+      right: 20%;
+      animation-delay: 4s;
+      box-shadow:
+        80px -100px 0 rgba(255, 255, 255, 0.3),
+        180px -50px 0 rgba(255, 255, 255, 0.4),
+        280px -150px 0 rgba(255, 255, 255, 0.2),
+        380px -80px 0 rgba(255, 255, 255, 0.5),
+        -50px -200px 0 rgba(255, 255, 255, 0.3),
+        -150px -300px 0 rgba(255, 255, 255, 0.4),
+        -250px -100px 0 rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    width: 100%;
+    padding: 0 1rem;
+
+    @include mixins.respond-to(sm) {
+      padding: 0 2rem;
+    }
+
+    .contact-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 10;
+
+      @include mixins.respond-to(sm) {
+        padding: 3rem;
+      }
+
+      .contact-header {
+        text-align: center;
+        margin-bottom: 3rem;
+
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: vars.$color-white;
+          margin: 0 0 1rem 0;
+
+          @include mixins.respond-to(sm) {
+            font-size: 3rem;
+          }
+
+          @include mixins.respond-to(md) {
+            font-size: 3.5rem;
+          }
+        }
+
+        .contact-subtitle {
+          font-size: 1.2rem;
+          color: vars.$color-white;
+          margin: 0 0 1rem 0;
+          font-weight: 500;
+
+          @include mixins.respond-to(sm) {
+            font-size: 1.4rem;
+          }
+        }
+
+        .contact-description {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.7);
+          margin: 0;
+          line-height: 1.6;
+          max-width: 600px;
+          margin: 0 auto;
+
+          @include mixins.respond-to(sm) {
+            font-size: 1.1rem;
+          }
+        }
+      }
+
+      .contact-form-section {
+        margin-bottom: 3rem;
+
+        .contact-form {
+          .form-group {
+            margin-bottom: 1.5rem;
+
+            label {
+              display: block;
+              font-size: 0.95rem;
+              font-weight: 600;
+              color: vars.$color-white;
+              margin-bottom: 0.5rem;
+            }
+
+            input,
+            textarea {
+              width: 100%;
+              padding: 0.8rem 1rem;
+              background: rgba(255, 255, 255, 0.05);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              border-radius: 8px;
+              color: vars.$color-white;
+              font-size: 1rem;
+              font-family: inherit;
+              transition: all 0.3s ease;
+              box-sizing: border-box;
+
+              &::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+              }
+
+              &:focus {
+                outline: none;
+                border-color: vars.$color-primary;
+                box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+                background: rgba(255, 255, 255, 0.08);
+              }
+            }
+
+            textarea {
+              resize: vertical;
+              min-height: 120px;
+            }
+          }
+
+          .submit-btn {
+            background: linear-gradient(135deg, vars.$color-primary, vars.$color-secondary);
+            color: vars.$color-white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            }
+
+            &:active {
+              transform: translateY(0);
+            }
+
+            @include mixins.respond-to(sm) {
+              width: auto;
+              min-width: 200px;
+            }
+          }
+        }
+      }
+
+      .contact-info {
+        .contact-details {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+
+          @include mixins.respond-to(sm) {
+            flex-direction: row;
+            justify-content: center;
+            gap: 3rem;
+          }
+
+          .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+
+            &:hover {
+              transform: translateY(-2px);
+              background: rgba(255, 255, 255, 0.08);
+              border-color: rgba(255, 107, 53, 0.3);
+            }
+
+            .contact-icon {
+              font-size: 2rem;
+              opacity: 0.8;
+            }
+
+            .contact-text {
+              h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: vars.$color-white;
+                margin: 0 0 0.25rem 0;
+              }
+
+              a {
+                color: vars.$color-primary;
+                text-decoration: none;
+                font-size: 0.95rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+
+                &:hover {
+                  color: vars.$color-secondary;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Floating dots animation
+@keyframes floatDots {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-30px) translateX(20px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-60px) translateX(-10px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-30px) translateX(-20px);
+    opacity: 0.5;
+  }
+}

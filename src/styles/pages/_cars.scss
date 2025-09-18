@@ -1,0 +1,53 @@
+// Cars page styles
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mixins;
+
+// Cars page container
+.cars-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: vars.$color-white;
+  position: relative;
+  overflow: hidden;
+
+  .container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: vars.$color-white;
+      margin: 0;
+
+      @include mixins.respond-to(sm) {
+        font-size: 3.5rem;
+      }
+
+      @include mixins.respond-to(md) {
+        font-size: 4.5rem;
+      }
+
+      @include mixins.respond-to(lg) {
+        font-size: 5rem;
+      }
+    }
+  }
+}
+
+// Pulse glow animation
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}

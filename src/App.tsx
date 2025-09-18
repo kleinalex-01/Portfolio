@@ -8,6 +8,7 @@ import Photography from "./Components/Photography";
 import Bodybuilding from "./Components/Bodybuilding";
 import Cars from "./Components/Cars";
 import ContactMe from "./Components/ContactMe";
+import NotFound from "./Components/NotFound";
 import './styles/main.scss';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="cars" element={<Cars />} />
           <Route path="contact" element={<ContactMe />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

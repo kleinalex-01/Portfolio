@@ -1,10 +1,10 @@
 import React from 'react';
+import GlitchText from './GlitchText';
 
 const Cars: React.FC = () => (
   <div className="page cars-page">
     <div className="container">
-      <h1>Cars</h1>
-      <p>Welcome to the Cars page!</p>
+      <GlitchText>Folyamatban...</GlitchText>
     </div>
   </div>
 );
