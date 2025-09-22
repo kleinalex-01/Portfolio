@@ -1,54 +1,10 @@
-// Font face declarations for local fonts
+// Google Fonts - More reliable than local font files
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Fredoka:wght@300;400;500;600;700&family=Baloo+2:wght@400;500;600;700;800&display=swap');
 
-// Inter font family
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/Fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/Fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-// Roboto Condensed font family
-@font-face {
-  font-family: 'Roboto Condensed';
-  src: url('../assets/Fonts/Roboto_Condensed/RobotoCondensed-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-// Fredoka font family (accent font)
-@font-face {
-  font-family: 'Fredoka';
-  src: url('../assets/Fonts/Fredoka/Fredoka-VariableFont_wdth,wght.ttf') format('truetype-variations');
-  font-weight: 300 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-// Nunito font family
-@font-face {
-  font-family: 'Nunito';
-  src: url('../assets/Fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 200 1000;
-  font-style: normal;
-  font-display: swap;
-}
-
-// Baloo 2 font family
-@font-face {
-  font-family: 'Baloo 2';
-  src: url('../assets/Fonts/Baloo_2/Baloo2-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
+// Font variables for easy reference
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-accent: 'Fredoka', cursive;
+  --font-heading: 'Baloo 2', cursive;
 }

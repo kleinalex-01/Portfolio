@@ -20,8 +20,8 @@ export const projects: Project[] = [
     image: '/src/assets/Photos/projects/healthy-skin.png',
     icon: 'FaCode',
     tags: ['Vite', 'React', 'TypeScript', 'SCSS'],
-    status: 'completed',
-    statusText: 'Kész',
+    status: 'in-progress',
+    statusText: 'Folyamatban',
     link: 'https://healthy-skin-2.netlify.app',
     isLive: true
   },

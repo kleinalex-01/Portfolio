@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const ContactMe: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +6,39 @@ const ContactMe: React.FC = () => {
     email: '',
     message: ''
   });
+
+  const [isVisible, setIsVisible] = useState({
+    header: false,
+    form: false,
+    info: false
+  });
+
+  const headerRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            const id = target.dataset.section;
+            if (id) {
+              setIsVisible(prev => ({ ...prev, [id]: true }));
+            }
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (formRef.current) observer.observe(formRef.current);
+    if (infoRef.current) observer.observe(infoRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,7 +60,11 @@ const ContactMe: React.FC = () => {
       <div className="particles-bg"></div>
       <div className="container">
         <div className="contact-content">
-          <div className="contact-header">
+          <div 
+            ref={headerRef}
+            data-section="header"
+            className={`contact-header ${isVisible.header ? 'animate-in' : ''}`}
+          >
             <h1>Kapcsolat</h1>
             <p className="contact-subtitle">
               Ha tetszik ami látsz az oldalon, keress bátran.
@@ -37,7 +74,11 @@ const ContactMe: React.FC = () => {
             </p>
           </div>
 
-          <div className="contact-form-section">
+          <div 
+            ref={formRef}
+            data-section="form"
+            className={`contact-form-section ${isVisible.form ? 'animate-in' : ''}`}
+          >
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Név</label>
@@ -84,7 +125,11 @@ const ContactMe: React.FC = () => {
             </form>
           </div>
 
-          <div className="contact-info">
+          <div 
+            ref={infoRef}
+            data-section="info"
+            className={`contact-info ${isVisible.info ? 'animate-in' : ''}`}
+          >
             <div className="contact-details">
               <div className="contact-item">
                 <div className="contact-icon">📧</div>

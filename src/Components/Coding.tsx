@@ -437,7 +437,7 @@ console.log(multiplyNums);
             <p>Készen állsz egy beszélgetésre?</p>
             <button
               className="contact-button"
-              onClick={() => window.location.href = '#contact'}
+              onClick={() => window.location.href = 'tel:+36305718139'}
             >
               Kapcsolatfelvétel
             </button>
