@@ -1,0 +1,550 @@
+// =============================================================================
+// UTILITIES
+// =============================================================================
+// Utility classes for common styling patterns and quick fixes
+// =============================================================================
+
+// =============================================================================
+// DISPLAY UTILITIES
+// =============================================================================
+
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+.d-grid { display: grid; }
+.d-none { display: none; }
+
+// Responsive display utilities
+@include tablet {
+  .d-tablet-block { display: block; }
+  .d-tablet-inline { display: inline; }
+  .d-tablet-inline-block { display: inline-block; }
+  .d-tablet-flex { display: flex; }
+  .d-tablet-inline-flex { display: inline-flex; }
+  .d-tablet-grid { display: grid; }
+  .d-tablet-none { display: none; }
+}
+
+@include laptop {
+  .d-laptop-block { display: block; }
+  .d-laptop-inline { display: inline; }
+  .d-laptop-inline-block { display: inline-block; }
+  .d-laptop-flex { display: flex; }
+  .d-laptop-inline-flex { display: inline-flex; }
+  .d-laptop-grid { display: grid; }
+  .d-laptop-none { display: none; }
+}
+
+// =============================================================================
+// FLEX UTILITIES
+// =============================================================================
+
+// Flex direction
+.flex-row { flex-direction: row; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.flex-column { flex-direction: column; }
+.flex-column-reverse { flex-direction: column-reverse; }
+
+// Flex wrap
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse; }
+
+// Justify content
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+
+// Align items
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center { align-items: center; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+// Align self
+.self-auto { align-self: auto; }
+.self-start { align-self: flex-start; }
+.self-end { align-self: flex-end; }
+.self-center { align-self: center; }
+.self-stretch { align-self: stretch; }
+
+// Flex grow/shrink
+.flex-grow-0 { flex-grow: 0; }
+.flex-grow { flex-grow: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+.flex-shrink { flex-shrink: 1; }
+
+// =============================================================================
+// GRID UTILITIES
+// =============================================================================
+
+// Grid columns
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.grid-cols-7 { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.grid-cols-8 { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.grid-cols-9 { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.grid-cols-10 { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+.grid-cols-11 { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+.grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+// Grid gap
+.gap-0 { gap: $spacing-0; }
+.gap-1 { gap: $spacing-1; }
+.gap-2 { gap: $spacing-2; }
+.gap-3 { gap: $spacing-3; }
+.gap-4 { gap: $spacing-4; }
+.gap-5 { gap: $spacing-5; }
+.gap-6 { gap: $spacing-6; }
+.gap-8 { gap: $spacing-8; }
+.gap-10 { gap: $spacing-10; }
+.gap-12 { gap: $spacing-12; }
+
+// =============================================================================
+// SPACING UTILITIES
+// =============================================================================
+
+// Margin utilities
+.m-0 { margin: $spacing-0; }
+.m-1 { margin: $spacing-1; }
+.m-2 { margin: $spacing-2; }
+.m-3 { margin: $spacing-3; }
+.m-4 { margin: $spacing-4; }
+.m-5 { margin: $spacing-5; }
+.m-6 { margin: $spacing-6; }
+.m-8 { margin: $spacing-8; }
+.m-10 { margin: $spacing-10; }
+.m-12 { margin: $spacing-12; }
+.m-16 { margin: $spacing-16; }
+.m-20 { margin: $spacing-20; }
+.m-24 { margin: $spacing-24; }
+
+// Margin top
+.mt-0 { margin-top: $spacing-0; }
+.mt-1 { margin-top: $spacing-1; }
+.mt-2 { margin-top: $spacing-2; }
+.mt-3 { margin-top: $spacing-3; }
+.mt-4 { margin-top: $spacing-4; }
+.mt-5 { margin-top: $spacing-5; }
+.mt-6 { margin-top: $spacing-6; }
+.mt-8 { margin-top: $spacing-8; }
+.mt-10 { margin-top: $spacing-10; }
+.mt-12 { margin-top: $spacing-12; }
+.mt-16 { margin-top: $spacing-16; }
+.mt-20 { margin-top: $spacing-20; }
+.mt-24 { margin-top: $spacing-24; }
+
+// Margin right
+.mr-0 { margin-right: $spacing-0; }
+.mr-1 { margin-right: $spacing-1; }
+.mr-2 { margin-right: $spacing-2; }
+.mr-3 { margin-right: $spacing-3; }
+.mr-4 { margin-right: $spacing-4; }
+.mr-5 { margin-right: $spacing-5; }
+.mr-6 { margin-right: $spacing-6; }
+.mr-8 { margin-right: $spacing-8; }
+.mr-10 { margin-right: $spacing-10; }
+.mr-12 { margin-right: $spacing-12; }
+.mr-16 { margin-right: $spacing-16; }
+.mr-20 { margin-right: $spacing-20; }
+.mr-24 { margin-right: $spacing-24; }
+
+// Margin bottom
+.mb-0 { margin-bottom: $spacing-0; }
+.mb-1 { margin-bottom: $spacing-1; }
+.mb-2 { margin-bottom: $spacing-2; }
+.mb-3 { margin-bottom: $spacing-3; }
+.mb-4 { margin-bottom: $spacing-4; }
+.mb-5 { margin-bottom: $spacing-5; }
+.mb-6 { margin-bottom: $spacing-6; }
+.mb-8 { margin-bottom: $spacing-8; }
+.mb-10 { margin-bottom: $spacing-10; }
+.mb-12 { margin-bottom: $spacing-12; }
+.mb-16 { margin-bottom: $spacing-16; }
+.mb-20 { margin-bottom: $spacing-20; }
+.mb-24 { margin-bottom: $spacing-24; }
+
+// Margin left
+.ml-0 { margin-left: $spacing-0; }
+.ml-1 { margin-left: $spacing-1; }
+.ml-2 { margin-left: $spacing-2; }
+.ml-3 { margin-left: $spacing-3; }
+.ml-4 { margin-left: $spacing-4; }
+.ml-5 { margin-left: $spacing-5; }
+.ml-6 { margin-left: $spacing-6; }
+.ml-8 { margin-left: $spacing-8; }
+.ml-10 { margin-left: $spacing-10; }
+.ml-12 { margin-left: $spacing-12; }
+.ml-16 { margin-left: $spacing-16; }
+.ml-20 { margin-left: $spacing-20; }
+.ml-24 { margin-left: $spacing-24; }
+
+// Horizontal margins
+.mx-0 { margin-left: $spacing-0; margin-right: $spacing-0; }
+.mx-1 { margin-left: $spacing-1; margin-right: $spacing-1; }
+.mx-2 { margin-left: $spacing-2; margin-right: $spacing-2; }
+.mx-3 { margin-left: $spacing-3; margin-right: $spacing-3; }
+.mx-4 { margin-left: $spacing-4; margin-right: $spacing-4; }
+.mx-5 { margin-left: $spacing-5; margin-right: $spacing-5; }
+.mx-6 { margin-left: $spacing-6; margin-right: $spacing-6; }
+.mx-8 { margin-left: $spacing-8; margin-right: $spacing-8; }
+.mx-10 { margin-left: $spacing-10; margin-right: $spacing-10; }
+.mx-12 { margin-left: $spacing-12; margin-right: $spacing-12; }
+.mx-16 { margin-left: $spacing-16; margin-right: $spacing-16; }
+.mx-20 { margin-left: $spacing-20; margin-right: $spacing-20; }
+.mx-24 { margin-left: $spacing-24; margin-right: $spacing-24; }
+
+// Vertical margins
+.my-0 { margin-top: $spacing-0; margin-bottom: $spacing-0; }
+.my-1 { margin-top: $spacing-1; margin-bottom: $spacing-1; }
+.my-2 { margin-top: $spacing-2; margin-bottom: $spacing-2; }
+.my-3 { margin-top: $spacing-3; margin-bottom: $spacing-3; }
+.my-4 { margin-top: $spacing-4; margin-bottom: $spacing-4; }
+.my-5 { margin-top: $spacing-5; margin-bottom: $spacing-5; }
+.my-6 { margin-top: $spacing-6; margin-bottom: $spacing-6; }
+.my-8 { margin-top: $spacing-8; margin-bottom: $spacing-8; }
+.my-10 { margin-top: $spacing-10; margin-bottom: $spacing-10; }
+.my-12 { margin-top: $spacing-12; margin-bottom: $spacing-12; }
+.my-16 { margin-top: $spacing-16; margin-bottom: $spacing-16; }
+.my-20 { margin-top: $spacing-20; margin-bottom: $spacing-20; }
+.my-24 { margin-top: $spacing-24; margin-bottom: $spacing-24; }
+
+// Padding utilities (similar pattern to margins)
+.p-0 { padding: $spacing-0; }
+.p-1 { padding: $spacing-1; }
+.p-2 { padding: $spacing-2; }
+.p-3 { padding: $spacing-3; }
+.p-4 { padding: $spacing-4; }
+.p-5 { padding: $spacing-5; }
+.p-6 { padding: $spacing-6; }
+.p-8 { padding: $spacing-8; }
+.p-10 { padding: $spacing-10; }
+.p-12 { padding: $spacing-12; }
+.p-16 { padding: $spacing-16; }
+.p-20 { padding: $spacing-20; }
+.p-24 { padding: $spacing-24; }
+
+// Padding directional utilities
+.pt-0 { padding-top: $spacing-0; }
+.pt-1 { padding-top: $spacing-1; }
+.pt-2 { padding-top: $spacing-2; }
+.pt-3 { padding-top: $spacing-3; }
+.pt-4 { padding-top: $spacing-4; }
+.pt-5 { padding-top: $spacing-5; }
+.pt-6 { padding-top: $spacing-6; }
+.pt-8 { padding-top: $spacing-8; }
+.pt-10 { padding-top: $spacing-10; }
+.pt-12 { padding-top: $spacing-12; }
+.pt-16 { padding-top: $spacing-16; }
+.pt-20 { padding-top: $spacing-20; }
+.pt-24 { padding-top: $spacing-24; }
+
+.pr-0 { padding-right: $spacing-0; }
+.pr-1 { padding-right: $spacing-1; }
+.pr-2 { padding-right: $spacing-2; }
+.pr-3 { padding-right: $spacing-3; }
+.pr-4 { padding-right: $spacing-4; }
+.pr-5 { padding-right: $spacing-5; }
+.pr-6 { padding-right: $spacing-6; }
+.pr-8 { padding-right: $spacing-8; }
+.pr-10 { padding-right: $spacing-10; }
+.pr-12 { padding-right: $spacing-12; }
+.pr-16 { padding-right: $spacing-16; }
+.pr-20 { padding-right: $spacing-20; }
+.pr-24 { padding-right: $spacing-24; }
+
+.pb-0 { padding-bottom: $spacing-0; }
+.pb-1 { padding-bottom: $spacing-1; }
+.pb-2 { padding-bottom: $spacing-2; }
+.pb-3 { padding-bottom: $spacing-3; }
+.pb-4 { padding-bottom: $spacing-4; }
+.pb-5 { padding-bottom: $spacing-5; }
+.pb-6 { padding-bottom: $spacing-6; }
+.pb-8 { padding-bottom: $spacing-8; }
+.pb-10 { padding-bottom: $spacing-10; }
+.pb-12 { padding-bottom: $spacing-12; }
+.pb-16 { padding-bottom: $spacing-16; }
+.pb-20 { padding-bottom: $spacing-20; }
+.pb-24 { padding-bottom: $spacing-24; }
+
+.pl-0 { padding-left: $spacing-0; }
+.pl-1 { padding-left: $spacing-1; }
+.pl-2 { padding-left: $spacing-2; }
+.pl-3 { padding-left: $spacing-3; }
+.pl-4 { padding-left: $spacing-4; }
+.pl-5 { padding-left: $spacing-5; }
+.pl-6 { padding-left: $spacing-6; }
+.pl-8 { padding-left: $spacing-8; }
+.pl-10 { padding-left: $spacing-10; }
+.pl-12 { padding-left: $spacing-12; }
+.pl-16 { padding-left: $spacing-16; }
+.pl-20 { padding-left: $spacing-20; }
+.pl-24 { padding-left: $spacing-24; }
+
+.px-0 { padding-left: $spacing-0; padding-right: $spacing-0; }
+.px-1 { padding-left: $spacing-1; padding-right: $spacing-1; }
+.px-2 { padding-left: $spacing-2; padding-right: $spacing-2; }
+.px-3 { padding-left: $spacing-3; padding-right: $spacing-3; }
+.px-4 { padding-left: $spacing-4; padding-right: $spacing-4; }
+.px-5 { padding-left: $spacing-5; padding-right: $spacing-5; }
+.px-6 { padding-left: $spacing-6; padding-right: $spacing-6; }
+.px-8 { padding-left: $spacing-8; padding-right: $spacing-8; }
+.px-10 { padding-left: $spacing-10; padding-right: $spacing-10; }
+.px-12 { padding-left: $spacing-12; padding-right: $spacing-12; }
+.px-16 { padding-left: $spacing-16; padding-right: $spacing-16; }
+.px-20 { padding-left: $spacing-20; padding-right: $spacing-20; }
+.px-24 { padding-left: $spacing-24; padding-right: $spacing-24; }
+
+.py-0 { padding-top: $spacing-0; padding-bottom: $spacing-0; }
+.py-1 { padding-top: $spacing-1; padding-bottom: $spacing-1; }
+.py-2 { padding-top: $spacing-2; padding-bottom: $spacing-2; }
+.py-3 { padding-top: $spacing-3; padding-bottom: $spacing-3; }
+.py-4 { padding-top: $spacing-4; padding-bottom: $spacing-4; }
+.py-5 { padding-top: $spacing-5; padding-bottom: $spacing-5; }
+.py-6 { padding-top: $spacing-6; padding-bottom: $spacing-6; }
+.py-8 { padding-top: $spacing-8; padding-bottom: $spacing-8; }
+.py-10 { padding-top: $spacing-10; padding-bottom: $spacing-10; }
+.py-12 { padding-top: $spacing-12; padding-bottom: $spacing-12; }
+.py-16 { padding-top: $spacing-16; padding-bottom: $spacing-16; }
+.py-20 { padding-top: $spacing-20; padding-bottom: $spacing-20; }
+.py-24 { padding-top: $spacing-24; padding-bottom: $spacing-24; }
+
+// =============================================================================
+// WIDTH AND HEIGHT UTILITIES
+// =============================================================================
+
+.w-0 { width: $spacing-0; }
+.w-1 { width: $spacing-1; }
+.w-2 { width: $spacing-2; }
+.w-3 { width: $spacing-3; }
+.w-4 { width: $spacing-4; }
+.w-5 { width: $spacing-5; }
+.w-6 { width: $spacing-6; }
+.w-8 { width: $spacing-8; }
+.w-10 { width: $spacing-10; }
+.w-12 { width: $spacing-12; }
+.w-16 { width: $spacing-16; }
+.w-20 { width: $spacing-20; }
+.w-24 { width: $spacing-24; }
+.w-32 { width: $spacing-32; }
+.w-40 { width: $spacing-40; }
+.w-48 { width: $spacing-48; }
+.w-56 { width: $spacing-56; }
+.w-64 { width: $spacing-64; }
+.w-full { width: 100%; }
+.w-screen { width: 100vw; }
+.w-auto { width: auto; }
+
+.h-0 { height: $spacing-0; }
+.h-1 { height: $spacing-1; }
+.h-2 { height: $spacing-2; }
+.h-3 { height: $spacing-3; }
+.h-4 { height: $spacing-4; }
+.h-5 { height: $spacing-5; }
+.h-6 { height: $spacing-6; }
+.h-8 { height: $spacing-8; }
+.h-10 { height: $spacing-10; }
+.h-12 { height: $spacing-12; }
+.h-16 { height: $spacing-16; }
+.h-20 { height: $spacing-20; }
+.h-24 { height: $spacing-24; }
+.h-32 { height: $spacing-32; }
+.h-40 { height: $spacing-40; }
+.h-48 { height: $spacing-48; }
+.h-56 { height: $spacing-56; }
+.h-64 { height: $spacing-64; }
+.h-full { height: 100%; }
+.h-screen { height: 100vh; }
+.h-auto { height: auto; }
+
+// =============================================================================
+// POSITION UTILITIES
+// =============================================================================
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+// Position coordinates
+.top-0 { top: $spacing-0; }
+.right-0 { right: $spacing-0; }
+.bottom-0 { bottom: $spacing-0; }
+.left-0 { left: $spacing-0; }
+
+.top-1 { top: $spacing-1; }
+.right-1 { right: $spacing-1; }
+.bottom-1 { bottom: $spacing-1; }
+.left-1 { left: $spacing-1; }
+
+.top-2 { top: $spacing-2; }
+.right-2 { right: $spacing-2; }
+.bottom-2 { bottom: $spacing-2; }
+.left-2 { left: $spacing-2; }
+
+.top-4 { top: $spacing-4; }
+.right-4 { right: $spacing-4; }
+.bottom-4 { bottom: $spacing-4; }
+.left-4 { left: $spacing-4; }
+
+.top-6 { top: $spacing-6; }
+.right-6 { right: $spacing-6; }
+.bottom-6 { bottom: $spacing-6; }
+.left-6 { left: $spacing-6; }
+
+.top-8 { top: $spacing-8; }
+.right-8 { right: $spacing-8; }
+.bottom-8 { bottom: $spacing-8; }
+.left-8 { left: $spacing-8; }
+
+// Inset utilities
+.inset-0 { top: $spacing-0; right: $spacing-0; bottom: $spacing-0; left: $spacing-0; }
+.inset-1 { top: $spacing-1; right: $spacing-1; bottom: $spacing-1; left: $spacing-1; }
+.inset-2 { top: $spacing-2; right: $spacing-2; bottom: $spacing-2; left: $spacing-2; }
+.inset-4 { top: $spacing-4; right: $spacing-4; bottom: $spacing-4; left: $spacing-4; }
+.inset-6 { top: $spacing-6; right: $spacing-6; bottom: $spacing-6; left: $spacing-6; }
+.inset-8 { top: $spacing-8; right: $spacing-8; bottom: $spacing-8; left: $spacing-8; }
+
+// =============================================================================
+// BORDER UTILITIES
+// =============================================================================
+
+.border { border-width: $border-width-1; border-style: solid; border-color: $color-gray-300; }
+.border-0 { border-width: $border-width-0; }
+.border-2 { border-width: $border-width-2; }
+.border-4 { border-width: $border-width-4; }
+.border-8 { border-width: $border-width-8; }
+
+.border-solid { border-style: solid; }
+.border-dashed { border-style: dashed; }
+.border-dotted { border-style: dotted; }
+.border-none { border-style: none; }
+
+// Border color utilities
+.border-white { border-color: $color-white; }
+.border-black { border-color: $color-black; }
+.border-gray-200 { border-color: $color-gray-200; }
+.border-gray-300 { border-color: $color-gray-300; }
+.border-gray-400 { border-color: $color-gray-400; }
+.border-marine-blue { border-color: $color-marine-blue; }
+
+// Border radius utilities
+.rounded-none { border-radius: $border-radius-none; }
+.rounded-sm { border-radius: $border-radius-sm; }
+.rounded { border-radius: $border-radius; }
+.rounded-md { border-radius: $border-radius-md; }
+.rounded-lg { border-radius: $border-radius-lg; }
+.rounded-xl { border-radius: $border-radius-xl; }
+.rounded-2xl { border-radius: $border-radius-2xl; }
+.rounded-3xl { border-radius: $border-radius-3xl; }
+.rounded-full { border-radius: $border-radius-full; }
+
+// =============================================================================
+// SHADOW UTILITIES
+// =============================================================================
+
+.shadow-sm { box-shadow: $shadow-sm; }
+.shadow { box-shadow: $shadow; }
+.shadow-md { box-shadow: $shadow-md; }
+.shadow-lg { box-shadow: $shadow-lg; }
+.shadow-xl { box-shadow: $shadow-xl; }
+.shadow-2xl { box-shadow: $shadow-2xl; }
+.shadow-inner { box-shadow: $shadow-inner; }
+.shadow-none { box-shadow: $shadow-none; }
+
+// =============================================================================
+// BACKGROUND UTILITIES
+// =============================================================================
+
+.bg-white { background-color: $color-white; }
+.bg-black { background-color: $color-black; }
+.bg-gray-50 { background-color: $color-gray-50; }
+.bg-gray-100 { background-color: $color-gray-100; }
+.bg-gray-200 { background-color: $color-gray-200; }
+.bg-gray-300 { background-color: $color-gray-300; }
+.bg-gray-400 { background-color: $color-gray-400; }
+.bg-gray-500 { background-color: $color-gray-500; }
+.bg-gray-600 { background-color: $color-gray-600; }
+.bg-gray-700 { background-color: $color-gray-700; }
+.bg-gray-800 { background-color: $color-gray-800; }
+.bg-gray-900 { background-color: $color-gray-900; }
+.bg-marine-blue { background-color: $color-marine-blue; }
+.bg-marine-blue-light { background-color: $color-marine-blue-light; }
+.bg-marine-blue-dark { background-color: $color-marine-blue-dark; }
+
+// =============================================================================
+// VISIBILITY UTILITIES
+// =============================================================================
+
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: 0.25; }
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+.opacity-100 { opacity: 1; }
+
+// =============================================================================
+// OVERFLOW UTILITIES
+// =============================================================================
+
+.overflow-auto { overflow: auto; }
+.overflow-hidden { overflow: hidden; }
+.overflow-visible { overflow: visible; }
+.overflow-scroll { overflow: scroll; }
+
+.overflow-x-auto { overflow-x: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-x-visible { overflow-x: visible; }
+.overflow-x-scroll { overflow-x: scroll; }
+
+.overflow-y-auto { overflow-y: auto; }
+.overflow-y-hidden { overflow-y: hidden; }
+.overflow-y-visible { overflow-y: visible; }
+.overflow-y-scroll { overflow-y: scroll; }
+
+// =============================================================================
+// Z-INDEX UTILITIES
+// =============================================================================
+
+.z-0 { z-index: $z-index-0; }
+.z-10 { z-index: $z-index-10; }
+.z-20 { z-index: $z-index-20; }
+.z-30 { z-index: $z-index-30; }
+.z-40 { z-index: $z-index-40; }
+.z-50 { z-index: $z-index-50; }
+.z-auto { z-index: $z-index-auto; }
+
+// =============================================================================
+// CURSOR UTILITIES
+// =============================================================================
+
+.cursor-auto { cursor: auto; }
+.cursor-default { cursor: default; }
+.cursor-pointer { cursor: pointer; }
+.cursor-wait { cursor: wait; }
+.cursor-text { cursor: text; }
+.cursor-move { cursor: move; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+// =============================================================================
+// ACCESSIBILITY UTILITIES
+// =============================================================================
+
+.sr-only {
+  @include sr-only();
+}
+
+.skip-link {
+  @include skip-link();
+}

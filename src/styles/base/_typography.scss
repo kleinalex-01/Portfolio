@@ -1,262 +1,327 @@
-// Typography styles
-@use '../abstracts/variables' as vars;
-@use '../abstracts/mixins' as mixins;
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+// Base typography styles and text utilities
+// =============================================================================
 
-// Base typography
+// =============================================================================
+// BASE TYPOGRAPHY
+// =============================================================================
+
 html {
-  font-size: 16px; // Base font size for rem calculations
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+  font-size: 16px;
+  line-height: $line-height-normal;
 }
 
 body {
-  font-family: vars.$font-primary;
-  font-size: vars.$font-size-base;
-  font-weight: vars.$font-weight-normal;
-  line-height: vars.$line-height-normal;
-  color: vars.$color-gray-900;
-  background-color: vars.$color-white;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $color-gray-900;
+  background-color: $color-white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Headings
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 vars.$spacing-4 0;
-  font-family: vars.$font-primary;
-  font-weight: vars.$font-weight-bold;
-  line-height: vars.$line-height-tight;
-  color: vars.$color-gray-900;
+// =============================================================================
+// HEADINGS
+// =============================================================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-black;
 }
 
 h1 {
-  @include mixins.heading('3xl');
+  font-size: $font-size-4xl;
+  letter-spacing: $letter-spacing-tighter;
 
-  @include mixins.respond-to(sm) {
-    font-size: vars.$font-size-5xl;
+  @include tablet {
+    font-size: $font-size-5xl;
   }
 
-  @include mixins.respond-to(lg) {
-    font-size: vars.$font-size-6xl;
+  @include laptop {
+    font-size: $font-size-6xl;
   }
-}h2 {
-  @include mixins.heading('2xl');
+}
 
-  @include mixins.respond-to(sm) {
-    font-size: vars.$font-size-4xl;
+h2 {
+  font-size: $font-size-3xl;
+  letter-spacing: $letter-spacing-tighter;
+
+  @include tablet {
+    font-size: $font-size-4xl;
   }
 
-  @include mixins.respond-to(lg) {
-    font-size: vars.$font-size-5xl;
+  @include laptop {
+    font-size: $font-size-5xl;
   }
 }
 
 h3 {
-  @include mixins.heading('xl');
+  font-size: $font-size-2xl;
+  letter-spacing: $letter-spacing-tighter;
 
-  @include mixins.respond-to(sm) {
-    font-size: vars.$font-size-3xl;
-  }
-
-  @include mixins.respond-to(lg) {
-    font-size: vars.$font-size-4xl;
+  @include tablet {
+    font-size: $font-size-3xl;
   }
 }
 
 h4 {
-  @include mixins.heading('lg');
+  font-size: $font-size-xl;
+  letter-spacing: $letter-spacing-tight;
 
-  @include mixins.respond-to(sm) {
-    font-size: vars.$font-size-2xl;
-  }
-
-  @include mixins.respond-to(lg) {
-    font-size: vars.$font-size-3xl;
+  @include tablet {
+    font-size: $font-size-2xl;
   }
 }
 
 h5 {
-  @include mixins.heading('md');
-
-  @include mixins.respond-to(sm) {
-    font-size: vars.$font-size-xl;
-  }
-
-  @include mixins.respond-to(lg) {
-    font-size: vars.$font-size-2xl;
-  }
+  font-size: $font-size-lg;
+  letter-spacing: $letter-spacing-tight;
 }
 
 h6 {
-  @include mixins.heading('sm');
-
-  @include mixins.respond-to(sm) {
-    font-size: vars.$font-size-lg;
-  }
-
-  @include mixins.respond-to(lg) {
-    font-size: vars.$font-size-xl;
-  }
+  font-size: $font-size-base;
+  letter-spacing: $letter-spacing-normal;
+  font-weight: $font-weight-semibold;
 }
 
-// Paragraphs
+// =============================================================================
+// PARAGRAPHS AND TEXT
+// =============================================================================
+
 p {
-  margin: 0 0 vars.$spacing-4 0;
-  line-height: vars.$line-height-relaxed;
+  margin: 0 0 $spacing-4 0;
 
   &:last-child {
     margin-bottom: 0;
   }
-  
-  &.lead {
-    font-size: vars.$font-size-lg;
-    font-weight: vars.$font-weight-medium;
-    color: vars.$color-gray-600;
-
-    @include mixins.respond-to(lg) {
-      font-size: vars.$font-size-xl;
-    }
-  }
-  
-  &.small {
-    font-size: vars.$font-size-sm;
-    color: vars.$color-gray-600;
-  }
 }
 
-// Links
-a {
-  color: vars.$color-primary;
-  text-decoration: none;
-  transition: color vars.$transition-base ease;
+// =============================================================================
+// LINKS
+// =============================================================================
 
-  &:hover {
-    color: vars.$color-primary-dark;
+a {
+  color: $color-marine-blue;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus {
+    color: $color-marine-blue-dark;
     text-decoration: underline;
   }
 
-  &:focus {
-    outline: 2px solid vars.$color-primary;
-    outline-offset: 2px;
+  &:active {
+    color: $color-marine-blue-light;
   }
 }
 
-// Lists
-ul, ol {
-  margin: 0 0 vars.$spacing-4 0;
-  padding-left: vars.$spacing-6;
+// =============================================================================
+// LISTS
+// =============================================================================
 
-  li {
-    margin-bottom: vars.$spacing-2;
-    line-height: vars.$line-height-relaxed;
+ul,
+ol {
+  margin: 0 0 $spacing-4 0;
+  padding-left: $spacing-6;
+}
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  
-  &.unstyled {
-    list-style: none;
-    padding-left: 0;
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  margin-bottom: $spacing-2;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-// Code
+// Nested lists
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: $spacing-2;
+  margin-bottom: $spacing-2;
+}
+
+// =============================================================================
+// CODE AND PRE
+// =============================================================================
+
 code {
-  font-family: vars.$font-mono;
-  font-size: 0.875em;
-  background-color: vars.$color-gray-100;
-  color: vars.$color-gray-800;
-  padding: 0.125rem 0.25rem;
-  border-radius: vars.$border-radius-sm;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  background-color: $color-gray-100;
+  padding: $spacing-1 $spacing-2;
+  border-radius: $border-radius;
+  color: $color-gray-800;
 }
 
 pre {
-  font-family: vars.$font-mono;
-  font-size: vars.$font-size-sm;
-  background-color: vars.$color-gray-900;
-  color: vars.$color-gray-100;
-  padding: vars.$spacing-4;
-  border-radius: vars.$border-radius-md;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  background-color: $color-gray-900;
+  color: $color-gray-100;
+  padding: $spacing-4;
+  border-radius: $border-radius;
   overflow-x: auto;
-  margin: 0 0 vars.$spacing-4 0;
-  
+
   code {
-    background: none;
-    color: inherit;
+    background-color: transparent;
     padding: 0;
+    border-radius: 0;
+    color: inherit;
   }
 }
 
-// Blockquotes
+// =============================================================================
+// BLOCKQUOTES
+// =============================================================================
+
 blockquote {
-  margin: 0 0 vars.$spacing-6 0;
-  padding: vars.$spacing-4 vars.$spacing-6;
-  border-left: 4px solid vars.$color-primary;
-  background-color: vars.$color-gray-100;
+  margin: $spacing-6 0;
+  padding: $spacing-4 $spacing-6;
+  border-left: 4px solid $color-marine-blue;
+  background-color: $color-marine-blue-50;
   font-style: italic;
-  
+  color: $color-gray-700;
+
   p {
-    margin-bottom: vars.$spacing-2;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin: 0;
   }
-  
+
   cite {
     display: block;
-    margin-top: vars.$spacing-2;
-    font-size: vars.$font-size-sm;
-    color: vars.$color-gray-600;
+    margin-top: $spacing-2;
     font-style: normal;
-    
-    &::before {
-      content: '— ';
-    }
+    font-size: $font-size-sm;
+    color: $color-gray-600;
   }
 }
 
-// Utility classes
-.text-xs { font-size: vars.$font-size-xs; }
-.text-sm { font-size: vars.$font-size-sm; }
-.text-base { font-size: vars.$font-size-base; }
-.text-lg { font-size: vars.$font-size-lg; }
-.text-xl { font-size: vars.$font-size-xl; }
-.text-2xl { font-size: vars.$font-size-2xl; }
-.text-3xl { font-size: vars.$font-size-3xl; }
-.text-4xl { font-size: vars.$font-size-4xl; }
-.text-5xl { font-size: vars.$font-size-5xl; }
+// =============================================================================
+// HORIZONTAL RULES
+// =============================================================================
 
-.font-light { font-weight: vars.$font-weight-light; }
-.font-normal { font-weight: vars.$font-weight-normal; }
-.font-medium { font-weight: vars.$font-weight-medium; }
-.font-semibold { font-weight: vars.$font-weight-semibold; }
-.font-bold { font-weight: vars.$font-weight-bold; }
+hr {
+  margin: $spacing-8 0;
+  border: 0;
+  border-top: 1px solid $color-gray-200;
+  height: 0;
+}
 
-.text-center { text-align: center; }
+// =============================================================================
+// TYPOGRAPHY UTILITIES
+// =============================================================================
+
+// Text alignment
 .text-left { text-align: left; }
+.text-center { text-align: center; }
 .text-right { text-align: right; }
+.text-justify { text-align: justify; }
 
-.text-primary { color: vars.$color-primary; }
-.text-secondary { color: vars.$color-secondary; }
-.text-white { color: vars.$color-white; }
-.text-black { color: vars.$color-black; }
-.text-gray-100 { color: vars.$color-gray-100; }
-.text-gray-200 { color: vars.$color-gray-200; }
-.text-gray-300 { color: vars.$color-gray-300; }
-.text-gray-400 { color: vars.$color-gray-400; }
-.text-gray-500 { color: vars.$color-gray-500; }
-.text-gray-600 { color: vars.$color-gray-600; }
-.text-gray-700 { color: vars.$color-gray-700; }
-.text-gray-800 { color: vars.$color-gray-800; }
-.text-gray-900 { color: vars.$color-gray-900; }
+// Text transform
+.text-lowercase { text-transform: lowercase; }
+.text-uppercase { text-transform: uppercase; }
+.text-capitalize { text-transform: capitalize; }
 
-.font-primary { font-family: vars.$font-primary; }
-.font-secondary { font-family: vars.$font-secondary; }
-.font-accent { font-family: vars.$font-accent; }
-.font-mono { font-family: vars.$font-mono; }
+// Font weight
+.font-thin { font-weight: $font-weight-thin; }
+.font-light { font-weight: $font-weight-light; }
+.font-normal { font-weight: $font-weight-normal; }
+.font-medium { font-weight: $font-weight-medium; }
+.font-semibold { font-weight: $font-weight-semibold; }
+.font-bold { font-weight: $font-weight-bold; }
+.font-extrabold { font-weight: $font-weight-extrabold; }
+.font-black { font-weight: $font-weight-black; }
 
-.truncate { @include mixins.text-truncate; }
-.clamp-2 { @include mixins.text-clamp(2); }
-.clamp-3 { @include mixins.text-clamp(3); }
+// Font size utilities
+.text-xs { font-size: $font-size-xs; }
+.text-sm { font-size: $font-size-sm; }
+.text-base { font-size: $font-size-base; }
+.text-lg { font-size: $font-size-lg; }
+.text-xl { font-size: $font-size-xl; }
+.text-2xl { font-size: $font-size-2xl; }
+.text-3xl { font-size: $font-size-3xl; }
+.text-4xl { font-size: $font-size-4xl; }
+.text-5xl { font-size: $font-size-5xl; }
+.text-6xl { font-size: $font-size-6xl; }
+
+// Text color utilities
+.text-white { color: $color-white; }
+.text-black { color: $color-black; }
+.text-gray-50 { color: $color-gray-50; }
+.text-gray-100 { color: $color-gray-100; }
+.text-gray-200 { color: $color-gray-200; }
+.text-gray-300 { color: $color-gray-300; }
+.text-gray-400 { color: $color-gray-400; }
+.text-gray-500 { color: $color-gray-500; }
+.text-gray-600 { color: $color-gray-600; }
+.text-gray-700 { color: $color-gray-700; }
+.text-gray-800 { color: $color-gray-800; }
+.text-gray-900 { color: $color-gray-900; }
+.text-marine-blue { color: $color-marine-blue; }
+.text-marine-blue-light { color: $color-marine-blue-light; }
+.text-marine-blue-dark { color: $color-marine-blue-dark; }
+
+// Line height utilities
+.leading-tight { line-height: $line-height-tight; }
+.leading-snug { line-height: $line-height-snug; }
+.leading-normal { line-height: $line-height-normal; }
+.leading-relaxed { line-height: $line-height-relaxed; }
+.leading-loose { line-height: $line-height-loose; }
+
+// Letter spacing utilities
+.tracking-tighter { letter-spacing: $letter-spacing-tighter; }
+.tracking-tight { letter-spacing: $letter-spacing-tight; }
+.tracking-normal { letter-spacing: $letter-spacing-normal; }
+.tracking-wide { letter-spacing: $letter-spacing-wide; }
+.tracking-wider { letter-spacing: $letter-spacing-wider; }
+.tracking-widest { letter-spacing: $letter-spacing-widest; }
+
+// =============================================================================
+// RESPONSIVE TYPOGRAPHY
+// =============================================================================
+
+// Fluid typography for headings
+@include tablet {
+  h1 {
+    @include fluid-text($font-size-4xl, $font-size-6xl);
+  }
+
+  h2 {
+    @include fluid-text($font-size-3xl, $font-size-5xl);
+  }
+}
+
+// =============================================================================
+// DARK MODE SUPPORT (Future enhancement)
+// =============================================================================
+
+// Prefers color scheme media query for future dark mode
+@media (prefers-color-scheme: dark) {
+  // Dark mode styles can be added here when needed
+  // body {
+  //   background-color: $color-black;
+  //   color: $color-white;
+  // }
+}

@@ -1,49 +1,91 @@
-// Main Sass entry point
+// =============================================================================
+// MAIN SCSS FILE
+// =============================================================================
+// This is the main entry point for all SCSS styles using the 7 + 1 architecture
+// =============================================================================
 
-// Use abstracts
-@use './abstracts/variables' as vars;
-@use './abstracts/mixins' as mixins;
-@use './abstracts/functions' as functions;
+// =============================================================================
+// 1. ABSTRACTS
+// =============================================================================
+// Variables, mixins, and functions - no CSS output
+// =============================================================================
 
-// Use base styles
-@use './base/fonts';
-@use './base/reset';
-@use './base/typography';
-@use './base/base';
+@import 'abstracts/fonts';
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+@import 'abstracts/animations';
 
-// Use components
-@use './components/button';
-@use './components/typewriter';
-@use './components/timeline';
-@use './components/years';
+// =============================================================================
+// 2. BASE
+// =============================================================================
+// Reset, typography, and base utilities
+// =============================================================================
 
-// Use layout
-@use './layout/header';
-@use './layout/footer';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/utilities';
 
-// Use pages
-@use './pages/home';
-@use './pages/coding';
-@use './pages/photography';
-@use './pages/bodybuilding';
-@use './pages/cars';
-@use './pages/notfound';
-@use './pages/contactme';
+// =============================================================================
+// SECTIONS
+// =============================================================================
+// Full-height sections with scroll snapping
+// =============================================================================
 
-// Use themes
-@use './themes/theme';
+@import 'sections/sections';
 
-// Use vendors (if needed)
-@use './vendors/bootstrap';
+// =============================================================================
+// 3. LAYOUT
+// =============================================================================
+// Layout-related styles (header, footer, grid, etc.)
+// =============================================================================
 
-// Global styles
-body {
-	background: vars.$color-white;
-	color: vars.$color-black-soft;
-	font-family: vars.$font-primary;
-}
+// Layout imports will go here when created
+// @import 'layout/header';
+// @import 'layout/footer';
+// @import 'layout/grid';
+// @import 'layout/sidebar';
 
-.app-header {
-	background: vars.$color-primary;
-	color: vars.$color-white;
-}
+// =============================================================================
+// 4. COMPONENTS
+// =============================================================================
+// Component-specific styles
+// =============================================================================
+
+// Component imports will go here when created
+// @import 'components/buttons';
+// @import 'components/cards';
+// @import 'components/forms';
+// @import 'components/modals';
+
+// =============================================================================
+// 5. PAGES
+// =============================================================================
+// Page-specific styles
+// =============================================================================
+
+// Page imports will go here when created
+// @import 'pages/home';
+// @import 'pages/about';
+// @import 'pages/contact';
+
+// =============================================================================
+// 6. THEMES
+// =============================================================================
+// Theme-related styles
+// =============================================================================
+
+// Theme imports will go here when created
+// @import 'themes/default';
+// @import 'themes/dark';
+
+// =============================================================================
+// 7. VENDORS
+// =============================================================================
+// Third-party styles and overrides
+// =============================================================================
+
+// Vendor imports will go here when needed
+// @import 'vendors/normalize';
+// @import 'vendors/bootstrap';
+// @import 'vendors/font-awesome';

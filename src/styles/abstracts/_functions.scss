@@ -1,1 +1,353 @@
-// Sass functions
+// =============================================================================
+// FUNCTIONS
+// =============================================================================
+// Custom SCSS functions for calculations, color manipulation, and utilities
+// =============================================================================
+
+// =============================================================================
+// MATH FUNCTIONS
+// =============================================================================
+
+// Strip units from a value
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// Convert pixels to rem
+@function rem($pixels) {
+  @return strip-unit($pixels) / 16 * 1rem;
+}
+
+// Convert pixels to em
+@function em($pixels, $context: 16) {
+  @return strip-unit($pixels) / $context * 1em;
+}
+
+// Calculate aspect ratio
+@function aspect-ratio($width, $height) {
+  @return ($height / $width) * 100%;
+}
+
+// =============================================================================
+// COLOR FUNCTIONS
+// =============================================================================
+
+// Get color from map
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  } @else {
+    @warn "#{$key} is not a valid color key.";
+    @return $color-gray-500;
+  }
+}
+
+// Lighten color
+@function lighten-color($color, $amount) {
+  @return lighten($color, $amount);
+}
+
+// Darken color
+@function darken-color($color, $amount) {
+  @return darken($color, $amount);
+}
+
+// Create rgba from hex
+@function rgba-from-hex($color, $alpha: 1) {
+  @return rgba($color, $alpha);
+}
+
+// Get contrast color (black or white) based on background
+@function contrast-color($color) {
+  @if lightness($color) > 50 {
+    @return $color-black;
+  } @else {
+    @return $color-white;
+  }
+}
+
+// =============================================================================
+// BREAKPOINT FUNCTIONS
+// =============================================================================
+
+// Get breakpoint value
+@function breakpoint($key) {
+  @if map-has-key($breakpoints, $key) {
+    @return map-get($breakpoints, $key);
+  } @else {
+    @warn "#{$key} is not a valid breakpoint. Available breakpoints: #{map-keys($breakpoints)}";
+    @return 768px;
+  }
+}
+
+// =============================================================================
+// SPACING FUNCTIONS
+// =============================================================================
+
+// Get spacing value
+@function spacing($key) {
+  $spacing-map: (
+    0: $spacing-0,
+    px: $spacing-px,
+    0-5: $spacing-0-5,
+    1: $spacing-1,
+    1-5: $spacing-1-5,
+    2: $spacing-2,
+    2-5: $spacing-2-5,
+    3: $spacing-3,
+    3-5: $spacing-3-5,
+    4: $spacing-4,
+    5: $spacing-5,
+    6: $spacing-6,
+    7: $spacing-7,
+    8: $spacing-8,
+    9: $spacing-9,
+    10: $spacing-10,
+    11: $spacing-11,
+    12: $spacing-12,
+    14: $spacing-14,
+    16: $spacing-16,
+    20: $spacing-20,
+    24: $spacing-24,
+    28: $spacing-28,
+    32: $spacing-32,
+    36: $spacing-36,
+    40: $spacing-40,
+    44: $spacing-44,
+    48: $spacing-48,
+    52: $spacing-52,
+    56: $spacing-56,
+    60: $spacing-60,
+    64: $spacing-64,
+    72: $spacing-72,
+    80: $spacing-80,
+    96: $spacing-96
+  );
+
+  @if map-has-key($spacing-map, $key) {
+    @return map-get($spacing-map, $key);
+  } @else {
+    @warn "#{$key} is not a valid spacing key.";
+    @return $spacing-4;
+  }
+}
+
+// =============================================================================
+// TYPOGRAPHY FUNCTIONS
+// =============================================================================
+
+// Get font size
+@function font-size($key) {
+  $font-size-map: (
+    xs: $font-size-xs,
+    sm: $font-size-sm,
+    base: $font-size-base,
+    lg: $font-size-lg,
+    xl: $font-size-xl,
+    2xl: $font-size-2xl,
+    3xl: $font-size-3xl,
+    4xl: $font-size-4xl,
+    5xl: $font-size-5xl,
+    6xl: $font-size-6xl
+  );
+
+  @if map-has-key($font-size-map, $key) {
+    @return map-get($font-size-map, $key);
+  } @else {
+    @warn "#{$key} is not a valid font size key.";
+    @return $font-size-base;
+  }
+}
+
+// Get font weight
+@function font-weight($key) {
+  $font-weight-map: (
+    thin: $font-weight-thin,
+    light: $font-weight-light,
+    normal: $font-weight-normal,
+    medium: $font-weight-medium,
+    semibold: $font-weight-semibold,
+    bold: $font-weight-bold,
+    extrabold: $font-weight-extrabold,
+    black: $font-weight-black
+  );
+
+  @if map-has-key($font-weight-map, $key) {
+    @return map-get($font-weight-map, $key);
+  } @else {
+    @warn "#{$key} is not a valid font weight key.";
+    @return $font-weight-normal;
+  }
+}
+
+// =============================================================================
+// SHADOW FUNCTIONS
+// =============================================================================
+
+// Get shadow
+@function shadow($key) {
+  $shadow-map: (
+    sm: $shadow-sm,
+    default: $shadow,
+    md: $shadow-md,
+    lg: $shadow-lg,
+    xl: $shadow-xl,
+    2xl: $shadow-2xl,
+    inner: $shadow-inner,
+    none: $shadow-none
+  );
+
+  @if map-has-key($shadow-map, $key) {
+    @return map-get($shadow-map, $key);
+  } @else {
+    @warn "#{$key} is not a valid shadow key.";
+    @return $shadow;
+  }
+}
+
+// =============================================================================
+// BORDER FUNCTIONS
+// =============================================================================
+
+// Get border radius
+@function border-radius($key) {
+  $border-radius-map: (
+    none: $border-radius-none,
+    sm: $border-radius-sm,
+    default: $border-radius,
+    md: $border-radius-md,
+    lg: $border-radius-lg,
+    xl: $border-radius-xl,
+    2xl: $border-radius-2xl,
+    3xl: $border-radius-3xl,
+    full: $border-radius-full
+  );
+
+  @if map-has-key($border-radius-map, $key) {
+    @return map-get($border-radius-map, $key);
+  } @else {
+    @warn "#{$key} is not a valid border radius key.";
+    @return $border-radius;
+  }
+}
+
+// =============================================================================
+// Z-INDEX FUNCTIONS
+// =============================================================================
+
+// Get z-index
+@function z-index($key) {
+  $z-index-map: (
+    0: $z-index-0,
+    10: $z-index-10,
+    20: $z-index-20,
+    30: $z-index-30,
+    40: $z-index-40,
+    50: $z-index-50,
+    auto: $z-index-auto
+  );
+
+  @if map-has-key($z-index-map, $key) {
+    @return map-get($z-index-map, $key);
+  } @else {
+    @warn "#{$key} is not a valid z-index key.";
+    @return $z-index-auto;
+  }
+}
+
+// =============================================================================
+// UTILITY FUNCTIONS
+// =============================================================================
+
+// Create a map of colors for easy access
+$colors: (
+  white: $color-white,
+  black: $color-black,
+  gray-50: $color-gray-50,
+  gray-100: $color-gray-100,
+  gray-200: $color-gray-200,
+  gray-300: $color-gray-300,
+  gray-400: $color-gray-400,
+  gray-500: $color-gray-500,
+  gray-600: $color-gray-600,
+  gray-700: $color-gray-700,
+  gray-800: $color-gray-800,
+  gray-900: $color-gray-900,
+  marine-blue: $color-marine-blue,
+  marine-blue-light: $color-marine-blue-light,
+  marine-blue-dark: $color-marine-blue-dark,
+  primary: $color-primary,
+  secondary: $color-secondary,
+  accent: $color-accent,
+  success: $color-success,
+  warning: $color-warning,
+  error: $color-error,
+  info: $color-info
+);
+
+// =============================================================================
+// ADVANCED FUNCTIONS
+// =============================================================================
+
+// Generate a color palette from a base color
+@function generate-palette($base-color, $steps: 9) {
+  $palette: ();
+
+  @for $i from 1 through $steps {
+    $lightness: (100% / $steps) * $i;
+    $key: $i * 100;
+    $value: lighten($base-color, $lightness - 50%);
+    $palette: map-merge($palette, ($key: $value));
+  }
+
+  @return $palette;
+}
+
+// Calculate fluid value between two breakpoints
+@function fluid($min-value, $max-value, $min-viewport: 320px, $max-viewport: 1200px) {
+  $min-value-unitless: strip-unit($min-value);
+  $max-value-unitless: strip-unit($max-value);
+  $min-viewport-unitless: strip-unit($min-viewport);
+  $max-viewport-unitless: strip-unit($max-viewport);
+
+  @if unit($min-value) == 'px' and unit($max-value) == 'px' {
+    @return clamp(#{$min-value}, calc(#{$min-value} + (#{$max-value-unitless} - #{$min-value-unitless}) * ((100vw - #{$min-viewport}) / (#{$max-viewport-unitless} - #{$min-viewport-unitless}))), #{$max-value});
+  } @else {
+    @warn "Fluid function requires pixel values";
+    @return $min-value;
+  }
+}
+
+// Check if value is a number
+@function is-number($value) {
+  @return type-of($value) == 'number';
+}
+
+// Check if value is a string
+@function is-string($value) {
+  @return type-of($value) == 'string';
+}
+
+// Check if value is a color
+@function is-color($value) {
+  @return type-of($value) == 'color';
+}
+
+// =============================================================================
+// DEBUGGING FUNCTIONS
+// =============================================================================
+
+// Debug function to inspect variables
+@function debug($value, $label: 'Debug') {
+  @warn "#{$label}: #{$value}";
+  @return $value;
+}
+
+// Inspect map contents
+@function inspect-map($map, $label: 'Map Contents') {
+  @warn "#{$label}:";
+  @each $key, $value in $map {
+    @warn "  #{$key}: #{$value}";
+  }
+  @return $map;
+}

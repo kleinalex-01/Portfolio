@@ -1,0 +1,604 @@
+// =============================================================================
+// SECTIONS
+// =============================================================================
+// Full-height sections with scroll snapping and section-specific styles
+// =============================================================================
+
+// =============================================================================
+// MAIN APP CONTAINER
+// =============================================================================
+
+.App {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  // Scroll snapping for full viewport sections
+  scroll-snap-type: y mandatory;
+
+  // Hide scrollbar but keep functionality
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($color-marine-blue, 0.3);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba($color-marine-blue, 0.5);
+    }
+  }
+}
+
+// =============================================================================
+// BASE SECTION STYLES
+// =============================================================================
+
+.section {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+
+  .section-content {
+    height: 100%;
+    padding: $spacing-8;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    @include text-fade-in-up($animation-duration-slow, 0.2s);
+  }
+}
+
+// =============================================================================
+// HERO SECTION
+// =============================================================================
+
+.hero-section {
+  background: linear-gradient(135deg, $color-marine-blue-light 0%, $color-marine-blue 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+
+  // Prism Background (applied directly to Prism component)
+  .hero-background,
+  .prism-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.8;
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  // Hero Content Wrapper
+  .hero-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-8;
+  }
+
+  // Typing Animation Text
+  .hero-typing-text {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    margin-bottom: auto;
+    margin-top: auto;
+    
+    // TypeIt wrapper styling
+    span {
+      display: inline-block;
+    }
+    
+    // TypeIt cursor styling
+    .ti-cursor {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+      animation: blink 1s infinite;
+    }
+  }
+
+  // Bottom Controls Container
+  .hero-bottom-controls {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1.5s forwards;
+  }
+
+  // Social Icons Container
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  // Social Icon Buttons (Circular)
+  .social-icon-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+    
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+    
+    // Staggered fade-in for each icon
+    &:nth-child(1) {
+      animation: fadeInScale 0.5s ease-out 1.7s forwards;
+    }
+    
+    &:nth-child(2) {
+      animation: fadeInScale 0.5s ease-out 1.85s forwards;
+    }
+    
+    &:nth-child(3) {
+      animation: fadeInScale 0.5s ease-out 2s forwards;
+    }
+  }
+
+  // CV Button (Glassmorphic)
+  .cv-btn {
+    padding: 0.875rem 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadeInScale 0.6s ease-out 2.2s forwards;
+
+    .cv-icon {
+      font-size: 1.25rem;
+    }
+
+    .cv-text {
+      letter-spacing: 0.5px;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .hero-typing-text {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .hero-bottom-controls {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-icon-btn {
+      width: 48px;
+      height: 48px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .cv-btn {
+      padding: 0.75rem 1.75rem;
+      font-size: 1rem;
+    }
+  }
+  
+  // Wave Divider
+  .wave-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 5;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 80px;
+      
+      path {
+        fill: #ffffff; // Matches white About Me section background
+      }
+    }
+  }
+}
+
+// =============================================================================
+// ABOUT ME SECTION
+// =============================================================================
+
+.about-section {
+  position: relative;
+  background: #ffffff; // Clean white background
+  padding-top: 0;
+  
+  // Geometric Overlay
+  .geometric-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba($color-marine-blue, 0.02) 35px, rgba($color-marine-blue, 0.02) 70px),
+      repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba($color-marine-blue, 0.015) 35px, rgba($color-marine-blue, 0.015) 70px);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .section-content {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .section-title {
+    color: $color-marine-blue;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .section-text {
+    color: rgba($color-marine-blue, 0.8);
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .skill-tag {
+    @include fade-in($animation-duration-base);
+    display: inline-block;
+    animation-delay: 0.8s;
+    animation-fill-mode: both;
+  }
+
+  .profile-image {
+    @include scale-in($animation-duration-slow, 0.3s);
+    box-shadow: 0 20px 40px rgba($color-marine-blue, 0.1);
+  }
+}
+
+// =============================================================================
+// MY WORKS SECTION
+// =============================================================================
+
+.works-section {
+  position: relative;
+  background: linear-gradient(180deg,
+    #1e3a5f 0%,      // Deep blue
+    #2c5282 50%,     // Mid blue
+    #1a365d 100%     // Darker blue
+  );
+  color: white;
+  
+  // Curved Divider at top of section
+  .curved-divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 5;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 100px;
+      
+      path {
+        fill: #ffffff; // Matches white About section background
+      }
+    }
+  }
+  
+  .section-content {
+    position: relative;
+    z-index: 10;
+    padding-top: 120px; // Add space for curved divider
+  }
+  
+  .section-title {
+    color: white;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .section-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .project-card {
+    @include slide-up($animation-duration-base);
+    transition: all $animation-duration-base ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    &:nth-child(1) { animation-delay: 0.1s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+
+    &:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .tech-tag {
+      @include fade-in($animation-duration-fast);
+      animation-delay: 0.5s;
+      animation-fill-mode: both;
+    }
+  }
+}
+
+// =============================================================================
+// CONTACT SECTION
+// =============================================================================
+
+.contact-section {
+  position: relative;
+  background: linear-gradient(180deg,
+    #ffffff 0%,      // Pure white
+    #f8f9fa 50%,     // Very light gray
+    #e8f4f8 100%     // Light blue tint
+  );
+  color: $color-marine-blue;
+  
+  // Diagonal Divider at top of section
+  .diagonal-divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 5;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 150px;
+      
+      polygon {
+        fill: #1e3a5f; // Matches Works section dark blue
+      }
+    }
+  }
+  
+  .section-content {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .section-title {
+    color: $color-marine-blue;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    // Small blue accent
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: $color-marine-blue;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+  }
+  
+  .section-text {
+    color: rgba($color-marine-blue, 0.7);
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .contact-link {
+    @include slide-up($animation-duration-base);
+    text-decoration: none;
+    transition: all $animation-duration-fast ease;
+    white-space: nowrap;
+    background: rgba($color-marine-blue, 0.05);
+    border: 2px solid rgba($color-marine-blue, 0.2);
+
+    &:nth-child(1) { animation-delay: 0.2s; }
+    &:nth-child(2) { animation-delay: 0.4s; }
+    &:nth-child(3) { animation-delay: 0.6s; }
+
+    &:hover {
+      transform: translateY(-3px);
+      background: rgba($color-marine-blue, 0.1);
+      border-color: $color-marine-blue;
+      box-shadow: 0 8px 20px rgba($color-marine-blue, 0.2);
+    }
+  }
+}
+
+// =============================================================================
+// RESPONSIVE DESIGN
+// =============================================================================
+
+@include respond-below('tablet') {
+  .section {
+    .section-content {
+      padding: $spacing-6;
+    }
+  }
+
+  .hero-section {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  .about-section {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: $spacing-6;
+    }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .works-section {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: $spacing-6;
+    }
+  }
+
+  .contact-section {
+    .flex {
+      flex-direction: column;
+      gap: $spacing-4;
+    }
+  }
+}
+
+@include respond-below('mobile-l') {
+  .section {
+    .section-content {
+      padding: $spacing-4;
+    }
+  }
+
+  .hero-section {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-cta {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+  .about-section {
+    .profile-image {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Respect user's motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .App {
+    scroll-behavior: auto;
+  }
+
+  .section {
+    .section-content {
+      animation: none !important;
+    }
+  }
+}
+
+// Smooth scrolling for navigation
+html {
+  scroll-behavior: smooth;
+}
+
+// Focus management for keyboard navigation
+.section:focus {
+  outline: 2px solid $color-marine-blue;
+  outline-offset: -2px;
+}

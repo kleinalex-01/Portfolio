@@ -1,26 +1,69 @@
-// CSS reset
-@use '../abstracts/variables' as vars;
+// =============================================================================
+// RESET
+// =============================================================================
+// CSS reset and normalization for consistent cross-browser rendering
+// =============================================================================
 
-/* Modern CSS Reset */
+// =============================================================================
+// BOX SIZING
+// =============================================================================
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+// =============================================================================
+// MARGINS AND PADDINGS
+// =============================================================================
+
 * {
   margin: 0;
+  padding: 0;
 }
 
-html,
-body {
-  height: 100%;
+// =============================================================================
+// HTML5 ELEMENTS
+// =============================================================================
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
 }
 
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+// =============================================================================
+// LISTS
+// =============================================================================
+
+ol,
+ul {
+  list-style: none;
 }
+
+// =============================================================================
+// LINKS
+// =============================================================================
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// =============================================================================
+// IMAGES AND MEDIA
+// =============================================================================
 
 img,
 picture,
@@ -29,76 +72,145 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
+
+// =============================================================================
+// FORM ELEMENTS
+// =============================================================================
 
 input,
 button,
-textarea,
-select {
-  font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-#root,
-#__next {
-  isolation: isolate;
-}
-
-/* Remove default button styling */
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* Remove default list styling */
-ul,
-ol {
-  list-style: none;
-  padding: 0;
+select,
+optgroup,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
   margin: 0;
 }
 
-/* Remove default link styling */
-a {
-  color: inherit;
-  text-decoration: none;
+button,
+input {
+  overflow: visible;
 }
 
-/* Remove default table styling */
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+// =============================================================================
+// TABLES
+// =============================================================================
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* Remove default form element styling */
-input,
-textarea,
-select {
-  border: none;
-  outline: none;
-  background: none;
-}
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
 
-/* Focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid vars.$color-primary;
+// Focus outlines
+:focus {
+  outline: 2px solid $color-marine-blue;
   outline-offset: 2px;
 }
 
-/* Smooth scrolling */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
+// Screen reader only content
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// =============================================================================
+// SCROLLBAR STYLING
+// =============================================================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-gray-400;
+  border-radius: $border-radius-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $color-gray-500;
+}
+
+// =============================================================================
+// SELECTION
+// =============================================================================
+
+::selection {
+  background-color: rgba($color-marine-blue, 0.2);
+  color: $color-black;
+}
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: $color-black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
   }
 }

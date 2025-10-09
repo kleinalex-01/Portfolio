@@ -8,26 +8,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      manifest: {
-        name: 'Alex Portfolio',
-        short_name: 'Portfolio',
-        start_url: '.',
-        display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#317EFB',
-        icons: [
-          {
-            src: 'icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'favicon.svg'],
+      manifest: false, // Disable auto-generated manifest
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       }
     })
-  ],
+  ]
 });

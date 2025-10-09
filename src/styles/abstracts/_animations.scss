@@ -1,0 +1,907 @@
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+// Keyframes and animation utilities for text, containers, and scroll effects
+// =============================================================================
+
+// =============================================================================
+// ANIMATION TIMING & EASING
+// =============================================================================
+
+$animation-duration-fast: 0.2s;
+$animation-duration-base: 0.3s;
+$animation-duration-slow: 0.5s;
+$animation-duration-slower: 0.8s;
+
+$animation-easing: cubic-bezier(0.4, 0.0, 0.2, 1);
+$animation-easing-in: cubic-bezier(0.4, 0.0, 1, 1);
+$animation-easing-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+$animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// =============================================================================
+// KEYFRAMES - TEXT ANIMATIONS
+// =============================================================================
+
+// Typing animation with steps
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+// Typewriter effect
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: $color-marine-blue;
+  }
+}
+
+// Text reveal (clip-path)
+@keyframes text-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+// Text fade in up
+@keyframes text-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Text fade in down
+@keyframes text-fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Text slide in left
+@keyframes text-slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Text slide in right
+@keyframes text-slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Text scale in
+@keyframes text-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Text rotate in
+@keyframes text-rotate-in {
+  0% {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Fade in up
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Fade in with scale
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Glitch effect
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+// Text morph (letter spacing)
+@keyframes text-morph {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 1;
+  }
+}
+
+// =============================================================================
+// KEYFRAMES - CONTAINER ANIMATIONS
+// =============================================================================
+
+// Fade in
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Slide up
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Slide down
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Slide left
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Slide right
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Scale in
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Scale out
+@keyframes scale-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+// Bounce in
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Rotate in
+@keyframes rotate-in {
+  0% {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Flip in X
+@keyframes flip-in-x {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+// Flip in Y
+@keyframes flip-in-y {
+  0% {
+    opacity: 0;
+    transform: rotateY(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+// Shake
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+// Pulse
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Heartbeat
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+// =============================================================================
+// KEYFRAMES - SCROLL ANIMATIONS
+// =============================================================================
+
+// Parallax slow
+@keyframes parallax-slow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50px);
+  }
+}
+
+// Parallax fast
+@keyframes parallax-fast {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+// Zoom on scroll
+@keyframes zoom-on-scroll {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+// Blur to focus
+@keyframes blur-to-focus {
+  0% {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+// =============================================================================
+// KEYFRAMES - ADVANCED ANIMATIONS
+// =============================================================================
+
+// Floating
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// Breathing
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Morphing background
+@keyframes morphing-bg {
+  0%, 100% {
+    border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+  }
+  25% {
+    border-radius: 30% 60% 30% 70% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 40% 50% 60% / 30% 50% 70% 40%;
+  }
+  75% {
+    border-radius: 60% 30% 40% 50% / 60% 30% 50% 70%;
+  }
+}
+
+// Gradient shift
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// =============================================================================
+// ANIMATION MIXINS - TEXT
+// =============================================================================
+
+// Typewriter effect
+@mixin typewriter($duration: 3s, $delay: 0s) {
+  overflow: hidden;
+  border-right: 2px solid $color-marine-blue;
+  white-space: nowrap;
+  animation:
+    typewriter $duration steps(40, end) $delay forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+// Text reveal
+@mixin text-reveal($duration: $animation-duration-base, $delay: 0s) {
+  clip-path: inset(0 100% 0 0);
+  animation: text-reveal $duration $animation-easing $delay forwards;
+}
+
+// Text fade in up
+@mixin text-fade-in-up($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: text-fade-in-up $duration $animation-easing $delay forwards;
+}
+
+// Text fade in down
+@mixin text-fade-in-down($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: text-fade-in-down $duration $animation-easing $delay forwards;
+}
+
+// Text slide in left
+@mixin text-slide-in-left($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: text-slide-in-left $duration $animation-easing $delay forwards;
+}
+
+// Text slide in right
+@mixin text-slide-in-right($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: text-slide-in-right $duration $animation-easing $delay forwards;
+}
+
+// Text scale in
+@mixin text-scale-in($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: text-scale-in $duration $animation-easing $delay forwards;
+}
+
+// Text rotate in
+@mixin text-rotate-in($duration: $animation-duration-slow, $delay: 0s) {
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.8);
+  animation: text-rotate-in $duration $animation-easing $delay forwards;
+}
+
+// Glitch text
+@mixin text-glitch($duration: 2s, $delay: 0s) {
+  position: relative;
+  animation: glitch $duration linear infinite $delay;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    animation: glitch $duration linear infinite $delay;
+    color: $color-error;
+    z-index: -1;
+  }
+
+  &::after {
+    animation: glitch $duration linear infinite $delay;
+    color: $color-info;
+    z-index: -2;
+  }
+}
+
+// Text morph
+@mixin text-morph($duration: $animation-duration-slow, $delay: 0s) {
+  letter-spacing: -0.5em;
+  opacity: 0;
+  animation: text-morph $duration $animation-easing $delay forwards;
+}
+
+// =============================================================================
+// ANIMATION MIXINS - CONTAINER
+// =============================================================================
+
+// Fade in
+@mixin fade-in($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  animation: fade-in $duration $animation-easing $delay forwards;
+}
+
+// Slide up
+@mixin slide-up($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slide-up $duration $animation-easing $delay forwards;
+}
+
+// Slide down
+@mixin slide-down($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slide-down $duration $animation-easing $delay forwards;
+}
+
+// Slide left
+@mixin slide-left($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slide-left $duration $animation-easing $delay forwards;
+}
+
+// Slide right
+@mixin slide-right($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slide-right $duration $animation-easing $delay forwards;
+}
+
+// Scale in
+@mixin scale-in($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scale-in $duration $animation-easing $delay forwards;
+}
+
+// Bounce in
+@mixin bounce-in($duration: $animation-duration-slow, $delay: 0s) {
+  opacity: 0;
+  transform: scale(0.3);
+  animation: bounce-in $duration $animation-easing-bounce $delay forwards;
+}
+
+// Rotate in
+@mixin rotate-in($duration: $animation-duration-slow, $delay: 0s) {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.5);
+  animation: rotate-in $duration $animation-easing $delay forwards;
+}
+
+// Flip in X
+@mixin flip-in-x($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: rotateX(-90deg);
+  animation: flip-in-x $duration $animation-easing $delay forwards;
+}
+
+// Flip in Y
+@mixin flip-in-y($duration: $animation-duration-base, $delay: 0s) {
+  opacity: 0;
+  transform: rotateY(-90deg);
+  animation: flip-in-y $duration $animation-easing $delay forwards;
+}
+
+// Shake
+@mixin shake($duration: $animation-duration-fast, $delay: 0s) {
+  animation: shake $duration $animation-easing $delay;
+}
+
+// Pulse
+@mixin pulse($duration: 2s, $delay: 0s) {
+  animation: pulse $duration $animation-easing $delay infinite;
+}
+
+// Heartbeat
+@mixin heartbeat($duration: 1.5s, $delay: 0s) {
+  animation: heartbeat $duration $animation-easing $delay infinite;
+}
+
+// Floating
+@mixin floating($duration: 3s, $delay: 0s) {
+  animation: floating $duration ease-in-out $delay infinite;
+}
+
+// Breathing
+@mixin breathing($duration: 4s, $delay: 0s) {
+  animation: breathing $duration ease-in-out $delay infinite;
+}
+
+// Morphing background
+@mixin morphing-bg($duration: 8s, $delay: 0s) {
+  animation: morphing-bg $duration ease-in-out $delay infinite;
+}
+
+// Gradient shift
+@mixin gradient-shift($duration: 3s, $delay: 0s) {
+  background-size: 200% 200%;
+  animation: gradient-shift $duration ease $delay infinite;
+}
+
+// =============================================================================
+// ANIMATION MIXINS - SCROLL ANIMATIONS
+// =============================================================================
+
+// Scroll fade in
+@mixin scroll-fade-in($threshold: 0.1) {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Scroll slide up
+@mixin scroll-slide-up($distance: 50px, $threshold: 0.1) {
+  opacity: 0;
+  transform: translateY($distance);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Scroll slide left
+@mixin scroll-slide-left($distance: 50px, $threshold: 0.1) {
+  opacity: 0;
+  transform: translateX($distance);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Scroll slide right
+@mixin scroll-slide-right($distance: 50px, $threshold: 0.1) {
+  opacity: 0;
+  transform: translateX(-$distance);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Scroll scale in
+@mixin scroll-scale-in($scale: 0.8, $threshold: 0.1) {
+  opacity: 0;
+  transform: scale($scale);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Scroll rotate in
+@mixin scroll-rotate-in($rotation: -10deg, $threshold: 0.1) {
+  opacity: 0;
+  transform: rotate($rotation) scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Stagger animation (for multiple elements)
+@mixin stagger-animation($delay: 0.1s) {
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slide-up 0.6s ease forwards;
+
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        animation-delay: $delay * ($i - 1);
+      }
+    }
+  }
+}
+
+// Parallax element
+@mixin parallax-element($speed: 0.5) {
+  will-change: transform;
+  transform: translateY(0);
+
+  &.parallax-active {
+    transform: translateY($speed * 100px);
+  }
+}
+
+// =============================================================================
+// UTILITY CLASSES
+// =============================================================================
+
+// Animation duration classes
+.animation-fast { animation-duration: $animation-duration-fast; }
+.animation-base { animation-duration: $animation-duration-base; }
+.animation-slow { animation-duration: $animation-duration-slow; }
+.animation-slower { animation-duration: $animation-duration-slower; }
+
+// Animation easing classes
+.animation-ease { animation-timing-function: $animation-easing; }
+.animation-ease-in { animation-timing-function: $animation-easing-in; }
+.animation-ease-out { animation-timing-function: $animation-easing-out; }
+.animation-ease-bounce { animation-timing-function: $animation-easing-bounce; }
+
+// Animation fill mode
+.animation-forwards { animation-fill-mode: forwards; }
+.animation-backwards { animation-fill-mode: backwards; }
+.animation-both { animation-fill-mode: both; }
+
+// Infinite animations
+.animation-infinite { animation-iteration-count: infinite; }
+
+// Pause animations
+.animation-paused { animation-play-state: paused; }
+.animation-running { animation-play-state: running; }
+
+// =============================================================================
+// JAVASCRIPT HOOKS FOR SCROLL ANIMATIONS
+// =============================================================================
+
+// Add this JavaScript to your components for scroll animations:
+/*
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with scroll animation classes
+  document.querySelectorAll('[class*="scroll-"]').forEach(el => {
+    observer.observe(el);
+  });
+});
+*/
+
+// =============================================================================
+// CUSTOM HERO ANIMATIONS
+// =============================================================================
+
+// Floating animation for glass card
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// Waving hand animation
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  10%, 30% {
+    transform: rotate(14deg);
+  }
+  20%, 40% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+// Blinking cursor for typed text
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+// =============================================================================
+// PERFORMANCE OPTIMIZATIONS
+// =============================================================================
+
+// Reduce motion for users who prefer it
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// GPU acceleration for better performance
+@mixin gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
