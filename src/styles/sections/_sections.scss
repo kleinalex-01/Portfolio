@@ -288,49 +288,123 @@
   background: #ffffff; // Clean white background
   padding-top: 0;
   
-  // Geometric Overlay
-  .geometric-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba($color-marine-blue, 0.02) 35px, rgba($color-marine-blue, 0.02) 70px),
-      repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba($color-marine-blue, 0.015) 35px, rgba($color-marine-blue, 0.015) 70px);
-    z-index: 1;
-    pointer-events: none;
-  }
-  
   .section-content {
     position: relative;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
   }
   
-  .section-title {
-    color: $color-marine-blue;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 2rem;
+  .about-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    width: 100%;
+    
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
   }
   
-  .section-text {
-    color: rgba($color-marine-blue, 0.8);
-    font-size: 1.25rem;
-    text-align: center;
+  // Left side - Text
+  .about-text {
+    .section-title {
+      color: $color-marine-blue;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: left;
+      
+      @media (max-width: 968px) {
+        text-align: center;
+      }
+    }
+    
+    .about-paragraph {
+      color: rgba($color-marine-blue, 0.7);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
-
-  .skill-tag {
-    @include fade-in($animation-duration-base);
-    display: inline-block;
-    animation-delay: 0.8s;
-    animation-fill-mode: both;
-  }
-
-  .profile-image {
-    @include scale-in($animation-duration-slow, 0.3s);
-    box-shadow: 0 20px 40px rgba($color-marine-blue, 0.1);
+  
+  // Right side - Skills
+  .about-skills {
+    .skills-title {
+      color: $color-marine-blue;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: rgba($color-marine-blue, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba($color-marine-blue, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: rgba($color-marine-blue, 0.05);
+        border-color: rgba($color-marine-blue, 0.2);
+        transform: translateX(8px);
+      }
+      
+      .skill-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        flex-shrink: 0;
+        
+        svg {
+          width: 32px;
+          height: 32px;
+        }
+        
+        &.react {
+          background: rgba(97, 218, 251, 0.1);
+          color: #61dafb;
+        }
+        
+        &.typescript {
+          background: rgba(49, 120, 198, 0.1);
+          color: #3178c6;
+        }
+        
+        &.sass {
+          background: rgba(204, 102, 153, 0.1);
+          color: #cc6699;
+        }
+      }
+      
+      .skill-name {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: $color-marine-blue;
+      }
+    }
   }
 }
 
@@ -441,7 +515,7 @@
       height: 150px;
       
       polygon {
-        fill: #1e3a5f; // Matches Works section dark blue
+        fill: #1a365d; // Matches Works section bottom gradient color
       }
     }
   }
@@ -449,14 +523,16 @@
   .section-content {
     position: relative;
     z-index: 10;
+    padding-top: 2rem;
   }
   
   .section-title {
-    color: $color-marine-blue;
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
-    text-align: center;
+    text-align: right;
     margin-bottom: 2rem;
+    padding-right: 4rem;
+    color: $color-marine-blue;
     
     // Small blue accent
     &::after {
@@ -465,7 +541,7 @@
       width: 80px;
       height: 4px;
       background: $color-marine-blue;
-      margin: 1rem auto 0;
+      margin: 1rem 0 0 auto;
       border-radius: 2px;
     }
   }
