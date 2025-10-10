@@ -10,16 +10,14 @@
 // Variables, mixins, and functions - no CSS output
 // =============================================================================
 
-@import 'abstracts/fonts';
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 @import 'abstracts/functions';
-@import 'abstracts/animations';
 
 // =============================================================================
 // 2. BASE
 // =============================================================================
-// Reset, typography, and base utilities
+// Reset, typography, and base element styles
 // =============================================================================
 
 @import 'base/reset';
@@ -27,65 +25,12 @@
 @import 'base/utilities';
 
 // =============================================================================
-// SECTIONS
+// 3. SECTIONS
 // =============================================================================
-// Full-height sections with scroll snapping
+// Section-specific styles
 // =============================================================================
 
 @import 'sections/sections';
 
-// =============================================================================
-// 3. LAYOUT
-// =============================================================================
-// Layout-related styles (header, footer, grid, etc.)
-// =============================================================================
-
-// Layout imports will go here when created
-// @import 'layout/header';
-// @import 'layout/footer';
-// @import 'layout/grid';
-// @import 'layout/sidebar';
-
-// =============================================================================
-// 4. COMPONENTS
-// =============================================================================
 // Component-specific styles
-// =============================================================================
-
-// Component imports will go here when created
-// @import 'components/buttons';
-// @import 'components/cards';
-// @import 'components/forms';
-// @import 'components/modals';
-
-// =============================================================================
-// 5. PAGES
-// =============================================================================
-// Page-specific styles
-// =============================================================================
-
-// Page imports will go here when created
-// @import 'pages/home';
-// @import 'pages/about';
-// @import 'pages/contact';
-
-// =============================================================================
-// 6. THEMES
-// =============================================================================
-// Theme-related styles
-// =============================================================================
-
-// Theme imports will go here when created
-// @import 'themes/default';
-// @import 'themes/dark';
-
-// =============================================================================
-// 7. VENDORS
-// =============================================================================
-// Third-party styles and overrides
-// =============================================================================
-
-// Vendor imports will go here when needed
-// @import 'vendors/normalize';
-// @import 'vendors/bootstrap';
-// @import 'vendors/font-awesome';
+@import '../components/DarkVeil.css';
