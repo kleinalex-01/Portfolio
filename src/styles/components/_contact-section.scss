@@ -71,18 +71,21 @@
   }
 
   .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 3rem;
 
     @include respond-below('tablet') {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+      max-width: 500px;
+      gap: 2.5rem;
     }
 
     @include respond-below('mobile-l') {
-      gap: 1.5rem;
+      max-width: 100%;
+      gap: 2rem;
     }
   }
 
@@ -250,109 +253,96 @@
     }
   }
 
-  .contact-info {
-    .contact-methods, .contact-social {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
-      border: 1px solid rgba(0, 51, 102, 0.1);
-      transition: all 0.3s ease;
+  .contact-social {
+    text-align: center;
+    width: 100%;
 
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 51, 102, 0.1);
-      }
-
-      h3, h4 {
-        font-size: 1.375rem;
-        font-weight: 600;
-        color: #4a5568;
-        margin-bottom: 1.5rem;
-      }
-    }
-
-    .contact-phone-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      width: 100%;
-      background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
-      color: white;
-      border: none;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      font-size: 1rem;
+    h4 {
+      font-size: 1.25rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      min-height: 48px;
-      justify-content: center;
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 64, 128, 0.3);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-
-      svg {
-        flex-shrink: 0;
-      }
-    }
-
-    .contact-email {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1.25rem 1.5rem;
-      background-color: rgba(0, 51, 102, 0.05);
-      border: 1px solid rgba(0, 51, 102, 0.1);
-      border-radius: 8px;
       color: #4a5568;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
 
-      &:hover {
-        background-color: rgba(0, 51, 102, 0.1);
-        border-color: rgba(0, 51, 102, 0.2);
-      }
-
-      svg {
-        flex-shrink: 0;
-        color: #003366;
+      @include respond-below('mobile-l') {
+        font-size: 1.125rem;
+        margin-bottom: 1.25rem;
       }
     }
 
     .social-links {
       display: flex;
-      gap: 1rem;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+
+      @include respond-below('mobile-l') {
+        gap: 1.25rem;
+      }
 
       a {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 48px;
-        height: 48px;
-        background-color: rgba(0, 51, 102, 0.05);
-        border: 1px solid rgba(0, 51, 102, 0.1);
-        border-radius: 8px;
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, rgba(0, 51, 102, 0.1) 0%, rgba(0, 64, 128, 0.1) 100%);
+        border: 2px solid rgba(0, 51, 102, 0.2);
+        border-radius: 12px;
         color: #4a5568;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         text-decoration: none;
+        position: relative;
+        overflow: hidden;
+
+        @include respond-below('mobile-l') {
+          width: 48px;
+          height: 48px;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, #003366 0%, #004080 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
 
         &:hover {
-          background-color: #003366;
-          color: white;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+          transform: translateY(-4px) scale(1.05);
+          box-shadow: 0 12px 30px rgba(0, 51, 102, 0.3);
+          border-color: #003366;
+
+          &::before {
+            opacity: 1;
+          }
+
+          svg {
+            color: white;
+            transform: scale(1.1);
+            animation: bounce 0.6s ease;
+          }
         }
 
         &:active {
-          transform: translateY(0);
+          transform: translateY(-2px) scale(1.02);
+        }
+
+        svg {
+          width: 24px;
+          height: 24px;
+          transition: all 0.3s ease;
+          z-index: 1;
+          position: relative;
+
+          @include respond-below('mobile-l') {
+            width: 20px;
+            height: 20px;
+          }
         }
       }
     }
@@ -458,3 +448,4 @@
     }
   }
 }
+

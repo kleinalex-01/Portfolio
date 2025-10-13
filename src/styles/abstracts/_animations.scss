@@ -280,22 +280,16 @@ $animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 
-// Bounce in
-@keyframes bounce-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
+// Bounce effect for hover animations
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
+  40% {
+    transform: translateY(-6px);
   }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
+  60% {
+    transform: translateY(-3px);
   }
 }
 
