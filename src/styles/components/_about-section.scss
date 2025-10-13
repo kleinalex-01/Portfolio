@@ -1,0 +1,28 @@
+// About Section - Dark Blue-Gray with Breathing Animation
+.about-section {
+  background-color: #1a1a2e;
+  position: relative;
+  overflow: hidden;
+
+  .breathing-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.8), transparent);
+  }
+
+  .about-works-divider {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+
+    // Ensure no gap on mobile
+    @include respond-below('tablet') {
+      bottom: -5px;
+    }
+  }
+}

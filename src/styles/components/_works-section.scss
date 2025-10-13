@@ -1,0 +1,19 @@
+// Works Section - Soft Mauve
+.works-section {
+  background-color: #e1bee7;
+  position: relative;
+  overflow: hidden;
+
+  .works-contact-divider {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+
+    // Ensure no gap on mobile
+    @include respond-below('tablet') {
+      bottom: -5px;
+    }
+  }
+}

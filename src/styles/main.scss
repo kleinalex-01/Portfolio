@@ -13,6 +13,7 @@
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 @import 'abstracts/functions';
+@import 'abstracts/animations';
 
 // =============================================================================
 // 2. BASE
@@ -31,6 +32,17 @@
 // =============================================================================
 
 @import 'sections/sections';
+
+// =============================================================================
+// 4. COMPONENTS
+// =============================================================================
+// Component-specific styles
+// =============================================================================
+
+@import 'components/hero-section';
+@import 'components/about-section';
+@import 'components/works-section';
+@import 'components/contact-section';
 
 // Component-specific styles
 @import '../components/DarkVeil.css';
