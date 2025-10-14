@@ -1,5 +1,4 @@
 import HeroBackground from "./HeroBackground";
-import HeroDivider from "./HeroDivider";
 
 const HeroSection = () => {
   const handleCVDownload = () => {
@@ -64,7 +63,6 @@ const HeroSection = () => {
           </svg>
         </button>
       </div>
-      <HeroDivider />
     </section>
   );
 };

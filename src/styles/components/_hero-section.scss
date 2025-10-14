@@ -226,19 +226,6 @@
     }
   }
 
-  .hero-divider {
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    z-index: 5;
-
-    // Ensure no gap on mobile
-    @include respond-below('tablet') {
-      bottom: -5px;
-    }
-  }
-
   // Mobile responsive background
   @include respond-below('tablet') {
     .darkveil-canvas {

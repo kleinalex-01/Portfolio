@@ -9,15 +9,15 @@
 }
 
 .section {
-  height: 130vh;
+  min-height: 130vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 
-  // Mobile responsive height
+  // Mobile responsive min-height
   @include respond-below('tablet') {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .section-content {
@@ -29,12 +29,13 @@
 // DIVIDERS
 // =============================================================================
 
-// Hero to About Divider
-.hero-about-divider {
+// About to Works Divider
+.about-works-divider {
   position: relative;
   width: 100%;
-  height: 100px;
+  height: 200px;
   overflow: hidden;
+  z-index: 3; // Magasabb z-index, hogy a geometrikus forma látszódjon a Works szekció előtt
 
   svg {
     position: absolute;

@@ -3,6 +3,8 @@
   background-color: #e1bee7;
   position: relative;
   overflow: hidden;
+  margin-top: -180px; // Feljebb csúsztatás a divider mögé
+  z-index: 1; // Alacsonyabb z-index, hogy a divider zigzag formája látszódjon
 
   .works-contact-divider {
     position: absolute;
