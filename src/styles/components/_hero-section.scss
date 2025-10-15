@@ -88,8 +88,8 @@
 
     &:hover {
       background: rgba(100, 150, 255, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 25px rgba(100, 150, 255, 0.25);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(100, 150, 255, 0.35);
     }
 
     &:focus {
@@ -231,6 +231,28 @@
     .darkveil-canvas {
       height: 100vh !important;
       width: 100vw !important;
+    }
+  }
+}
+
+// Typewriter component styles
+.typewriter {
+  display: inline-block;
+  min-width: 200px;
+  text-align: center;
+
+  .cursor {
+    animation: blink 1s infinite;
+    color: #64b5f6;
+    font-weight: bold;
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
     }
   }
 }

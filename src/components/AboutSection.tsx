@@ -4,13 +4,13 @@ const AboutSection = () => {
   const achievements = [
     { 
       icon: "🎯", 
-      value: "50+", 
+      value: "1+", 
       label: "Elkészült projekt",
-      description: "Webalkalmazások, e-kereskedelem, SaaS megoldások"
+      description: "Webalkalmazások vállalkozásoknak"
     },
     { 
       icon: "⚡", 
-      value: "3+", 
+      value: "2+", 
       label: "Év tapasztalat", 
       description: "Modern frontend technológiákban"
     },
@@ -25,34 +25,34 @@ const AboutSection = () => {
   const expertise = [
     {
       category: "Frontend Development",
-      skills: ["React", "TypeScript", "Next.js"],
-      level: 95,
-      description: "Modern React alkalmazások, teljes ciklusú fejlesztés"
+      skills: ["React", "Axios", "TypeScript"],
+      level: 85,
+      description: "Modern React alkalmazások, megoldások"
     },
     {
       category: "UI/UX Design",
-      skills: ["Figma", "CSS3", "Sass"],
-      level: 90,
-      description: "Reszponzív dizájn, felhasználói élmény optimalizálás"
+      skills: [ "Tailwind", "Sass", "Bootstrap"],
+      level: 80,
+      description: "Reszponzív design, felhasználóbarát, letisztult"
     },
     {
       category: "Backend Integration",
-      skills: ["Node.js", "REST APIs", "GraphQL"],
-      level: 85,
-      description: "Full-stack megoldások, API fejlesztés"
+      skills: ["Node.js", "Express.js", "Next.js", "SQL"],
+      level: 15,
+      description: "Full-stack megoldások, API fejlesztés, AI integrálás"
     },
   ];
 
   const values = [
     {
       icon: "🎨",
-      title: "Design-First Approach",
-      description: "Minden projektet a felhasználói élménytől indítok. Hiszek abban, hogy a jó design nem luxus, hanem alapkövetelmény."
+      title: "Mobile-First Approach",
+      description: "A maximális felhasználói élmény érdekében minden projektet mobil nézetben tervezek és fejlesztek első körben."
     },
     {
       icon: "⚡",
       title: "Gyors, Hatékony Fejlesztés",
-      description: "Modern eszközökkel és metodológiákkal biztosítom, hogy a projektek határidőre és költséghatékonyan készüljenek el."
+      description: "Modern teknológiák és bevált módszertanok alkalmazásával gyorsan és hatékonyan szállítom a projekteket."
     },
     {
       icon: "🤝",
@@ -65,53 +65,29 @@ const AboutSection = () => {
     <section className="section about-section">
       <motion.div
         className="section-content"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <div className="about-container">
-          {/* Hero Introduction */}
           <motion.div 
             className="about-hero"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <div className="hero-content">
-              <motion.h2 
-                className="hero-greeting"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Üdvözöllek! 👋
-              </motion.h2>
-              
-              <motion.h1 
-                className="hero-title"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                Alex vagyok,
-                <span className="hero-highlight">Frontend fejlesztő</span>
-              </motion.h1>
               
               <motion.p 
                 className="hero-description"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Szenvedélyesen foglalkozom a modern webtechnológiákkal és abban hiszek, 
-                hogy a kivételes felhasználói élmény megváltoztathatja a világot. 
-                3+ éve segítek vállalkozásoknak és startupoknak megvalósítani 
-                digitális vízióikat.
+                3+ éve tanulok webfejlesztést és a hozzá tartozó Front-end teknológiákat. Nemrég elkezdtem a Back-end oldalt is, hogy Full-stack programozóként egyedi és komplex web alkalmazásokat készíthessek. Célom, hogy modern, felhasználóbarát és letisztult appokat alkossak.
               </motion.p>
             </div>
           </motion.div>
@@ -119,10 +95,10 @@ const AboutSection = () => {
           {/* Achievements */}
           <motion.div 
             className="achievements-section"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h3>Eredmények & Mérföldkövek</h3>
             <div className="achievements-grid">
@@ -133,7 +109,7 @@ const AboutSection = () => {
                   initial={{ opacity: 0, scale: 0.8, y: 30 }}
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
-                  transition={{ delay: index * 0.15 + 0.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ delay: index * 0.1 + 0.2, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                   whileHover={{ y: -8, transition: { duration: 0.2 } }}
                 >
                   <div className="achievement-icon">{achievement.icon}</div>
@@ -150,12 +126,12 @@ const AboutSection = () => {
           {/* Expertise Areas */}
           <motion.div 
             className="expertise-section"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h3>Szakértelem Területek</h3>
+            <h3>Szakértelmem</h3>
             <div className="expertise-grid">
               {expertise.map((area, index) => (
                 <motion.div
@@ -164,7 +140,7 @@ const AboutSection = () => {
                   initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: index * 0.2 + 0.6, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ delay: index * 0.15 + 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <div className="expertise-header">
                     <h4>{area.category}</h4>
@@ -175,7 +151,7 @@ const AboutSection = () => {
                           initial={{ width: '0%' }}
                           whileInView={{ width: `${area.level}%` }}
                           viewport={{ once: true, amount: 0.3 }}
-                          transition={{ delay: index * 0.2 + 1.0, duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          transition={{ delay: index * 0.15 + 0.6, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                         />
                       </div>
                       <span>{area.level}%</span>
@@ -199,10 +175,10 @@ const AboutSection = () => {
           {/* Values */}
           <motion.div 
             className="values-section"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h3>Megközelítésem & Értékeim</h3>
             <div className="values-grid">
@@ -213,7 +189,7 @@ const AboutSection = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: index * 0.15 + 0.8, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ delay: index * 0.1 + 0.4, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <div className="value-icon">{value.icon}</div>
                   <h4 className="value-title">{value.title}</h4>

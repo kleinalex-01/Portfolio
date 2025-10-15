@@ -1,4 +1,5 @@
 import HeroBackground from "./HeroBackground";
+import Typewriter from "./Typewriter";
 
 const HeroSection = () => {
   const handleCVDownload = () => {
@@ -28,7 +29,14 @@ const HeroSection = () => {
         <h1 id="hero-title" className="hero-title">
           <span className="hero-name" aria-hidden="true">Klein Alex</span>
           <span className="hero-dash" aria-hidden="true">-</span>
-          <span className="hero-role" aria-hidden="true">Webfejlesztő</span>
+          <span className="hero-role" aria-hidden="true">
+            <Typewriter
+              words={["Front-end fejlesztés", "Webfejlesztés", "Back-end fejlesztés"]}
+              typeSpeed={120}
+              deleteSpeed={80}
+              delayBetweenWords={2500}
+            />
+          </span>
         </h1>
         <button
           className="hero-cv-button"
