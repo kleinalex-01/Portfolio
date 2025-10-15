@@ -1,22 +1,40 @@
 ﻿import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 const AboutSection = () => {
+  const [counters, setCounters] = useState({ projects: 0, experience: 0, satisfaction: 0 })
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCounters({
+        projects: 1,
+        experience: 2,
+        satisfaction: 99
+      })
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   const achievements = [
     { 
       icon: "🎯", 
-      value: "1+", 
+      value: counters.projects, 
+      targetValue: 1,
       label: "Elkészült projekt",
       description: "Webalkalmazások vállalkozásoknak"
     },
     { 
       icon: "⚡", 
-      value: "2+", 
+      value: counters.experience, 
+      targetValue: 2,
       label: "Év tapasztalat", 
       description: "Modern frontend technológiákban"
     },
     { 
       icon: "🚀", 
-      value: "99%", 
+      value: counters.satisfaction, 
+      targetValue: 99,
       label: "Ügyfél elégedettség",
       description: "Időben, minőségben, költséghatékonyan"
     },
@@ -63,6 +81,35 @@ const AboutSection = () => {
 
   return (
     <section className="section about-section">
+      {/* Floating Particles Background */}
+      <div className="floating-particles">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="particle"
+            initial={{ 
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              scale: 0
+            }}
+            animate={{ 
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              scale: [0, 1, 0]
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+      </div>
+
       <motion.div
         className="section-content"
         initial={{ opacity: 0 }}
@@ -110,11 +157,26 @@ const AboutSection = () => {
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ delay: index * 0.1 + 0.2, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                  whileHover={{ 
+                    y: -12, 
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
                 >
                   <div className="achievement-icon">{achievement.icon}</div>
                   <div className="achievement-content">
-                    <div className="achievement-value">{achievement.value}</div>
+                    <motion.div 
+                      className="achievement-value"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true, amount: 0.4 }}
+                      transition={{ delay: index * 0.1 + 0.5, duration: 0.6, type: "spring", stiffness: 200 }}
+                    >
+                      {achievement.value}{achievement.label === "Ügyfél elégedettség" ? "%" : "+"}
+                    </motion.div>
                     <div className="achievement-label">{achievement.label}</div>
                     <div className="achievement-description">{achievement.description}</div>
                   </div>
@@ -159,10 +221,28 @@ const AboutSection = () => {
                   </div>
                   
                   <div className="expertise-skills">
-                    {area.skills.map((skill) => (
-                      <span key={skill} className="skill-tag">
+                    {area.skills.map((skill, skillIndex) => (
+                      <motion.span 
+                        key={skill} 
+                        className="skill-tag"
+                        whileHover={{ 
+                          scale: 1.1, 
+                          backgroundColor: "rgba(100, 181, 246, 0.3)",
+                          boxShadow: "0 0 20px rgba(100, 181, 246, 0.4)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ 
+                          delay: index * 0.15 + skillIndex * 0.1 + 0.8,
+                          duration: 0.4,
+                          type: "spring",
+                          stiffness: 300
+                        }}
+                      >
                         {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                   
