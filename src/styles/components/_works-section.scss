@@ -3,8 +3,32 @@
   background-color: #e1bee7;
   position: relative;
   overflow: hidden;
-  margin-top: -180px; // Feljebb csúsztatás a divider mögé
-  z-index: 1; // Alacsonyabb z-index, hogy a divider zigzag formája látszódjon
+  margin-top: -180px;
+  z-index: 1;
+  
+  // Progressive padding based on breakpoints
+  padding: $spacing-32 0 $spacing-24; // 8rem 0 6rem - mobile-l and up
+  
+  @include respond-above('tablet') {
+    padding: $spacing-40 0 $spacing-32; // 10rem 0 8rem - tablet
+  }
+  
+  @include respond-above('laptop') {
+    padding: $spacing-48 0 $spacing-40; // 12rem 0 10rem - laptop
+  }
+  
+  @include respond-above('laptop-l') {
+    padding: $spacing-60 0 $spacing-48; // 15rem 0 12rem - large laptop
+  }
+  
+  @include respond-below('mobile-l') {
+    padding: $spacing-36 0 $spacing-16; // 9rem 0 4rem - increased top padding for mobile-l
+    margin-top: -120px; // Increased to fully cover white gap
+  }
+  
+  @include respond-below('tablet') {
+    margin-top: -160px; // Further increased to cover white gap
+  }
 
   .works-contact-divider {
     position: absolute;
@@ -13,9 +37,300 @@
     width: 100%;
     z-index: 5;
 
-    // Ensure no gap on mobile
     @include respond-below('tablet') {
       bottom: -5px;
+    }
+  }
+
+  .works-container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-8; // 2rem
+    
+    @include respond-below('tablet') {
+      padding: 0 $spacing-6; // 1.5rem
+    }
+    
+    @include respond-below('mobile-l') {
+      padding: 0 $spacing-4; // 1rem
+    }
+  }
+
+  .works-header {
+    text-align: center;
+    margin-bottom: $spacing-20; // 5rem - mobile-l
+    
+    @include respond-above('tablet') {
+      margin-bottom: $spacing-24; // 6rem - tablet
+    }
+    
+    @include respond-above('laptop') {
+      margin-bottom: $spacing-28; // 7rem - laptop
+    }
+    
+    @include respond-above('laptop-l') {
+      margin-bottom: $spacing-32; // 8rem - large laptop
+    }
+    
+    @include respond-below('mobile-l') {
+      margin-bottom: $spacing-12; // 3rem - small mobile
+    }
+
+    .works-title {
+      font-size: $font-size-3xl; // 1.875rem - base
+      font-weight: $font-weight-bold;
+      color: #333333;
+      margin: 0;
+      line-height: $line-height-tight;
+      
+      @include respond-above('tablet') {
+        font-size: $font-size-4xl; // 2.25rem - tablet
+      }
+      
+      @include respond-above('laptop') {
+        font-size: $font-size-5xl; // 3rem - laptop
+      }
+
+      @include respond-below('mobile-l') {
+        font-size: $font-size-2xl; // 1.5rem - small mobile
+      }
+      
+      @include respond-below('mobile-m') {
+        font-size: $font-size-xl; // 1.25rem - very small mobile
+      }
+      
+      // Title line breaks for mobile-s and mobile-m
+      .title-line-1,
+      .title-line-2 {
+        display: inline;
+        
+        @include respond-below('mobile-m') {
+          display: block;
+        }
+      }
+      
+      .title-line-2 {
+        @include respond-below('mobile-m') {
+          margin-top: $spacing-1; // Small gap between lines
+        }
+      }
+    }
+  }
+
+  // Mobile Carousel (hidden on desktop)
+  .mobile-carousel {
+    display: block;
+    max-width: 100%;
+    
+    // Narrower carousel for mobile-s and mobile-m to prevent overflow
+    @include respond-below('mobile-m') {
+      max-width: calc(100vw - #{$spacing-8}); // Account for container padding
+      margin: 0 auto;
+    }
+
+    @include respond-above('laptop') {
+      display: none;
+    }
+
+    .carousel-wrapper {
+      overflow: hidden;
+      border-radius: $border-radius-xl; // 12px
+      margin-bottom: $spacing-8; // 2rem
+      
+      @include respond-below('mobile-l') {
+        margin-bottom: $spacing-6; // 1.5rem
+      }
+      
+      @include respond-below('mobile-m') {
+        border-radius: $border-radius-lg; // 8px for smaller screens
+      }
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: $transition-base;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: $spacing-2; // 0.5rem
+      margin-top: $spacing-6; // 1.5rem
+      
+      @include respond-below('mobile-l') {
+        margin-top: $spacing-4; // 1rem
+      }
+
+      .indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: $border-radius-full;
+        border: none;
+        background: rgba(51, 51, 51, 0.3);
+        cursor: pointer;
+        transition: $transition-base;
+        padding: 0;
+
+        &.active {
+          background: #333333;
+          width: 24px;
+          border-radius: $border-radius;
+        }
+
+        &:hover {
+          background: rgba(51, 51, 51, 0.6);
+        }
+      }
+    }
+
+    .project-card {
+      flex: 0 0 100%;
+      min-width: 100%;
+    }
+  }
+
+  // Desktop Grid (hidden on mobile)
+  .desktop-grid {
+    display: none;
+
+    @include respond-above('laptop') {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $spacing-12; // 3rem
+    }
+
+    @include respond-above('laptop-l') {
+      gap: $spacing-16; // 4rem
+    }
+    
+    @include respond-above('4k') {
+      gap: $spacing-20; // 5rem
+    }
+  }
+
+  // Project Card Styles (shared between mobile and desktop)
+  .project-card {
+    background: $color-white;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+    transition: $transition-base;
+    
+    @include respond-below('mobile-m') {
+      border-radius: $border-radius-lg; // Smaller radius for mobile-s/m
+    }
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .project-image-wrapper {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: $color-gray-100;
+      
+      @include respond-above('laptop-l') {
+        height: 240px;
+      }
+
+      @include respond-below('tablet') {
+        height: 200px;
+      }
+      
+      @include respond-below('mobile-l') {
+        height: 180px;
+      }
+      
+      @include respond-below('mobile-m') {
+        height: 160px; // Smaller image height for mobile-s/m
+      }
+
+      .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: $transition-base;
+      }
+    }
+
+    &:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: $spacing-6; // 1.5rem
+      
+      @include respond-above('laptop-l') {
+        padding: $spacing-8; // 2rem
+      }
+
+      @include respond-below('tablet') {
+        padding: $spacing-5; // 1.25rem
+      }
+      
+      @include respond-below('mobile-l') {
+        padding: $spacing-4; // 1rem
+      }
+
+      .project-name {
+        font-size: $font-size-xl; // 1.25rem
+        font-weight: $font-weight-semibold;
+        color: #333333;
+        margin: 0 0 $spacing-4; // 0 0 1rem
+        line-height: $line-height-snug;
+        
+        @include respond-above('laptop-l') {
+          font-size: $font-size-2xl; // 1.5rem
+          margin-bottom: $spacing-5; // 1.25rem
+        }
+
+        @include respond-below('tablet') {
+          font-size: $font-size-lg; // 1.125rem
+          margin-bottom: $spacing-3; // 0.75rem
+        }
+        
+        @include respond-below('mobile-l') {
+          font-size: $font-size-base; // 1rem
+        }
+      }
+
+      .project-tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-2; // 0.5rem
+        
+        @include respond-below('mobile-l') {
+          gap: $spacing-1-5; // 0.375rem
+        }
+
+        .tech-tag {
+          background: rgba(225, 190, 231, 0.2);
+          color: #333333;
+          padding: $spacing-2 $spacing-3; // 0.4rem 0.75rem
+          border-radius: $border-radius-md;
+          font-size: $font-size-sm; // 0.875rem
+          font-weight: $font-weight-medium;
+          transition: $transition-fast;
+          
+          @include respond-above('laptop-l') {
+            padding: $spacing-2-5 $spacing-4; // 0.625rem 1rem
+            font-size: $font-size-base; // 1rem
+          }
+
+          @include respond-below('mobile-l') {
+            font-size: $font-size-xs; // 0.75rem
+            padding: $spacing-1-5 $spacing-2-5; // 0.375rem 0.625rem
+          }
+        }
+      }
     }
   }
 }
