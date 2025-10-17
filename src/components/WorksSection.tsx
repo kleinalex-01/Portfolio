@@ -1,55 +1,139 @@
 import WorksContactDivider from "./WorksContactDivider";
+import WorksParallaxBackground from "./WorksParallaxBackground";
+import ProjectCardBackground from "./ProjectCardBackground";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { 
+  GiLipstick,
+  GiMirrorMirror,
+  GiComb,
+  GiPerfumeBottle,
+  GiFlowerEmblem,
+  GiSofa,
+  GiSewingMachine,
+  GiOfficeChair,
+  GiHanger,
+  GiPillow,
+  GiFangs,
+  GiMagnifyingGlass,
+  GiScissors,
+  GiLips,
+  GiNecklace,
+  GiRing,
+  GiEarrings,
+  GiHighHeel,
+  GiSewingString,
+  GiWoodenChair,
+  GiTable,
+  GiBed
+} from 'react-icons/gi';
+import { 
+  TbAirConditioning,
+  TbSnowflake,
+  TbTemperature,
+  TbWind,
+  TbHome,
+  TbClock,
+  TbSun,
+  TbBolt,
+  TbDroplet,
+  TbWindmill,
+  TbFlame
+} from 'react-icons/tb';
+import type { IconType } from "react-icons";
 
 const WorksSection = () => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
-  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Industry-specific icon sets
+  const hvacIcons: IconType[] = [
+    TbAirConditioning,
+    TbSnowflake,
+    TbTemperature,
+    TbWind,
+    TbHome,
+    TbClock,
+    TbSun,
+    TbBolt,
+    TbDroplet,
+    TbWindmill,
+    TbFlame,
+    TbAirConditioning, // Duplicate
+    TbSnowflake, // Duplicate
+    TbTemperature, // Duplicate
+    TbWind, // Duplicate
+  ];
+
+  const beautyIcons: IconType[] = [
+    GiLipstick,
+    GiMirrorMirror,
+    GiScissors,
+    GiComb,
+    GiPerfumeBottle,
+    GiFlowerEmblem,
+    GiMagnifyingGlass,
+    GiLips,
+    GiNecklace,
+    GiRing,
+    GiEarrings,
+    GiHighHeel,
+    GiLipstick, // Duplicate
+    GiScissors, // Duplicate
+    GiComb, // Duplicate
+  ];
+
+  const upholsteryIcons: IconType[] = [
+    GiSofa,
+    GiSewingMachine,
+    GiOfficeChair,
+    GiHanger,
+    GiPillow,
+    GiFangs,
+    GiSewingString,
+    GiWoodenChair,
+    GiTable,
+    GiBed,
+    GiSofa, // Duplicate
+    GiSewingMachine, // Duplicate
+    GiOfficeChair, // Duplicate
+    GiHanger, // Duplicate
+    GiPillow, // Duplicate
+  ];
 
   // Placeholder project data - to be filled by user
   const projects = [
     {
       id: 1,
-      name: "Csetényi Károly EV.",
-      image: "../public/images/csetka-preview.png", // Placeholder image path
+      name: "Csetényi Károly E.V.",
       url: "www.csetkagepeszet.hu",
       techStack: ["React", "TypeScript", "Sass"],
-      description: "Klíma és Hőszivattyú rendszerek, illetve a vállalkozó bemutatása. A kliensem teljesen szabad kezet adott, csak a zöld/fehér színvilágot adta meg. A weboldal reszponzív, modern és könnyen kezelhető."
+      description: "Klíma és Hőszivattyú rendszerek, illetve a vállalkozó bemutatása. A kliensem teljesen szabad kezet adott, csak a zöld/fehér színvilágot adta meg. A weboldal reszponzív, modern és könnyen kezelhető.",
+      completionTime: "2 hét",
+      icons: hvacIcons,
     },
     {
       id: 2,
-      name: "Sörös Lilla Tamara EV.",
-      image: "/images/project2-preview.jpg", // Placeholder image path
+      name: "Sörös Lilla Tamara E.V.",
       url: "#", // Placeholder URL
       techStack: ["React", "TypeScript", "Sass"],
-      description: "Projekt leírása"
+      description: "Tihanyi központú és balatonparti vonzáskörű kozmetika és szépségszalon bemutatására, időpontfoglalásra szolgáló webalkalmazás. Jelenleg fejlesztés alatt.",
+      completionTime: "Folyamatban",
+      icons: beautyIcons,
     },
     {
       id: 3,
-      name: "Rózsa Zsolt EV.",
-      image: "/images/project3-preview.jpg", // Placeholder image path
+      name: "Rózsa Zsolt E.V.",
       url: "#", // Placeholder URL
-      techStack: ["Next.js", "Tailwind", "MongoDB"],
-      description: "Projekt leírása"
+      techStack: ["React", "Tailwind", "TypeScript"],
+      description: "Veszprém megyei kárpitos kisvállalkozás bemutatására, hirdetésére szolgáló webapplikáció. Jelenleg tervezés alatt áll.",
+      completionTime: "Tervezés alatt",
+      icons: upholsteryIcons,
     }
   ];
 
-  // Auto-play carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % projects.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [projects.length]);
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
   return (
     <section className="section works-section" ref={elementRef}>
+      <WorksParallaxBackground scrollTargetRef={elementRef} />
       <div className={`section-content ${isVisible ? 'animate' : ''}`}>
         <motion.div
           className="works-container"
@@ -64,82 +148,31 @@ const WorksSection = () => {
             </h2>
           </div>
 
-          {/* Mobile Carousel */}
-          <div className="mobile-carousel">
-            <div className="carousel-wrapper">
-              <div className="carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                {projects.map((project) => (
-                  <div key={project.id} className="project-card">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="card-link">
-                      <div className="project-image-wrapper">
-                        <img
-                          src={project.image}
-                          alt={`${project.name} előnézet`}
-                          className="project-image"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = '/images/placeholder-project.jpg';
-                          }}
-                        />
-                      </div>
-                      <div className="project-content">
-                        <h3 className="project-name">{project.name}</h3>
-                        <div className="project-tech-stack">
-                          {project.techStack.map((tech, index) => (
-                            <span key={index} className="tech-tag">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="carousel-indicators">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  className={`indicator ${index === currentSlide ? 'active' : ''}`}
-                  onClick={() => goToSlide(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop Grid */}
-          <div className="desktop-grid">
-            {projects.map((project) => (
+          {/* Responsive Grid - Mobile: 1 column, Tablet: 2 columns, Desktop: 3 columns */}
+          <div className="projects-grid">
+            {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 className="project-card"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: project.id * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <a href={project.url} target="_blank" rel="noopener noreferrer" className="card-link">
-                  <div className="project-image-wrapper">
-                    <img
-                      src={project.image}
-                      alt={`${project.name} előnézet`}
-                      className="project-image"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = '/images/placeholder-project.jpg';
-                      }}
-                    />
-                  </div>
+                  <ProjectCardBackground icons={project.icons} iconCount={15} />
                   <div className="project-content">
                     <h3 className="project-name">{project.name}</h3>
+                    <p className="project-description">{project.description}</p>
                     <div className="project-tech-stack">
-                      {project.techStack.map((tech, index) => (
-                        <span key={index} className="tech-tag">
+                      {project.techStack.map((tech, techIndex) => (
+                        <span key={techIndex} className="tech-tag">
                           {tech}
                         </span>
                       ))}
+                    </div>
+                    <div className="project-completion-time">
+                      <span className="completion-label">Elkészülési idő:</span>
+                      <span className="completion-value">{project.completionTime}</span>
                     </div>
                   </div>
                 </a>
