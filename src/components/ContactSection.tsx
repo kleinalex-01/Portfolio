@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import ContactParallaxBackground from "./ContactParallaxBackground";
 import { 
   FaGithub, 
   FaLinkedin, 
@@ -269,6 +270,7 @@ const ContactSection = () => {
 
   return (
     <section className="section contact-section" ref={elementRef}>
+      <ContactParallaxBackground scrollTargetRef={elementRef} />
       <Toaster />
       <div className={`section-content ${isVisible ? 'animate' : ''}`}>
         <div className="contact-container">

@@ -3,8 +3,17 @@
 // =============================================================================
 
 .contact-section {
-  background-color: #ede7f6;
-  color: #2d3748;
+  background: linear-gradient(180deg, 
+    #f0f2f5 0%,      // Continues from Works section
+    #f2f4f7 14%,     // 
+    #f5f7f9 28%,     // 
+    #f7f8fa 42%,     // 
+    #f9fafb 56%,     // 
+    #fbfcfd 70%,     // 
+    #fdfdfe 84%,     // 
+    #ffffff 100%     // Pure white at bottom
+  );
+  color: #2c3e50; // Dark blue-grey for readability on light background
   height: auto;
   min-height: 100vh;
   display: flex;
@@ -12,6 +21,8 @@
   justify-content: center;
   padding: 5rem 0;
   overflow: visible;
+  position: relative;
+  margin-top: 0; // No gap between Works and Contact
 
   // Increase height only on large screens with 2-column grid
   @include respond-above('laptop-l') {
@@ -27,6 +38,53 @@
   @include respond-below('mobile-l') {
     min-height: auto;
     padding: 3rem 0;
+  }
+
+  // Parallax Background
+  .contact-parallax {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+
+    .parallax-layer {
+      position: absolute;
+      width: 140%;
+      height: 60%;
+      border-radius: 45%;
+      filter: blur(0);
+      mix-blend-mode: screen;
+      transform-origin: center;
+
+      @include respond-below('tablet') {
+        width: 160%;
+        height: 70%;
+      }
+    }
+
+    .layer-primary {
+      top: -28%;
+      left: -20%;
+      background: radial-gradient(circle at 25% 35%, rgba(100, 140, 180, 0.06), rgba(120, 160, 200, 0.02) 65%);
+    }
+
+    .layer-secondary {
+      bottom: -20%;
+      right: -15%;
+      background: radial-gradient(circle at 70% 40%, rgba(110, 150, 190, 0.05), rgba(130, 170, 210, 0.02) 70%);
+    }
+
+    .layer-accent {
+      top: 30%;
+      right: -25%;
+      background: radial-gradient(circle at 40% 60%, rgba(120, 160, 200, 0.04), rgba(140, 180, 220, 0.01) 75%);
+    }
+  }
+
+  .section-content {
+    position: relative;
+    z-index: 2;
   }
 
   // Container

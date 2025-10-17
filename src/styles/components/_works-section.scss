@@ -1,10 +1,18 @@
-// Works Section - Soft Mauve
+// Works Section - Professional subtle gradient
 .works-section {
-  background-color: #e1bee7;
+  background: linear-gradient(180deg, 
+    #f8f9fa 0%,      // Very light grey (almost white)
+    #f5f6f8 20%,     // 
+    #f2f4f6 40%,     // 
+    #eff1f4 60%,     // 
+    #eceff2 80%,     // 
+    #f0f2f5 100%     // Light grey - transitions to Contact
+  );
   position: relative;
   overflow: hidden;
   margin-top: -180px;
   z-index: 1;
+  padding-bottom: 0; // No padding at bottom, flows into contact
   
   // Progressive padding based on breakpoints
   padding: $spacing-32 0 $spacing-24; // 8rem 0 6rem - mobile-l and up
@@ -55,37 +63,25 @@
     .layer-primary {
       top: -28%;
       left: -20%;
-      background: radial-gradient(circle at 25% 35%, rgba(255, 255, 255, 0.45), rgba(225, 190, 231, 0.08) 65%);
+      background: radial-gradient(circle at 25% 35%, rgba(100, 150, 200, 0.08), rgba(150, 180, 210, 0.02) 65%);
     }
 
     .layer-secondary {
       bottom: -20%;
       right: -15%;
-      background: radial-gradient(circle at 70% 40%, rgba(209, 196, 233, 0.55), rgba(149, 117, 205, 0.12) 70%);
+      background: radial-gradient(circle at 70% 40%, rgba(120, 160, 200, 0.06), rgba(140, 170, 200, 0.03) 70%);
     }
 
     .layer-accent {
       top: 30%;
       right: -25%;
-      background: radial-gradient(circle at 40% 60%, rgba(244, 143, 177, 0.4), rgba(194, 24, 91, 0.1) 75%);
+      background: radial-gradient(circle at 40% 60%, rgba(130, 170, 210, 0.05), rgba(160, 190, 220, 0.02) 75%);
     }
   }
 
   .section-content {
     position: relative;
     z-index: 2;
-  }
-
-  .works-contact-divider {
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    z-index: 5;
-
-    @include respond-below('tablet') {
-      bottom: -5px;
-    }
   }
 
   .works-container {
@@ -125,7 +121,7 @@
     .works-title {
       font-size: $font-size-3xl; // 1.875rem - base
       font-weight: $font-weight-bold;
-      color: #333333;
+      color: #1a202c; // Darker for better contrast on light background
       margin: 0;
       line-height: $line-height-tight;
       
@@ -192,21 +188,77 @@
     }
   }
 
-  // Project Card Styles
+  // Project Card Styles - Enhanced for better "pop"
   .project-card {
-    background: $color-white;
+    background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%); // Subtle gradient for depth
     border-radius: $border-radius-xl;
+    border: 2px solid rgba(100, 120, 150, 0.12); // Slightly thicker, softer border
     overflow: hidden;
-    box-shadow: $shadow-md;
-    transition: $transition-base;
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.1),
+      0 4px 8px rgba(0, 0, 0, 0.08),
+      0 0 0 1px rgba(255, 255, 255, 0.5) inset; // Inner glow for polish
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); // Bouncy easing
+    position: relative;
+    
+    // Add subtle shine effect
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+      transition: left 0.6s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
     
     @include respond-below('mobile-m') {
       border-radius: $border-radius-lg; // Smaller radius for mobile-s/m
     }
 
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-xl;
+      transform: translateY(-16px) scale(1.03) rotate(0.5deg); // More dramatic lift with subtle rotation
+      box-shadow: 
+        0 32px 64px rgba(0, 0, 0, 0.2),
+        0 16px 32px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgba(100, 120, 150, 0.15) inset; // Grey inner glow
+      border-color: rgba(100, 120, 150, 0.4); // Grey border
+      
+      &::after {
+        left: 100%; // Shine effect sweep across
+      }
+      
+      .card-link {
+        &::before {
+          opacity: 1;
+        }
+        
+        &::after {
+          opacity: 1;
+        }
+      }
+      
+      .floating-icon {
+        color: rgba(60, 80, 110, 0.4); // Darker grey on hover
+        transform: scale(1.1); // Icons grow slightly
+      }
+      
+      .project-name {
+        color: #2d3748; // Dark grey accent
+        transform: translateX(4px); // Subtle shift right
+      }
+      
+      .tech-tag {
+        transform: translateY(-2px); // Tech tags lift up
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
     }
 
     .card-link {
@@ -215,6 +267,36 @@
       display: block;
       position: relative;
       min-height: 200px; // Ensure minimum height for icons to show
+      
+      // Enhanced gradient overlay on hover with glow effect
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, 
+          rgba(100, 120, 150, 0.06) 0%, 
+          rgba(120, 140, 160, 0.04) 50%,
+          rgba(100, 120, 150, 0.06) 100%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 0;
+        pointer-events: none;
+      }
+      
+      // Corner accent
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle at top right, rgba(100, 120, 150, 0.15), transparent 70%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        z-index: 0;
+      }
     }
 
     .project-card-background {
@@ -226,13 +308,19 @@
 
       .floating-icon {
         position: absolute;
-        color: rgba(156, 39, 176, 0.4); // Increased visibility from 0.25 to 0.4
+        color: rgba(60, 80, 110, 0.18); // Darker blue-grey for better visibility on light background
         will-change: transform, opacity;
         transform-origin: center;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); // Smooth bouncy transition
         
         svg {
           display: block;
           filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+        }
+
+        @include respond-above('laptop') {
+          // Smaller icons on desktop for less clutter
+          font-size: 0.65em !important;
         }
 
         @include respond-below('tablet') {
@@ -262,9 +350,10 @@
       .project-name {
         font-size: $font-size-xl; // 1.25rem
         font-weight: $font-weight-semibold;
-        color: #333333;
+        color: #1a202c; // Darker for better contrast
         margin: 0 0 $spacing-3; // 0 0 0.75rem
         line-height: $line-height-snug;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); // Smooth transition
         
         @include respond-above('laptop-l') {
           font-size: $font-size-2xl; // 1.5rem
@@ -283,7 +372,7 @@
 
       .project-description {
         font-size: $font-size-sm; // 0.875rem
-        color: #666666;
+        color: #4a5568; // Darker grey for better contrast
         line-height: $line-height-relaxed;
         margin: 0 0 $spacing-4; // 0 0 1rem
         
@@ -315,13 +404,21 @@
         }
 
         .tech-tag {
-          background: rgba(225, 190, 231, 0.2);
-          color: #333333;
+          background: rgba(63, 81, 181, 0.08); // Blue-grey instead of mauve
+          color: #3f51b5;
           padding: $spacing-2 $spacing-3; // 0.4rem 0.75rem
           border-radius: $border-radius-md;
           font-size: $font-size-sm; // 0.875rem
           font-weight: $font-weight-medium;
-          transition: $transition-fast;
+          transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); // Bouncy transition
+          border: 1px solid transparent;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Subtle depth
+          
+          &:hover {
+            background: rgba(63, 81, 181, 0.15);
+            border-color: rgba(63, 81, 181, 0.2);
+            transform: translateY(-1px);
+          }
           
           @include respond-above('laptop-l') {
             padding: $spacing-2-5 $spacing-4; // 0.625rem 1rem
@@ -363,6 +460,37 @@
           font-weight: $font-weight-semibold;
         }
       }
+    }
+  }
+}
+
+// =============================================================================
+// ANIMATIONS - Enhanced card entrance
+// =============================================================================
+
+@keyframes cardPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Apply entrance animation when cards come into view
+.project-card {
+  animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+  
+  @for $i from 1 through 9 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
     }
   }
 }

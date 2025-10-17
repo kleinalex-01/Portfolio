@@ -1,4 +1,3 @@
-import WorksContactDivider from "./WorksContactDivider";
 import WorksParallaxBackground from "./WorksParallaxBackground";
 import ProjectCardBackground from "./ProjectCardBackground";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
@@ -181,7 +180,6 @@ const WorksSection = () => {
           </div>
         </motion.div>
       </div>
-      <WorksContactDivider />
     </section>
   );
 };
