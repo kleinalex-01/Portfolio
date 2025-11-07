@@ -1,10 +1,22 @@
 import HeroBackground from "./HeroBackground";
 import Typewriter from "./Typewriter";
+import toast from "react-hot-toast";
 
 const HeroSection = () => {
   const handleCVDownload = () => {
-    // TODO: Implement CV download functionality
-    console.log('CV download clicked');
+    // Show upload warning popup with toast
+    toast('📄 Feltöltés alatt - Az önéletrajz hamarosan elérhető lesz!', {
+      duration: 4000,
+      style: {
+        background: '#f3f4f6',
+        color: '#374151',
+        border: '1px solid #d1d5db',
+        borderRadius: '12px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+      icon: '⏳',
+    });
   };
 
   const handleScrollDown = () => {

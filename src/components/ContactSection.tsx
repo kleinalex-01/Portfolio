@@ -534,7 +534,7 @@ const ContactSection = () => {
 
                 {/* LinkedIn */}
                 <motion.a 
-                  href="https://linkedin.com/in/klein-alex" 
+                  href="https://www.linkedin.com/in/alex-klein-web-dev/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link linkedin"
@@ -550,7 +550,7 @@ const ContactSection = () => {
 
                 {/* Facebook */}
                 <motion.a 
-                  href="https://facebook.com" 
+                  href="https://www.facebook.com/alex.klein.9250595/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link facebook"
@@ -566,7 +566,7 @@ const ContactSection = () => {
 
                 {/* Instagram */}
                 <motion.a 
-                  href="https://instagram.com" 
+                  href="https://www.instagram.com/kleinalex_/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link instagram"

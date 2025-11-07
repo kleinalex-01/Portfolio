@@ -73,6 +73,7 @@ svg {
   display: block;
   max-width: 100%;
   height: auto;
+  image-orientation: from-image; // Fix for portrait images showing sideways (respects EXIF orientation)
 }
 
 // =============================================================================
@@ -105,6 +106,7 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  appearance: button;
   cursor: pointer;
 }
 

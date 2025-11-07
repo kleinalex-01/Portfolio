@@ -2,6 +2,7 @@ import WorksParallaxBackground from "./WorksParallaxBackground";
 import ProjectCardBackground from "./ProjectCardBackground";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { motion } from 'framer-motion';
+import toast from "react-hot-toast";
 import { 
   GiLipstick,
   GiMirrorMirror,
@@ -43,6 +44,30 @@ import type { IconType } from "react-icons";
 
 const WorksSection = () => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+
+  // Handle project card clicks
+  const handleProjectClick = (project: typeof projects[0], event: React.MouseEvent) => {
+    event.preventDefault();
+    
+    if (project.id === 1) {
+      // First card - redirect to actual website
+      window.open(`https://${project.url}`, '_blank', 'noopener,noreferrer');
+    } else {
+      // Other cards - show development notification
+      toast('🚧 Tervezés/Fejlesztés alatt - Hamarosan elérhető lesz!', {
+        duration: 4000,
+        style: {
+          background: '#f3f4f6',
+          color: '#374151',
+          border: '1px solid #d1d5db',
+          borderRadius: '12px',
+          fontSize: '14px',
+          fontWeight: '500',
+        },
+        icon: '⏳',
+      });
+    }
+  };
 
   // Industry-specific icon sets
   const hvacIcons: IconType[] = [
@@ -157,7 +182,12 @@ const WorksSection = () => {
                 animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <a href={project.url} target="_blank" rel="noopener noreferrer" className="card-link">
+                <a 
+                  href={project.id === 1 ? `https://${project.url}` : "#"} 
+                  onClick={(event) => handleProjectClick(project, event)}
+                  className="card-link"
+                  style={{ cursor: 'pointer' }}
+                >
                   <ProjectCardBackground icons={project.icons} iconCount={15} />
                   <div className="project-content">
                     <h3 className="project-name">{project.name}</h3>
